@@ -88,13 +88,23 @@ export default function AcessoPage() {
               <h1 className="font-display text-2xl font-bold">Ferramentas Raw AI</h1>
               <p className="mt-1 text-sm text-muted">Projetos em preparação para venda. Quer um demo? Fale comigo.</p>
               <div className="mt-6 space-y-3">
-                {gated.map((p) => (
-                  <div key={p.slug} className="rounded-2xl border border-white/8 bg-white/[0.02] p-4">
-                    <div className="font-display font-semibold">{p.name}</div>
-                    <div className="mt-0.5 text-xs text-dim">{p.category.pt}</div>
-                    <p className="mt-2 text-sm text-muted">{p.blurb.pt}</p>
-                  </div>
-                ))}
+                {gated.map((p) => {
+                  const Card = p.url ? "a" : "div";
+                  return (
+                    <Card
+                      key={p.slug}
+                      {...(p.url ? { href: p.url, target: "_blank", rel: "noopener noreferrer" } : {})}
+                      className="group block rounded-2xl border border-white/8 bg-white/[0.02] p-4 transition-all hover:-translate-y-0.5 hover:border-[color:rgba(62,224,255,0.3)]"
+                    >
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="font-display font-semibold">{p.name}</div>
+                        {p.url && <span className="text-xs font-semibold text-[var(--cyan-bright)]">abrir ↗</span>}
+                      </div>
+                      <div className="mt-0.5 text-xs text-dim">{p.category.pt}</div>
+                      <p className="mt-2 text-sm text-muted">{p.blurb.pt}</p>
+                    </Card>
+                  );
+                })}
               </div>
               <a
                 href={WHATSAPP}

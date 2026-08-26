@@ -115,11 +115,34 @@ export const projects: Project[] = [
     url: "https://www.amazon.com/dp/B0GQJGGFWS",
   },
   {
+    slug: "barbearia",
+    name: "Templates de Barbearia",
+    category: { pt: "Varejo / Template", en: "Retail / Template" },
+    status: "demo",
+    url: "https://rawdre.github.io/ai-consulting/barbearia-hub.html",
+    blurb: {
+      pt: "Demos e sistema de fila para barbearias — um cluster de templates reutilizável.",
+      en: "Barbershop demos + a queue system — a reusable template cluster.",
+    },
+  },
+  {
+    slug: "acuas",
+    name: "Acuas",
+    category: { pt: "Proposta", en: "Proposal" },
+    status: "proposal",
+    url: "https://rawdre.github.io/ai-consulting/proposta-acuas.html",
+    blurb: {
+      pt: "Proposta de site/solução mantida no ar para reuso.",
+      en: "A site/solution proposal kept live for reuse.",
+    },
+  },
+  {
     slug: "tool-school",
     name: "Tool School",
     category: { pt: "Curso de IA", en: "AI course" },
     status: "building",
     gated: true,
+    url: "https://rawdre.github.io/ai-consulting/tool-school/",
     blurb: {
       pt: "Espaço do curso Raw AI: ferramentas de IA, projetos e implementação prática — acesso restrito.",
       en: "Raw AI course space: AI tools, projects and hands-on implementation — restricted access.",
@@ -131,6 +154,7 @@ export const projects: Project[] = [
     category: { pt: "Crescimento local", en: "Local growth" },
     status: "building",
     gated: true,
+    url: "https://rawdre.github.io/ai-consulting/raw-ai-brasil/",
     blurb: {
       pt: "Central do avanço em negócios locais no Brasil: landing + templates de nicho + pipeline dos primeiros prospects — acesso restrito.",
       en: "Hub for the Brazil local-business push: landing + niche templates + first-prospects pipeline — restricted access.",
