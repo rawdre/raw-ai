@@ -58,17 +58,18 @@ export const projects: Project[] = [
       pt: "Serviço bilíngue de dispatch para caminhoneiros com taxa fixa de 6% — plataforma completa no ar.",
       en: "Bilingual truck-dispatch service at a flat 6% — full platform live.",
     },
+    url: "https://raw-truck-dispatcher.vercel.app",
   },
   {
-    slug: "baystate-hvac",
-    name: "BayState Climate Co.",
+    slug: "ventic-hvac",
+    name: "Ventic HVAC",
     category: { pt: "HVAC / Geração de leads", en: "HVAC / Lead-gen" },
-    status: "demo",
+    status: "live",
     blurb: {
-      pt: "Landing de captação para HVAC em Massachusetts com um consultor de IA (ComfortFit), fluxos de heat-pump e rebates do Mass Save.",
-      en: "Massachusetts HVAC lead-gen landing with an AI advisor (ComfortFit), heat-pump flows and Mass Save rebates.",
+      pt: "Site de captação para HVAC com um consultor de IA, fluxos de heat-pump/mini-split e rebates — no ar em ventichvac.com.",
+      en: "HVAC lead-gen site with an AI advisor, heat-pump/mini-split flows and rebates — live at ventichvac.com.",
     },
-    url: "https://rawdre.github.io/mass-hvac-landing/",
+    url: "https://ventichvac.com",
   },
   {
     slug: "jaciel-bike",
@@ -84,11 +85,12 @@ export const projects: Project[] = [
     slug: "raw-tennis",
     name: "RAW Tennis Club",
     category: { pt: "Esporte / Aulas", en: "Sports / Coaching" },
-    status: "building",
+    status: "live",
     blurb: {
       pt: "Site do RAW Tennis Club (Prof. Luciano Raw) no Clube da Aeronáutica de Brasília.",
       en: "Site for RAW Tennis Club (coach Luciano Raw) at Brasília's Air Force Club.",
     },
+    url: "https://rawtennisclub.vercel.app",
   },
   {
     slug: "diana-nails",
@@ -99,6 +101,7 @@ export const projects: Project[] = [
       pt: "Site de manicure & pedicure com agendamento — Diana Alves.",
       en: "Manicure & pedicure site with booking — Diana Alves.",
     },
+    url: "https://diana-nails.vercel.app",
   },
   {
     slug: "mtb-book",
@@ -109,6 +112,7 @@ export const projects: Project[] = [
       pt: "Livro sobre trilhas de mountain bike em Brasília, publicado na Amazon com campanha de lançamento.",
       en: "A mountain-bike trails book for Brasília, published on Amazon with a launch campaign.",
     },
+    url: "https://www.amazon.com/dp/B0GQJGGFWS",
   },
   {
     slug: "tool-school",

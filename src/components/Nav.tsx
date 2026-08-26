@@ -10,8 +10,8 @@ const WHATSAPP =
 export function Nav() {
   const { lang, toggle } = useLang();
   const links = [
-    { href: "#servicos", pt: "Serviços", en: "Services" },
-    { href: "#como", pt: "Como funciona", en: "How it works" },
+    { href: "#servicos", pt: "IA", en: "AI" },
+    { href: "#sites", pt: "Sites", en: "Websites" },
     { href: "#projetos", pt: "Projetos", en: "Projects" },
     { href: "#faq", pt: "FAQ", en: "FAQ" },
   ];

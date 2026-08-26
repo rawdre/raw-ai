@@ -78,20 +78,32 @@ h1, h2, h3, .font-display { font-family: var(--font-display), system-ui, sans-se
 }
 
 @keyframes drift {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.7; }
-  50% { transform: translate3d(2%, -3%, 0) scale(1.08); opacity: 1; }
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.65; }
+  33% { transform: translate3d(7%, 5%, 0) scale(1.14); opacity: 1; }
+  66% { transform: translate3d(-4%, 8%, 0) scale(1.05); opacity: 0.85; }
 }
 @keyframes drift2 {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1.05); opacity: 0.55; }
-  50% { transform: translate3d(-3%, 2%, 0) scale(1); opacity: 0.85; }
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.05); opacity: 0.5; }
+  40% { transform: translate3d(-8%, -6%, 0) scale(1); opacity: 0.9; }
+  70% { transform: translate3d(5%, -3%, 0) scale(1.12); opacity: 0.75; }
+}
+@keyframes drift3 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.4; }
+  50% { transform: translate3d(6%, -7%, 0) scale(1.2); opacity: 0.7; }
+}
+@keyframes gridPan {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 46px 92px, 46px 92px; }
 }
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(52, 245, 160, 0.5); }
   50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(52, 245, 160, 0); }
 }
 
-.animate-drift { animation: drift 14s ease-in-out infinite; }
-.animate-drift2 { animation: drift2 18s ease-in-out infinite; }
+.animate-drift { animation: drift 16s ease-in-out infinite; }
+.animate-drift2 { animation: drift2 21s ease-in-out infinite; }
+.animate-drift3 { animation: drift3 26s ease-in-out infinite; }
+.animate-gridpan { animation: gridPan 40s linear infinite; }
 .animate-pulse-dot { animation: pulse-dot 2.4s ease-in-out infinite; }
 
 /* Glass surfaces */
@@ -109,6 +121,6 @@ h1, h2, h3, .font-display { font-family: var(--font-display), system-ui, sans-se
 ::-webkit-scrollbar-thumb:hover { background: #263457; }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-drift, .animate-drift2, .animate-pulse-dot { animation: none; }
+  .animate-drift, .animate-drift2, .animate-drift3, .animate-gridpan, .animate-pulse-dot { animation: none; }
   html { scroll-behavior: auto; }
 }
