@@ -101,7 +101,7 @@ export const projects: Project[] = [
       pt: "Site de manicure & pedicure com agendamento — Diana Alves.",
       en: "Manicure & pedicure site with booking — Diana Alves.",
     },
-    url: "https://diana-nails.vercel.app",
+    url: "https://diana-nails-br.vercel.app",
   },
   {
     slug: "mtb-book",
