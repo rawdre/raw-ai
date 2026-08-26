@@ -3,6 +3,7 @@
 import { AtSign, Mail, MessageCircle } from "lucide-react";
 import { RawAILogo } from "./RawAILogo";
 import { useLang, pick } from "@/lib/lang";
+import { SITE_VERSION } from "@/lib/version";
 
 const WHATSAPP =
   "https://wa.me/5561998229223?text=" +
@@ -63,6 +64,7 @@ export function Footer() {
               <Mail size={13} /> rawandre@gmail.com
             </a>
             <span>© {new Date().getFullYear()} Raw AI</span>
+            <span title="Versão do site — âncora de rollback" className="opacity-70">v{SITE_VERSION}</span>
           </div>
         </div>
       </div>
