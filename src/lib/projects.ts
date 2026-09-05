@@ -106,13 +106,13 @@ export const projects: Project[] = [
   {
     slug: "mtb-book",
     name: "MTB Brasília — Livro",
-    category: { pt: "Conteúdo / Amazon", en: "Content / Amazon" },
+    category: { pt: "Conteúdo / Livro (PT · EN)", en: "Content / Book (PT · EN)" },
     status: "live",
     blurb: {
-      pt: "Livro sobre trilhas de mountain bike em Brasília, publicado na Amazon com campanha de lançamento.",
-      en: "A mountain-bike trails book for Brasília, published on Amazon with a launch campaign.",
+      pt: "Livro sobre trilhas de mountain bike em Brasília — leia grátis em Português ou English (PDF / EPUB). Também na Amazon.",
+      en: "A mountain-bike trails book for Brasília — read free in Portuguese or English (PDF / EPUB). Also on Amazon.",
     },
-    url: "https://www.amazon.com/dp/B0GQJGGFWS",
+    url: "/mtb.html",
   },
   {
     slug: "barbearia",
