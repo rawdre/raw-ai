@@ -1,0 +1,387 @@
+<title>Seja Arena — Plataforma de Monetização Digital do Torcedor</title>
+<style>
+  :root{
+    --bg:#0a0d13; --bg2:#0f1420; --card:#141b28; --card2:#18202f; --ink:#eef2f8; --muted:#9aa7bc; --line:#232d3f;
+    --gold:#f5b942; --gold2:#ffcf6b; --gold-ink:#f5b942; --gold-soft:#f5b9421a;
+    --green:#43c98a; --green-soft:#43c98a1a; --blue:#5b9cf6;
+    --radius:16px;
+    --sans:"Segoe UI Variable Display","Segoe UI",system-ui,-apple-system,sans-serif;
+    --mono:ui-monospace,"Cascadia Code","SF Mono",Menlo,Consolas,monospace;
+  }
+  :root[data-theme="light"]{
+    --bg:#f6f7f9; --bg2:#eef1f5; --card:#ffffff; --card2:#f4f6fa; --ink:#131a24; --muted:#5c6675; --line:#e3e7ee;
+    --gold:#c98a10; --gold2:#e0a52a; --gold-ink:#a06c00; --gold-soft:#c98a1014;
+    --green:#1f9a63; --green-soft:#1f9a6314; --blue:#2f6bc8;
+  }
+  @media (prefers-color-scheme:light){
+    :root:not([data-theme="dark"]){
+      --bg:#f6f7f9; --bg2:#eef1f5; --card:#ffffff; --card2:#f4f6fa; --ink:#131a24; --muted:#5c6675; --line:#e3e7ee;
+      --gold:#c98a10; --gold2:#e0a52a; --gold-ink:#a06c00; --gold-soft:#c98a1014; --green:#1f9a63; --green-soft:#1f9a6314; --blue:#2f6bc8;
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+  h1,h2,h3{letter-spacing:-.02em}
+
+  /* top bar */
+  .bar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .bar .in{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:11px clamp(16px,4vw,40px)}
+  .brandmark{display:flex;align-items:center;gap:10px;font-weight:800;font-size:15px;letter-spacing:.01em}
+  .brandmark .dot{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--gold),var(--gold2));display:grid;place-items:center;color:#1a1200;font-weight:900;font-family:var(--mono);font-size:15px}
+  .brandmark span{color:var(--gold-ink)}
+  .toggle{margin-left:auto;display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--card)}
+  .toggle button{appearance:none;border:0;background:transparent;color:var(--muted);font:inherit;font-weight:700;font-size:13px;padding:7px 15px;cursor:pointer;transition:.15s}
+  .toggle button[aria-pressed="true"]{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1200}
+  .toggle button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .lights{position:absolute;inset:0;background:
+      radial-gradient(60% 80% at 82% -10%, color-mix(in srgb,var(--gold) 26%,transparent), transparent 60%),
+      radial-gradient(50% 70% at 12% 0%, color-mix(in srgb,var(--blue) 20%,transparent), transparent 55%),
+      linear-gradient(180deg,var(--bg2),var(--bg));z-index:0}
+  .hero .grid-fade{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:44px 44px;opacity:.25;mask-image:linear-gradient(180deg,transparent,#000 30%,transparent);z-index:0}
+  .hero .in{position:relative;z-index:1;padding:clamp(56px,10vw,110px) 0 clamp(44px,7vw,80px)}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-ink);font-weight:800;border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);border-radius:999px;padding:6px 14px;margin:0 0 22px;background:var(--gold-soft)}
+  h1{font-size:clamp(34px,6.4vw,68px);line-height:1.02;margin:0 0 20px;font-weight:900;max-width:16ch;text-wrap:balance}
+  h1 .g{background:linear-gradient(120deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{font-size:clamp(16px,2.2vw,21px);color:var(--muted);max-width:60ch;margin:0 0 30px}
+  .heroStats{display:flex;flex-wrap:wrap;gap:12px}
+  .hs{background:color-mix(in srgb,var(--card) 70%,transparent);border:1px solid var(--line);border-radius:12px;padding:12px 18px;backdrop-filter:blur(6px)}
+  .hs b{display:block;font-size:clamp(19px,2.6vw,24px);font-weight:900;font-variant-numeric:tabular-nums;background:linear-gradient(120deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hs small{color:var(--muted);font-size:12.5px}
+
+  section{padding:clamp(46px,7vw,82px) 0;border-bottom:1px solid var(--line)}
+  .lbl{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-ink);font-weight:800;margin:0 0 12px}
+  h2{font-size:clamp(24px,3.6vw,38px);margin:0 0 14px;font-weight:800;max-width:20ch;text-wrap:balance}
+  .say{font-size:clamp(15px,1.8vw,17px);color:var(--muted);max-width:64ch;margin:0 0 8px}
+
+  .bento{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}
+  .b{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;transition:transform .15s,border-color .15s}
+  .b:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--gold) 50%,var(--line))}
+  .b .ic{font-size:22px;margin-bottom:10px}
+  .b h3{font-size:15.5px;margin:0 0 6px}
+  .b p{margin:0;font-size:13px;color:var(--muted)}
+  .b.wide{grid-column:span 2}
+  @media (max-width:860px){.bento{grid-template-columns:repeat(2,1fr)}.b.wide{grid-column:span 2}}
+  @media (max-width:520px){.bento{grid-template-columns:1fr}.b.wide{grid-column:span 1}}
+
+  /* journey */
+  .flow{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;counter-reset:s}
+  .step{flex:1 1 150px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;position:relative;counter-increment:s}
+  .step::before{content:counter(s);font-family:var(--mono);font-weight:900;color:var(--gold-ink);font-size:13px;background:var(--gold-soft);border:1px solid color-mix(in srgb,var(--gold) 30%,transparent);width:26px;height:26px;border-radius:7px;display:grid;place-items:center;margin-bottom:10px}
+  .step b{display:block;font-size:14px;margin-bottom:3px}
+  .step small{color:var(--muted);font-size:12.5px}
+
+  /* roadmap */
+  .road{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px}
+  @media (max-width:860px){.road{grid-template-columns:1fr 1fr}}
+  @media (max-width:520px){.road{grid-template-columns:1fr}}
+  .ph{border:1px solid var(--line);border-radius:var(--radius);padding:20px;background:var(--card);position:relative;overflow:hidden}
+  .ph.now{border-color:color-mix(in srgb,var(--gold) 55%,var(--line));background:linear-gradient(180deg,var(--gold-soft),var(--card))}
+  .ph .tag{font-family:var(--mono);font-size:12px;color:var(--gold-ink);font-weight:700}
+  .ph h3{font-size:16px;margin:6px 0 4px}
+  .ph .when{font-size:12.5px;color:var(--muted);margin-bottom:10px;font-weight:600}
+  .ph ul{margin:0;padding-left:16px}.ph li{font-size:12.5px;color:var(--muted);margin:3px 0}
+  .ph .badge{position:absolute;top:14px;right:14px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#1a1200;background:linear-gradient(135deg,var(--gold),var(--gold2));padding:3px 8px;border-radius:999px}
+
+  /* budget */
+  .budget{background:var(--card2);border:1px solid var(--line);border-radius:20px;padding:clamp(20px,3vw,34px);margin-top:28px}
+  .headline{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px 24px;margin-bottom:8px}
+  .headline .big{font-size:clamp(30px,5vw,52px);font-weight:900;line-height:1;background:linear-gradient(120deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums}
+  .headline .usd{font-size:15px;color:var(--muted);font-weight:600}
+  .headline .cap{font-size:13px;color:var(--muted);width:100%}
+  .tblwrap{overflow-x:auto;margin-top:18px;border:1px solid var(--line);border-radius:14px}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:540px}
+  th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--gold-soft);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:800}
+  tr:last-child td{border-bottom:0}
+  td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+  tr.total td{background:var(--gold-soft);font-weight:800}
+  .deliver{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+  @media (max-width:640px){.deliver{grid-template-columns:1fr}}
+  .deliver div{display:flex;gap:10px;font-size:13.5px;align-items:flex-start}
+  .deliver .ck{color:var(--green);font-weight:900;flex-shrink:0}
+
+  .own{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
+  @media (max-width:760px){.own{grid-template-columns:1fr}}
+  .own .o{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+  .own .o b{display:block;font-size:15px;margin-bottom:6px;color:var(--gold-ink)}
+  .own .o p{margin:0;font-size:13px;color:var(--muted)}
+
+  .cta{text-align:center;padding:clamp(50px,8vw,90px) 0;border-bottom:0}
+  .cta h2{margin:0 auto 14px}
+  .cta .say{margin:0 auto 26px}
+  .ctabtn{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1200;font-weight:800;font-size:16px;padding:15px 34px;border-radius:999px;letter-spacing:.01em}
+  .contact{margin-top:16px;font-size:13px;color:var(--muted)}
+
+  footer{max-width:1080px;margin:0 auto;padding:26px clamp(16px,4vw,40px) 60px;color:var(--muted);font-size:12px}
+  [hidden]{display:none!important}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+  @media print{.bar{position:static}.toggle{display:none}[data-lang]{display:block!important}.b:hover,.ph{transform:none}}
+</style>
+
+<div class="bar"><div class="in">
+  <div class="brandmark"><span class="dot">S</span>SEJA <span>ARENA</span></div>
+  <div class="toggle" role="group" aria-label="Language / Idioma">
+    <button id="btn-en" aria-pressed="true" onclick="setLang('en')">EN</button>
+    <button id="btn-pt" aria-pressed="false" onclick="setLang('pt')">PT</button>
+  </div>
+</div></div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div data-lang="en">
+  <div class="hero"><div class="lights"></div><div class="grid-fade"></div>
+    <div class="wrap in">
+      <span class="eyebrow">◆ Digital Fan Monetization Platform</span>
+      <h1>Turn every seat into a <span class="g">point of sale</span>. Every fan into revenue.</h1>
+      <p class="sub">Seja Arena is your own branded platform that connects Wi-Fi, ordering, advertising, tickets and data into one fan experience — and one new revenue engine you fully own. Here's the platform, the plan, and exactly what the first 90 days cost.</p>
+      <div class="heroStats">
+        <div class="hs"><b>1 platform</b><small>20+ integrated modules</small></div>
+        <div class="hs"><b>Seat delivery</b><small>order from the seat, in seconds</small></div>
+        <div class="hs"><b>100% yours</b><small>white-label · your brand · your data</small></div>
+        <div class="hs"><b>Multi-arena</b><small>built to expand across venues</small></div>
+      </div>
+    </div>
+  </div>
+
+  <section><div class="wrap">
+    <p class="lbl">The opportunity</p>
+    <h2>Every match, thousands of fans and zero digital relationship. That's money leaving the building.</h2>
+    <p class="say">Today the fan buys a ticket and disappears. Seja Arena captures that relationship at the moment they connect to the Wi-Fi — and keeps it. From that first tap, you own the channel: you sell to them at their seat, show sponsors a captive audience, and learn what every fan wants. The stadium stops being just an event venue and becomes a year-round digital business.</p>
+  </div></section>
+
+  <section><div class="wrap">
+    <p class="lbl">The platform</p>
+    <h2>One fan super-app, wired into the whole operation.</h2>
+    <div class="bento">
+      <div class="b wide"><div class="ic">📶</div><h3>Wi-Fi + Captive Portal</h3><p>Fans get free Wi-Fi; you get the front door — branded portal, sponsor video, sign-up and consent, all captured cleanly.</p></div>
+      <div class="b"><div class="ic">🍔</div><h3>Order to your seat</h3><p>Food &amp; drink ordered from the phone, delivered to the exact seat — or ready for pickup.</p></div>
+      <div class="b"><div class="ic">🪑</div><h3>QR per seat</h3><p>Sector, block, row and seat identified automatically by a unique code on every chair.</p></div>
+      <div class="b"><div class="ic">📣</div><h3>Ads &amp; sponsorship</h3><p>Banners, video and sponsored campaigns with a real ad-inventory manager — a brand-new revenue line.</p></div>
+      <div class="b"><div class="ic">💳</div><h3>Digital payment</h3><p>Pix and cards, order tracking end-to-end, split-ready for multiple vendors.</p></div>
+      <div class="b"><div class="ic">🎟️</div><h3>Tickets &amp; access</h3><p>Ticketing and facial-recognition entry, integrated and law-compliant.</p></div>
+      <div class="b"><div class="ic">🅿️</div><h3>Parking</h3><p>Buy, find and pay for parking inside the same app.</p></div>
+      <div class="b"><div class="ic">🛍️</div><h3>Marketplace &amp; coupons</h3><p>Official store, merch, promos and coupons that drive repeat spend.</p></div>
+      <div class="b"><div class="ic">🔔</div><h3>Notifications &amp; CRM</h3><p>Reach every fan directly, segment them, and bring them back next match.</p></div>
+      <div class="b wide"><div class="ic">📊</div><h3>Analytics, dashboards &amp; open APIs</h3><p>Live audience, consumption and advertising metrics — plus APIs to plug in anything you add later.</p></div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <p class="lbl">The fan journey</p>
+    <h2>From "connect to Wi-Fi" to "delivered to my seat" — in one flow.</h2>
+    <div class="flow">
+      <div class="step"><b>Connects to Wi-Fi</b><small>Branded portal + sponsor video</small></div>
+      <div class="step"><b>Signs up &amp; consents</b><small>Registration + privacy, done right</small></div>
+      <div class="step"><b>Opens Seja Arena</b><small>Seat detected via QR</small></div>
+      <div class="step"><b>Orders &amp; pays</b><small>Pix / card, tracks the order</small></div>
+      <div class="step"><b>Delivered to seat</b><small>Or picks up — never misses a play</small></div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <p class="lbl">How we build it</p>
+    <h2>A phased path — revenue early, full platform over time, expansion after.</h2>
+    <p class="say">You never sign a giant blank cheque. We start small and smart: a Discovery &amp; Blueprint phase that produces a working demo and a fixed price for the build. Each phase pays for itself before the next begins.</p>
+    <div class="road">
+      <div class="ph now"><span class="badge">Start here</span><p class="tag">Phase 0</p><h3>Discovery &amp; Blueprint</h3><p class="when">Months 1–3</p><ul><li>Full product + tech blueprint</li><li>Clickable branded prototype</li><li>Integration &amp; compliance design</li><li>Fixed price for the MVP</li></ul></div>
+      <div class="ph"><p class="tag">Phase 1</p><h3>MVP — live</h3><p class="when">Months 3–8</p><ul><li>Wi-Fi + portal + sign-up</li><li>Seat QR + F&amp;B to seat</li><li>Pix/card + order tracking</li><li>First POS integration</li></ul></div>
+      <div class="ph"><p class="tag">Phase 2</p><h3>Full platform</h3><p class="when">Months 8–20</p><ul><li>Ads engine + inventory</li><li>Tickets, parking, marketplace</li><li>CRM + analytics + APIs</li><li>Full white-label</li></ul></div>
+      <div class="ph"><p class="tag">Phase 3</p><h3>Expansion</h3><p class="when">Beyond</p><ul><li>Roll out to new arenas</li><li>Multi-tenant at scale</li><li>New events &amp; venues</li></ul></div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <p class="lbl">★ The first 90 days — plan &amp; investment</p>
+    <h2>What we do in three months, and exactly what it costs.</h2>
+    <p class="say">The first phase turns the vision into something you can see, test and price with confidence. By day 90 you hold a working prototype and a fixed quote for the rest — so the biggest decision is made with data, not hope.</p>
+    <div class="budget">
+      <div class="headline">
+        <span class="big">R$430k – R$670k</span>
+        <span class="usd">≈ US$84k – US$131k</span>
+        <span class="cap">Fixed-scope Discovery, Blueprint &amp; technical foundations — the full first-90-day investment.</span>
+      </div>
+      <div class="tblwrap"><table>
+        <thead><tr><th>Workstream</th><th>Delivered in 90 days</th><th class="num">Investment (BRL)</th></tr></thead>
+        <tbody>
+          <tr><td>Discovery &amp; solution architecture</td><td>Multi-tenant architecture, data model, seat/QR model, load planning</td><td class="num">R$90–130k</td></tr>
+          <tr><td>UX/UI + interactive prototype</td><td>Branded, clickable demo of the full fan journey</td><td class="num">R$70–110k</td></tr>
+          <tr><td>Integration blueprint</td><td>Payments (Pix/card), POS, Wi-Fi portal, ticketing, facial access</td><td class="num">R$60–100k</td></tr>
+          <tr><td>Privacy &amp; compliance design</td><td>LGPD framework, consent model, fiscal (NFC-e) plan</td><td class="num">R$40–70k</td></tr>
+          <tr><td>MVP technical foundations</td><td>Cloud environments, CI/CD, core services, first module skeleton</td><td class="num">R$130–200k</td></tr>
+          <tr><td>Project management &amp; governance</td><td>Weekly cadence, roadmap, fixed MVP quote</td><td class="num">R$40–60k</td></tr>
+          <tr class="total"><td>Total — first 90 days</td><td>A working prototype + a buildable, fixed-price plan</td><td class="num">R$430–670k</td></tr>
+        </tbody>
+      </table></div>
+      <h3 style="margin:22px 0 4px;font-size:15px">What you hold on day 90</h3>
+      <div class="deliver">
+        <div><span class="ck">✓</span><span>A complete product &amp; technical blueprint — the buildable spec.</span></div>
+        <div><span class="ck">✓</span><span>An interactive, branded prototype to show sponsors and partners.</span></div>
+        <div><span class="ck">✓</span><span>Validated integrations: payments, POS, Wi-Fi, tickets, facial, fiscal.</span></div>
+        <div><span class="ck">✓</span><span>An LGPD &amp; compliance framework, designed in from day one.</span></div>
+        <div><span class="ck">✓</span><span>Live technical foundations + the first working module.</span></div>
+        <div><span class="ck">✓</span><span>A fixed, milestone-based price for the full MVP (months 3–8).</span></div>
+      </div>
+    </div>
+    <p class="say" style="margin-top:22px;font-size:13px">Full picture, for planning: MVP live in <b>6–8 months</b> (from <b>R$1.0M</b>); complete platform in <b>14–20 months</b>. Phased so each step is funded by the value it creates. All figures in this document are working estimates and confirmed as fixed scope at the start of each phase.</p>
+  </div></section>
+
+  <section><div class="wrap">
+    <p class="lbl">What you own</p>
+    <h2>Your platform. Your brand. Your data. Built to be yours.</h2>
+    <div class="own">
+      <div class="o"><b>The brand &amp; the app</b><p>Fully white-label — it goes to market as Seja Arena, never as a vendor's product.</p></div>
+      <div class="o"><b>The audience &amp; the data</b><p>The fan relationship, the CRM, the ad inventory and the insights are yours, under LGPD.</p></div>
+      <div class="o"><b>Continuity &amp; independence</b><p>Documented APIs, data portability and source-code escrow — so you're never locked to anyone.</p></div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <p class="lbl">Built for Brazil</p>
+    <h2>The hard compliance is handled — by design, not as an afterthought.</h2>
+    <p class="say"><b>LGPD</b> consent and privacy engineered into the core · <b>facial-recognition access</b> aligned with the Lei Geral do Esporte · <b>NFC-e</b> electronic fiscal receipts for every food &amp; beverage sale, per state. Payments run on <b>Pix and the major acquirers</b>, ready for high-volume match days.</p>
+  </div></section>
+
+  <section class="cta"><div class="wrap">
+    <h2>Let's build the demo — and price the whole thing.</h2>
+    <p class="say">Book a working session. We'll walk the platform, align on your arena and integrations, and put the first 90 days in motion so you have a live prototype in your hands.</p>
+    <span class="ctabtn">Book a working session →</span>
+    <p class="contact">A proposal prepared by Raw Business Solution.</p>
+  </div></section>
+</div>
+
+<!-- ==================== PORTUGUÊS ==================== -->
+<div data-lang="pt" hidden>
+  <div class="hero"><div class="lights"></div><div class="grid-fade"></div>
+    <div class="wrap in">
+      <span class="eyebrow">◆ Plataforma de Monetização Digital do Torcedor</span>
+      <h1>Transforme cada assento em um <span class="g">ponto de venda</span>. Cada torcedor em receita.</h1>
+      <p class="sub">A Seja Arena é a sua plataforma, com a sua marca, que conecta Wi-Fi, pedidos, publicidade, ingressos e dados em uma só experiência do torcedor — e um novo motor de receita totalmente seu. Aqui estão a plataforma, o plano e exatamente quanto custam os primeiros 90 dias.</p>
+      <div class="heroStats">
+        <div class="hs"><b>1 plataforma</b><small>20+ módulos integrados</small></div>
+        <div class="hs"><b>Entrega no assento</b><small>peça da cadeira, em segundos</small></div>
+        <div class="hs"><b>100% sua</b><small>white-label · sua marca · seus dados</small></div>
+        <div class="hs"><b>Multi-arena</b><small>feita para expandir entre estádios</small></div>
+      </div>
+    </div>
+  </div>
+
+  <section><div class="wrap">
+    <p class="lbl">A oportunidade</p>
+    <h2>Cada jogo, milhares de torcedores e nenhuma relação digital. Isso é dinheiro saindo pela porta.</h2>
+    <p class="say">Hoje o torcedor compra o ingresso e desaparece. A Seja Arena captura essa relação no momento em que ele se conecta ao Wi-Fi — e a mantém. A partir desse primeiro toque, o canal é seu: você vende para ele no assento, entrega aos patrocinadores um público cativo e aprende o que cada torcedor quer. O estádio deixa de ser só um local de evento e vira um negócio digital o ano inteiro.</p>
+  </div></section>
+
+  <section><div class="wrap">
+    <p class="lbl">A plataforma</p>
+    <h2>Um super-app do torcedor, integrado a toda a operação.</h2>
+    <div class="bento">
+      <div class="b wide"><div class="ic">📶</div><h3>Wi-Fi + Portal Cativo</h3><p>O torcedor ganha Wi-Fi grátis; você ganha a porta de entrada — portal com sua marca, vídeo do patrocinador, cadastro e consentimento, tudo capturado corretamente.</p></div>
+      <div class="b"><div class="ic">🍔</div><h3>Pedido no assento</h3><p>Comida e bebida pelo celular, entregues no assento exato — ou prontos para retirada.</p></div>
+      <div class="b"><div class="ic">🪑</div><h3>QR por cadeira</h3><p>Setor, bloco, fileira e assento identificados automaticamente por um código único em cada cadeira.</p></div>
+      <div class="b"><div class="ic">📣</div><h3>Publicidade &amp; patrocínio</h3><p>Banners, vídeos e campanhas patrocinadas com gestor de inventário de verdade — uma nova linha de receita.</p></div>
+      <div class="b"><div class="ic">💳</div><h3>Pagamento digital</h3><p>Pix e cartões, acompanhamento do pedido de ponta a ponta, pronto para split entre vários fornecedores.</p></div>
+      <div class="b"><div class="ic">🎟️</div><h3>Ingressos &amp; acesso</h3><p>Bilheteria e entrada por reconhecimento facial, integrados e em conformidade com a lei.</p></div>
+      <div class="b"><div class="ic">🅿️</div><h3>Estacionamento</h3><p>Compre, encontre e pague o estacionamento no mesmo app.</p></div>
+      <div class="b"><div class="ic">🛍️</div><h3>Marketplace &amp; cupons</h3><p>Loja oficial, produtos, promoções e cupons que geram recompra.</p></div>
+      <div class="b"><div class="ic">🔔</div><h3>Notificações &amp; CRM</h3><p>Fale direto com cada torcedor, segmente e traga-o de volta no próximo jogo.</p></div>
+      <div class="b wide"><div class="ic">📊</div><h3>Analytics, dashboards &amp; APIs abertas</h3><p>Métricas ao vivo de audiência, consumo e publicidade — mais APIs para plugar tudo que você adicionar depois.</p></div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <p class="lbl">A jornada do torcedor</p>
+    <h2>De "conectar ao Wi-Fi" a "entregue no meu assento" — em um só fluxo.</h2>
+    <div class="flow">
+      <div class="step"><b>Conecta ao Wi-Fi</b><small>Portal com marca + vídeo do patrocinador</small></div>
+      <div class="step"><b>Cadastra &amp; consente</b><small>Cadastro + privacidade, do jeito certo</small></div>
+      <div class="step"><b>Abre a Seja Arena</b><small>Assento detectado via QR</small></div>
+      <div class="step"><b>Pede &amp; paga</b><small>Pix / cartão, acompanha o pedido</small></div>
+      <div class="step"><b>Entregue no assento</b><small>Ou retira — sem perder o lance</small></div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <p class="lbl">Como construímos</p>
+    <h2>Um caminho em fases — receita cedo, plataforma completa ao longo do tempo, expansão depois.</h2>
+    <p class="say">Você nunca assina um cheque em branco gigante. Começamos pequeno e inteligente: uma fase de Discovery &amp; Blueprint que entrega uma demo funcional e um preço fixo para o build. Cada fase se paga antes de a próxima começar.</p>
+    <div class="road">
+      <div class="ph now"><span class="badge">Comece aqui</span><p class="tag">Fase 0</p><h3>Discovery &amp; Blueprint</h3><p class="when">Meses 1–3</p><ul><li>Blueprint completo de produto + técnico</li><li>Protótipo clicável com sua marca</li><li>Desenho de integrações &amp; conformidade</li><li>Preço fixo do MVP</li></ul></div>
+      <div class="ph"><p class="tag">Fase 1</p><h3>MVP — no ar</h3><p class="when">Meses 3–8</p><ul><li>Wi-Fi + portal + cadastro</li><li>QR de assento + A&amp;B no assento</li><li>Pix/cartão + acompanhamento</li><li>Primeira integração de PDV</li></ul></div>
+      <div class="ph"><p class="tag">Fase 2</p><h3>Plataforma completa</h3><p class="when">Meses 8–20</p><ul><li>Motor de anúncios + inventário</li><li>Ingressos, estacionamento, marketplace</li><li>CRM + analytics + APIs</li><li>White-label completo</li></ul></div>
+      <div class="ph"><p class="tag">Fase 3</p><h3>Expansão</h3><p class="when">Além</p><ul><li>Leve a novas arenas</li><li>Multi-tenant em escala</li><li>Novos eventos &amp; locais</li></ul></div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <p class="lbl">★ Os primeiros 90 dias — plano &amp; investimento</p>
+    <h2>O que fazemos em três meses, e exatamente quanto custa.</h2>
+    <p class="say">A primeira fase transforma a visão em algo que você pode ver, testar e precificar com segurança. No dia 90 você tem em mãos um protótipo funcional e um orçamento fixo para o restante — então a maior decisão é tomada com dados, não com esperança.</p>
+    <div class="budget">
+      <div class="headline">
+        <span class="big">R$430k – R$670k</span>
+        <span class="usd">≈ US$84k – US$131k</span>
+        <span class="cap">Discovery, Blueprint &amp; fundações técnicas com escopo fixo — o investimento total dos primeiros 90 dias.</span>
+      </div>
+      <div class="tblwrap"><table>
+        <thead><tr><th>Frente de trabalho</th><th>Entregue em 90 dias</th><th class="num">Investimento (BRL)</th></tr></thead>
+        <tbody>
+          <tr><td>Discovery &amp; arquitetura da solução</td><td>Arquitetura multi-tenant, modelo de dados, modelo de assento/QR, planejamento de carga</td><td class="num">R$90–130k</td></tr>
+          <tr><td>UX/UI + protótipo interativo</td><td>Demo clicável, com sua marca, de toda a jornada do torcedor</td><td class="num">R$70–110k</td></tr>
+          <tr><td>Blueprint de integrações</td><td>Pagamentos (Pix/cartão), PDV, portal Wi-Fi, ingressos, acesso facial</td><td class="num">R$60–100k</td></tr>
+          <tr><td>Desenho de privacidade &amp; conformidade</td><td>Framework LGPD, modelo de consentimento, plano fiscal (NFC-e)</td><td class="num">R$40–70k</td></tr>
+          <tr><td>Fundações técnicas do MVP</td><td>Ambientes de nuvem, CI/CD, serviços core, esqueleto do primeiro módulo</td><td class="num">R$130–200k</td></tr>
+          <tr><td>Gestão de projeto &amp; governança</td><td>Cadência semanal, roadmap, orçamento fixo do MVP</td><td class="num">R$40–60k</td></tr>
+          <tr class="total"><td>Total — primeiros 90 dias</td><td>Um protótipo funcional + um plano construível de preço fixo</td><td class="num">R$430–670k</td></tr>
+        </tbody>
+      </table></div>
+      <h3 style="margin:22px 0 4px;font-size:15px">O que você tem em mãos no dia 90</h3>
+      <div class="deliver">
+        <div><span class="ck">✓</span><span>Um blueprint completo de produto &amp; técnico — a especificação construível.</span></div>
+        <div><span class="ck">✓</span><span>Um protótipo interativo, com sua marca, para mostrar a patrocinadores e parceiros.</span></div>
+        <div><span class="ck">✓</span><span>Integrações validadas: pagamentos, PDV, Wi-Fi, ingressos, facial, fiscal.</span></div>
+        <div><span class="ck">✓</span><span>Um framework de LGPD &amp; conformidade, desenhado desde o dia um.</span></div>
+        <div><span class="ck">✓</span><span>Fundações técnicas no ar + o primeiro módulo funcional.</span></div>
+        <div><span class="ck">✓</span><span>Um preço fixo, por marcos, para o MVP completo (meses 3–8).</span></div>
+      </div>
+    </div>
+    <p class="say" style="margin-top:22px;font-size:13px">Visão completa, para planejamento: MVP no ar em <b>6–8 meses</b> (a partir de <b>R$1,0M</b>); plataforma completa em <b>14–20 meses</b>. Em fases, para que cada etapa seja financiada pelo valor que gera. Todos os valores deste documento são estimativas de trabalho, confirmadas como escopo fixo no início de cada fase.</p>
+  </div></section>
+
+  <section><div class="wrap">
+    <p class="lbl">O que é seu</p>
+    <h2>Sua plataforma. Sua marca. Seus dados. Feita para ser sua.</h2>
+    <div class="own">
+      <div class="o"><b>A marca &amp; o app</b><p>Totalmente white-label — vai ao mercado como Seja Arena, nunca como o produto de um fornecedor.</p></div>
+      <div class="o"><b>O público &amp; os dados</b><p>A relação com o torcedor, o CRM, o inventário de anúncios e os insights são seus, sob a LGPD.</p></div>
+      <div class="o"><b>Continuidade &amp; independência</b><p>APIs documentadas, portabilidade de dados e escrow do código-fonte — você nunca fica preso a ninguém.</p></div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <p class="lbl">Feita para o Brasil</p>
+    <h2>A conformidade difícil está resolvida — por design, não como remendo.</h2>
+    <p class="say"><b>LGPD</b> com consentimento e privacidade no núcleo · <b>acesso por reconhecimento facial</b> alinhado à Lei Geral do Esporte · <b>NFC-e</b> (nota fiscal eletrônica) para cada venda de alimentos &amp; bebidas, por estado. Pagamentos no <b>Pix e nas principais adquirentes</b>, prontos para dias de jogo de alto volume.</p>
+  </div></section>
+
+  <section class="cta"><div class="wrap">
+    <h2>Vamos construir a demo — e precificar o projeto inteiro.</h2>
+    <p class="say">Agende uma reunião de trabalho. Vamos percorrer a plataforma, alinhar sua arena e as integrações, e colocar os primeiros 90 dias em movimento para você ter um protótipo funcional em mãos.</p>
+    <span class="ctabtn">Agendar uma reunião →</span>
+    <p class="contact">Proposta preparada pela Raw Business Solution.</p>
+  </div></section>
+</div>
+
+<footer data-lang="en">Working estimates for discussion; scope and price are confirmed as fixed at the start of each phase. FX reference US$1 = R$5.1.</footer>
+<footer data-lang="pt" hidden>Estimativas de trabalho para discussão; escopo e preço são confirmados como fixos no início de cada fase. Câmbio de referência US$1 = R$5,1.</footer>
+
+<script>
+  function setLang(l){
+    document.querySelectorAll('[data-lang]').forEach(el=>{el.hidden = el.getAttribute('data-lang')!==l;});
+    document.getElementById('btn-en').setAttribute('aria-pressed', String(l==='en'));
+    document.getElementById('btn-pt').setAttribute('aria-pressed', String(l==='pt'));
+    document.documentElement.lang = l;
+  }
+</script>

@@ -61,6 +61,17 @@ export const projects: Project[] = [
     url: "https://raw-truck-dispatcher.vercel.app",
   },
   {
+    slug: "seja-arena",
+    name: "Seja Arena",
+    category: { pt: "Arena / Torcedor", en: "Arena / Fan platform" },
+    status: "demo",
+    url: "/seja-arena.html",
+    blurb: {
+      pt: "Plataforma white-label de monetização do torcedor para arenas — Wi-Fi, pedidos no assento, publicidade e dados. Apresentação bilíngue com plano e orçamento dos primeiros 90 dias.",
+      en: "White-label fan-monetization platform for arenas — Wi-Fi, seat ordering, ads and data. Bilingual presentation with the first-90-days plan and budget.",
+    },
+  },
+  {
     slug: "ventic-hvac",
     name: "Ventic HVAC",
     category: { pt: "HVAC / Geração de leads", en: "HVAC / Lead-gen" },
