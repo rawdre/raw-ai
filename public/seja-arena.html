@@ -58,6 +58,12 @@
   .say{font-size:clamp(15px,1.8vw,17px);color:var(--muted);max-width:64ch;margin:0 0 8px}
 
   .diff{background:radial-gradient(85% 120% at 50% 0%, var(--gold-soft), transparent 68%), var(--bg2);border-top:1px solid color-mix(in srgb,var(--gold) 38%,var(--line));border-bottom:1px solid color-mix(in srgb,var(--gold) 38%,var(--line))}
+  .showcase{background:radial-gradient(72% 115% at 50% -6%, var(--gold-soft), transparent 60%);border-bottom:1px solid color-mix(in srgb,var(--gold) 30%,var(--line))}
+  .showcase .lbl{text-align:center}
+  .showcase h2{margin-left:auto;margin-right:auto;max-width:26ch;text-align:center}
+  .showcase .say{text-align:center;margin-left:auto;margin-right:auto}
+  .videowrap{margin:30px auto 0;max-width:940px;border-radius:20px;overflow:hidden;border:1px solid color-mix(in srgb,var(--gold) 50%,var(--line));box-shadow:0 0 0 1px color-mix(in srgb,var(--gold) 18%,transparent),0 44px 120px -44px color-mix(in srgb,var(--gold) 45%,#000);background:#000}
+  .videowrap video{display:block;width:100%;height:auto}
   .bento{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}
   .b{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;transition:transform .15s,border-color .15s}
   .b:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--gold) 50%,var(--line))}
@@ -169,6 +175,13 @@
       </div>
     </div>
   </div>
+
+  <section class="showcase"><div class="wrap">
+    <p class="lbl">▶ The proposal in motion</p>
+    <h2>See Seja Arena come to life — in two minutes.</h2>
+    <p class="say">Press play. This is the experience your fans feel the moment they walk in — and the reason they never put their phone down.</p>
+    <div class="videowrap"><video controls playsinline preload="metadata" src="/proposta-seja-arena.mp4">Your browser does not support the video.</video></div>
+  </div></section>
 
   <section><div class="wrap">
     <p class="lbl">The opportunity</p>
@@ -308,6 +321,13 @@
       </div>
     </div>
   </div>
+
+  <section class="showcase"><div class="wrap">
+    <p class="lbl">▶ A proposta em movimento</p>
+    <h2>Veja a Seja Arena ganhar vida — em dois minutos.</h2>
+    <p class="say">Aperte o play. Esta é a experiência que o seu torcedor sente no instante em que entra — e o motivo de ele não largar o celular.</p>
+    <div class="videowrap"><video controls playsinline preload="metadata" src="/proposta-seja-arena.mp4">Seu navegador não suporta o vídeo.</video></div>
+  </div></section>
 
   <section><div class="wrap">
     <p class="lbl">A oportunidade</p>
