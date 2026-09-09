@@ -57,6 +57,7 @@
   h2{font-size:clamp(24px,3.6vw,38px);margin:0 0 14px;font-weight:800;max-width:20ch;text-wrap:balance}
   .say{font-size:clamp(15px,1.8vw,17px);color:var(--muted);max-width:64ch;margin:0 0 8px}
 
+  .diff{background:radial-gradient(85% 120% at 50% 0%, var(--gold-soft), transparent 68%), var(--bg2);border-top:1px solid color-mix(in srgb,var(--gold) 38%,var(--line));border-bottom:1px solid color-mix(in srgb,var(--gold) 38%,var(--line))}
   .bento{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}
   .b{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;transition:transform .15s,border-color .15s}
   .b:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--gold) 50%,var(--line))}
@@ -118,10 +119,33 @@
 
   footer{max-width:1080px;margin:0 auto;padding:26px clamp(16px,4vw,40px) 60px;color:var(--muted);font-size:12px}
   [hidden]{display:none!important}
+  #gate{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px;background:radial-gradient(60% 80% at 82% -8%, color-mix(in srgb,var(--gold) 22%,transparent), transparent 60%),radial-gradient(50% 70% at 12% 0%, color-mix(in srgb,var(--blue) 16%,transparent), transparent 55%),var(--bg)}
+  .gatecard{width:100%;max-width:380px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px 28px;text-align:center;display:flex;flex-direction:column;gap:14px;box-shadow:0 30px 80px -40px #000}
+  .glogo{display:flex;align-items:center;justify-content:center;gap:9px;font-weight:800;font-size:15px;margin-bottom:2px}
+  .glogo .dot{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--gold),var(--gold2));display:grid;place-items:center;color:#1a1200;font-weight:900;font-family:var(--mono);font-size:15px}
+  .glogo span{color:var(--gold-ink)}
+  .gh{margin:2px 0 0;font-size:20px}
+  .gp{margin:0;color:var(--muted);font-size:13px}
+  #gatePw{width:100%;padding:13px 15px;border-radius:11px;border:1px solid var(--line);background:var(--bg2);color:var(--ink);font:inherit;font-size:15px;text-align:center}
+  #gatePw:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
+  .gatecard button{width:100%;padding:13px;border:0;border-radius:11px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1200;font:inherit;font-weight:800;font-size:15px;cursor:pointer}
+  .gerr{color:#e5533d;font-size:13px;margin:0}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
   @media print{.bar{position:static}.toggle{display:none}[data-lang]{display:block!important}.b:hover,.ph{transform:none}}
 </style>
 
+<div id="gate">
+  <form id="gateForm" class="gatecard">
+    <div class="glogo"><span class="dot">S</span>SEJA <span>ARENA</span></div>
+    <h2 class="gh">Private presentation</h2>
+    <p class="gp">Enter the access password to continue<br>Digite a senha de acesso para continuar</p>
+    <input id="gatePw" type="password" autocomplete="off" spellcheck="false" placeholder="Password · Senha" aria-label="Password">
+    <button type="submit">Enter →</button>
+    <p id="gateErr" class="gerr" hidden>Incorrect password · Senha incorreta</p>
+  </form>
+</div>
+
+<div id="site" hidden>
 <div class="bar"><div class="in">
   <div class="brandmark"><span class="dot">S</span>SEJA <span>ARENA</span></div>
   <div class="toggle" role="group" aria-label="Language / Idioma">
@@ -136,7 +160,7 @@
     <div class="wrap in">
       <span class="eyebrow">◆ Digital Fan Monetization Platform</span>
       <h1>Turn every seat into a <span class="g">point of sale</span>. Every fan into revenue.</h1>
-      <p class="sub">Seja Arena is your own branded platform that connects Wi-Fi, ordering, advertising, tickets and data into one fan experience — and one new revenue engine you fully own. Here's the platform, the plan, and exactly what the first 90 days cost.</p>
+      <p class="sub">Seja Arena is your own branded platform that turns every fan's phone into part of the game — connecting Wi-Fi, ordering, advertising, tickets and data into one experience, and one new revenue engine you fully own. Here's the platform, the differentiator, the plan, and exactly what the first 90 days cost.</p>
       <div class="heroStats">
         <div class="hs"><b>1 platform</b><small>20+ integrated modules</small></div>
         <div class="hs"><b>Seat delivery</b><small>order from the seat, in seconds</small></div>
@@ -167,6 +191,23 @@
       <div class="b"><div class="ic">🔔</div><h3>Notifications &amp; CRM</h3><p>Reach every fan directly, segment them, and bring them back next match.</p></div>
       <div class="b wide"><div class="ic">📊</div><h3>Analytics, dashboards &amp; open APIs</h3><p>Live audience, consumption and advertising metrics — plus APIs to plug in anything you add later.</p></div>
     </div>
+  </div></section>
+
+  <section class="diff"><div class="wrap">
+    <p class="lbl">★ The differentiator</p>
+    <h2>The phone stops being a distraction — and becomes part of the game.</h2>
+    <p class="say">Over 80% of fans are on their phone during the match. Seja Arena turns that screen into the second screen of the show — replays, stats, AR and live games — and every tap is a data point, an ad impression, and a reason to order again.</p>
+    <div class="bento">
+      <div class="b"><div class="ic">🎥</div><h3>Multi-angle instant replays</h3><p>See the goal again from every camera, right at the seat — the moment fans reach for their phone, they're inside your app.</p></div>
+      <div class="b"><div class="ic">📈</div><h3>Live stats &amp; lineups</h3><p>Real-time data, player tracking and heat maps as the match unfolds.</p></div>
+      <div class="b"><div class="ic">🗳️</div><h3>Polls, trivia &amp; predictions</h3><p>MVP votes, "who scores next," halftime games — with points and badges for playing.</p></div>
+      <div class="b"><div class="ic">🔮</div><h3>AR at the seat</h3><p>Point the phone at the pitch for player stats, ball speed and sponsor-branded AR moments.</p></div>
+      <div class="b"><div class="ic">📺</div><h3>Onto the big screen</h3><p>Fan messages, photos and AR filters that appear on the jumbotron — sponsor-activated.</p></div>
+      <div class="b"><div class="ic">🏆</div><h3>Gamification &amp; loyalty</h3><p>Challenges, leaderboards and points that convert into F&amp;B discounts, merch and status.</p></div>
+      <div class="b"><div class="ic">📣</div><h3>Player &amp; club moments</h3><p>Video shoutouts to a section, behind-the-scenes and exclusive content only the app has.</p></div>
+      <div class="b"><div class="ic">🎯</div><h3>AR quests &amp; sponsor hunts</h3><p>Scan codes around the arena to unlock coupons and rewards — funded by sponsors.</p></div>
+    </div>
+    <p class="say" style="margin-top:20px;font-size:13px"><b>Why it wins:</b> engagement is what keeps the app open — and an open app sells more food, shows more ads, and proves more value to sponsors. The experience is the differentiator; the revenue is the result.</p>
   </div></section>
 
   <section><div class="wrap">
@@ -258,7 +299,7 @@
     <div class="wrap in">
       <span class="eyebrow">◆ Plataforma de Monetização Digital do Torcedor</span>
       <h1>Transforme cada assento em um <span class="g">ponto de venda</span>. Cada torcedor em receita.</h1>
-      <p class="sub">A Seja Arena é a sua plataforma, com a sua marca, que conecta Wi-Fi, pedidos, publicidade, ingressos e dados em uma só experiência do torcedor — e um novo motor de receita totalmente seu. Aqui estão a plataforma, o plano e exatamente quanto custam os primeiros 90 dias.</p>
+      <p class="sub">A Seja Arena é a sua plataforma, com a sua marca, que transforma o celular de cada torcedor em parte do jogo — conectando Wi-Fi, pedidos, publicidade, ingressos e dados em uma só experiência, e um novo motor de receita totalmente seu. Aqui estão a plataforma, o diferencial, o plano e exatamente quanto custam os primeiros 90 dias.</p>
       <div class="heroStats">
         <div class="hs"><b>1 plataforma</b><small>20+ módulos integrados</small></div>
         <div class="hs"><b>Entrega no assento</b><small>peça da cadeira, em segundos</small></div>
@@ -289,6 +330,23 @@
       <div class="b"><div class="ic">🔔</div><h3>Notificações &amp; CRM</h3><p>Fale direto com cada torcedor, segmente e traga-o de volta no próximo jogo.</p></div>
       <div class="b wide"><div class="ic">📊</div><h3>Analytics, dashboards &amp; APIs abertas</h3><p>Métricas ao vivo de audiência, consumo e publicidade — mais APIs para plugar tudo que você adicionar depois.</p></div>
     </div>
+  </div></section>
+
+  <section class="diff"><div class="wrap">
+    <p class="lbl">★ O diferencial</p>
+    <h2>O celular deixa de ser distração — e vira parte do jogo.</h2>
+    <p class="say">Mais de 80% dos torcedores estão no celular durante a partida. A Seja Arena transforma essa tela na segunda tela do espetáculo — replays, estatísticas, RA e jogos ao vivo — e cada toque é um dado, um impacto publicitário e um motivo para pedir de novo.</p>
+    <div class="bento">
+      <div class="b"><div class="ic">🎥</div><h3>Replays em vários ângulos</h3><p>Reveja o gol de todas as câmeras, ali no assento — no instante em que o torcedor pega o celular, ele está dentro do seu app.</p></div>
+      <div class="b"><div class="ic">📈</div><h3>Estatísticas &amp; escalações ao vivo</h3><p>Dados em tempo real, rastreamento de jogadores e mapas de calor durante o jogo.</p></div>
+      <div class="b"><div class="ic">🗳️</div><h3>Enquetes, quiz &amp; palpites</h3><p>Votação de craque, "quem marca o próximo", jogos no intervalo — com pontos e medalhas.</p></div>
+      <div class="b"><div class="ic">🔮</div><h3>RA no assento</h3><p>Aponte o celular para o campo e veja estatísticas do jogador, velocidade da bola e ativações de patrocinadores em RA.</p></div>
+      <div class="b"><div class="ic">📺</div><h3>No telão</h3><p>Mensagens, fotos e filtros de RA dos torcedores que aparecem no telão — ativados por patrocínio.</p></div>
+      <div class="b"><div class="ic">🏆</div><h3>Gamificação &amp; fidelidade</h3><p>Desafios, rankings e pontos que viram descontos em A&amp;B, produtos e status.</p></div>
+      <div class="b"><div class="ic">📣</div><h3>Momentos do clube &amp; jogadores</h3><p>Recados em vídeo para um setor, bastidores e conteúdo exclusivo que só o app tem.</p></div>
+      <div class="b"><div class="ic">🎯</div><h3>Missões de RA &amp; caça patrocinada</h3><p>Escaneie códigos pela arena para desbloquear cupons e recompensas — pagos por patrocinadores.</p></div>
+    </div>
+    <p class="say" style="margin-top:20px;font-size:13px"><b>Por que isso ganha:</b> o engajamento é o que mantém o app aberto — e um app aberto vende mais comida, mostra mais anúncios e prova mais valor aos patrocinadores. A experiência é o diferencial; a receita é a consequência.</p>
   </div></section>
 
   <section><div class="wrap">
@@ -376,6 +434,28 @@
 
 <footer data-lang="en">Working estimates for discussion; scope and price are confirmed as fixed at the start of each phase. FX reference US$1 = R$5.1.</footer>
 <footer data-lang="pt" hidden>Estimativas de trabalho para discussão; escopo e preço são confirmados como fixos no início de cada fase. Câmbio de referência US$1 = R$5,1.</footer>
+</div><!-- /#site -->
+
+<script>
+  (function(){
+    var HASH="b2282bd7b5d30095f35d37a6f85e72d542c8ffc86a9c0a260cf6a0c39db6d83f";
+    var gate=document.getElementById('gate'), site=document.getElementById('site');
+    function reveal(){ if(gate) gate.remove(); site.hidden=false; }
+    try{ if(sessionStorage.getItem('seja_unlocked')==='1'){ reveal(); return; } }catch(e){}
+    async function sha(s){ var b=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)); return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0');}).join(''); }
+    var f=document.getElementById('gateForm');
+    f.addEventListener('submit', async function(e){
+      e.preventDefault();
+      var pw=document.getElementById('gatePw').value, err=document.getElementById('gateErr');
+      try{
+        var h=await sha(pw);
+        if(h===HASH){ try{sessionStorage.setItem('seja_unlocked','1');}catch(e){} reveal(); }
+        else { err.hidden=false; document.getElementById('gatePw').value=''; document.getElementById('gatePw').focus(); }
+      }catch(_){ err.hidden=false; }
+    });
+    document.getElementById('gatePw').focus();
+  })();
+</script>
 
 <script>
   function setLang(l){
