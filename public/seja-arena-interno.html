@@ -1,0 +1,283 @@
+<title>Seja Arena — Plano Interno & Cenário de Mercado</title>
+<style>
+  :root{
+    --bg:#0c1016; --bg2:#0f141d; --card:#141c28; --card2:#19222f; --ink:#eef2f7; --muted:#93a2b6; --line:#26313f;
+    --acc:#2fbf86; --acc2:#57e0a6; --acc-soft:#2fbf861f;
+    --amber:#e6a63a; --amber-soft:#e6a63a1f; --coral:#e5654b; --coral-soft:#e5654b1f; --blue:#5b9cf6;
+    --radius:15px;
+    --sans:"Segoe UI Variable Display","Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
+    --mono:ui-monospace,"Cascadia Code","SF Mono",Consolas,monospace;
+  }
+  :root[data-theme="light"]{
+    --bg:#f4f6f9; --bg2:#eceff4; --card:#ffffff; --card2:#f5f7fb; --ink:#141b26; --muted:#54637a; --line:#dde3ec;
+    --acc:#12925f; --acc2:#0f7d51; --acc-soft:#12925f14; --amber:#b07d10; --amber-soft:#b07d1014; --coral:#c8442c; --coral-soft:#c8442c14;
+  }
+  @media (prefers-color-scheme:light){
+    :root:not([data-theme="dark"]){
+      --bg:#f4f6f9; --bg2:#eceff4; --card:#ffffff; --card2:#f5f7fb; --ink:#141b26; --muted:#54637a; --line:#dde3ec;
+      --acc:#12925f; --acc2:#0f7d51; --acc-soft:#12925f14; --amber:#b07d10; --amber-soft:#b07d1014; --coral:#c8442c; --coral-soft:#c8442c14;
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:940px;margin:0 auto;padding:0 clamp(16px,4vw,36px)}
+  h1,h2,h3{letter-spacing:-.02em;text-wrap:balance}
+
+  .bar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 84%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .bar .in{max-width:940px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:11px clamp(16px,4vw,36px)}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:14px}
+  .brand .dot{width:24px;height:24px;border-radius:7px;background:linear-gradient(135deg,var(--acc),var(--acc2));display:grid;place-items:center;color:#04140d;font-weight:900;font-family:var(--mono);font-size:13px}
+  .conf{margin-left:auto;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);border:1px solid color-mix(in srgb,var(--amber) 40%,transparent);background:var(--amber-soft);padding:4px 10px;border-radius:999px}
+
+  .hero{border-bottom:1px solid var(--line);background:
+    radial-gradient(70% 90% at 88% -20%, var(--acc-soft), transparent 60%),
+    linear-gradient(180deg,var(--bg2),var(--bg))}
+  .hero .in{padding:clamp(40px,7vw,68px) 0 clamp(30px,5vw,44px)}
+  .eyebrow{display:inline-block;font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);border:1px solid color-mix(in srgb,var(--acc) 34%,transparent);background:var(--acc-soft);padding:5px 12px;border-radius:999px;margin-bottom:18px}
+  h1{font-size:clamp(28px,5vw,46px);line-height:1.05;margin:0 0 14px;font-weight:900;max-width:20ch}
+  .lede{font-size:clamp(15px,2vw,18px);color:var(--muted);max-width:64ch;margin:0}
+  .lede b{color:var(--ink)}
+
+  section{padding:clamp(34px,5vw,54px) 0;border-bottom:1px solid var(--line)}
+  .movehead{display:flex;align-items:baseline;gap:14px;margin:0 0 6px}
+  .num{font-family:var(--mono);font-weight:800;font-size:13px;color:var(--acc);background:var(--acc-soft);border:1px solid color-mix(in srgb,var(--acc) 30%,transparent);border-radius:8px;padding:4px 9px;flex-shrink:0}
+  h2{font-size:clamp(21px,3vw,31px);margin:0;font-weight:800;max-width:24ch}
+  .say{font-size:15px;color:var(--muted);max-width:70ch;margin:12px 0 0}
+  .say b{color:var(--ink)}
+  .say.tight{margin-top:8px}
+
+  .tblwrap{overflow-x:auto;margin-top:20px;border:1px solid var(--line);border-radius:13px}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:560px}
+  th,td{text-align:left;padding:11px 15px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--card2);font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  tr:last-child td{border-bottom:0}
+  td.num-c,th.num-c{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+  tr.tot td{background:var(--acc-soft);font-weight:800}
+  .pill{display:inline-block;font-size:11px;font-weight:800;font-family:var(--mono);padding:2px 8px;border-radius:999px;letter-spacing:.02em}
+  .pill.go{color:var(--acc);background:var(--acc-soft);border:1px solid color-mix(in srgb,var(--acc) 32%,transparent)}
+  .pill.mid{color:var(--amber);background:var(--amber-soft);border:1px solid color-mix(in srgb,var(--amber) 32%,transparent)}
+  .pill.low{color:var(--muted);background:var(--card2);border:1px solid var(--line)}
+
+  .grid{display:grid;gap:13px;margin-top:20px}
+  .g2{grid-template-columns:1fr 1fr}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  @media (max-width:720px){.g2,.g3{grid-template-columns:1fr}}
+  .c{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+  .c h3{font-size:15px;margin:0 0 6px;display:flex;align-items:center;gap:8px}
+  .c p{margin:0;font-size:13px;color:var(--muted)}
+  .c .k{font-family:var(--mono);font-size:11px;color:var(--acc);letter-spacing:.04em;text-transform:uppercase;display:block;margin-bottom:7px}
+
+  .call{border-radius:14px;padding:18px 20px;margin-top:20px;border:1px solid var(--line);background:var(--card2)}
+  .call.mandate{border-color:color-mix(in srgb,var(--amber) 42%,var(--line));background:var(--amber-soft)}
+  .call.internal{border-color:color-mix(in srgb,var(--coral) 40%,var(--line));background:var(--coral-soft)}
+  .call .tag{font-family:var(--mono);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin:0 0 8px}
+  .call.mandate .tag{color:var(--amber)} .call.internal .tag{color:var(--coral)}
+  .call p{margin:0;font-size:13.5px;color:var(--ink)} .call p+p{margin-top:8px} .call p.sub{color:var(--muted)}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .chip{font-size:12px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;color:var(--muted)}
+  .chip b{color:var(--ink)}
+
+  .script{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:12px;padding:16px 18px;margin-top:14px;font-size:14px}
+  .script .who{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);margin:0 0 8px}
+  .script p{margin:0 0 10px} .script p:last-child{margin:0}
+  .script q{quotes:"“" "”";color:var(--ink);font-style:normal}
+
+  .flow{display:grid;gap:10px;margin-top:18px}
+  .frow{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .frow .n{font-family:var(--mono);font-weight:800;color:#04140d;background:linear-gradient(135deg,var(--acc),var(--acc2));width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-size:12px;flex-shrink:0;margin-top:1px}
+  .frow b{font-size:14.5px} .frow p{margin:3px 0 0;font-size:13px;color:var(--muted)}
+
+  .money{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+  @media (max-width:720px){.money{grid-template-columns:1fr}}
+  .money .m{border:1px solid var(--line);border-radius:14px;padding:16px;background:var(--card)}
+  .money .m .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+  .money .m .val{font-size:clamp(20px,3vw,26px);font-weight:900;font-variant-numeric:tabular-nums;line-height:1;color:var(--acc)}
+  .money .m .val.neutral{color:var(--ink)}
+  .money .m small{display:block;color:var(--muted);font-size:12px;margin-top:6px}
+
+  footer{max-width:940px;margin:0 auto;padding:24px clamp(16px,4vw,36px) 56px;color:var(--muted);font-size:12px;line-height:1.6}
+  footer b{color:var(--ink)}
+  a{color:var(--acc)}
+  @media (prefers-reduced-motion:no-preference){.c{transition:border-color .15s,transform .15s}.c:hover{border-color:color-mix(in srgb,var(--acc) 40%,var(--line))}}
+  [hidden]{display:none!important}
+  #gate{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px;background:radial-gradient(60% 80% at 82% -8%, var(--acc-soft), transparent 60%),linear-gradient(180deg,var(--bg2),var(--bg))}
+  .gatecard{width:100%;max-width:380px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px 28px;text-align:center;display:flex;flex-direction:column;gap:14px;box-shadow:0 30px 80px -40px #000}
+  .glogo{display:flex;align-items:center;justify-content:center;gap:9px;font-weight:800;font-size:14px}
+  .glogo .dot{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--acc),var(--acc2));display:grid;place-items:center;color:#04140d;font-weight:900;font-family:var(--mono);font-size:13px}
+  .gh{margin:2px 0 0;font-size:19px}
+  .gp{margin:0;color:var(--muted);font-size:13px}
+  #gatePw{width:100%;padding:13px 15px;border-radius:11px;border:1px solid var(--line);background:var(--bg2);color:var(--ink);font:inherit;font-size:15px;text-align:center}
+  #gatePw:focus{outline:2px solid var(--acc);outline-offset:1px;border-color:var(--acc)}
+  .gatecard button{width:100%;padding:13px;border:0;border-radius:11px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#04140d;font:inherit;font-weight:800;font-size:15px;cursor:pointer}
+  .gerr{color:var(--coral);font-size:13px;margin:0}
+</style>
+
+<div id="gate">
+  <form id="gateForm" class="gatecard">
+    <div class="glogo"><span class="dot">S</span>SEJA ARENA · Interno</div>
+    <h2 class="gh">Documento privado</h2>
+    <p class="gp">Digite a senha de acesso para continuar</p>
+    <input id="gatePw" type="password" autocomplete="off" spellcheck="false" placeholder="Senha" aria-label="Senha">
+    <button type="submit">Entrar →</button>
+    <p id="gateErr" class="gerr" hidden>Senha incorreta</p>
+  </form>
+</div>
+
+<div id="site" hidden>
+<div class="bar"><div class="in">
+  <div class="brand"><span class="dot">S</span>SEJA ARENA · Plano Interno</div>
+  <span class="conf">Confidencial · uso interno</span>
+</div></div>
+
+<div class="hero"><div class="wrap in">
+  <span class="eyebrow">Dossiê de estratégia · Raw Business Solution</span>
+  <h1>O cenário, a jogada e o dinheiro — em uma página.</h1>
+  <p class="lede">Este é o documento de bastidor: o mapa do mercado de super apps de estádio no Brasil, onde a Seja Arena se encaixa, <b>como pedir o dinheiro para começar</b> e <b>como esse dinheiro é usado nos primeiros 90 dias</b>. Leia de cima para baixo — está na ordem da jogada. <b>Não é para mostrar ao cliente</b> (a apresentação de venda é a outra página).</p>
+</div></div>
+
+<!-- 01 -->
+<section><div class="wrap">
+  <div class="movehead"><span class="num">01</span><h2>O cenário: o que já existe no Brasil</h2></div>
+  <p class="say">Super app de estádio não é ideia nova nem terreno vazio. Alguns clubes já rodam, uma lei está <b>empurrando todo estádio grande para o digital</b>, e já existem fornecedores para cada peça. Entender isso é o que te faz soar como especialista na reunião.</p>
+
+  <div class="tblwrap"><table>
+    <thead><tr><th>Clube / arena</th><th>App</th><th>Nível</th><th>Quem construiu</th></tr></thead>
+    <tbody>
+      <tr><td><b>Atlético-MG</b> — Arena MRV</td><td>Super App do Galo</td><td><span class="pill go">Super app real</span></td><td>Accenture</td></tr>
+      <tr><td><b>Athletico-PR</b> — Ligga Arena</td><td>Super App Furacão</td><td><span class="pill go">Super app real</span></td><td>Interno (do zero)</td></tr>
+      <tr><td><b>Flamengo</b></td><td>Fla-APP</td><td><span class="pill mid">Escopo de super app</span></td><td>não confirmado</td></tr>
+      <tr><td><b>Vasco</b></td><td>Vasco APP</td><td><span class="pill mid">Escopo de super app</span></td><td>Fanbase / MWM</td></tr>
+      <tr><td><b>Cruzeiro</b></td><td>Nação Azul</td><td><span class="pill mid">Escopo de super app</span></td><td>Cogny / Salesforce</td></tr>
+      <tr><td><b>Palmeiras · Corinthians · Grêmio · Botafogo · Fortaleza · Bahia</b></td><td>apps oficiais</td><td><span class="pill low">Sócio / conteúdo</span></td><td>vários</td></tr>
+      <tr><td><b>São Paulo · Fluminense · Internacional</b></td><td>apps oficiais</td><td><span class="pill low">Básico</span></td><td>vários</td></tr>
+    </tbody>
+  </table></div>
+  <p class="say tight">Referência de ouro: o <b>Super App do Galo</b> (Accenture, na Arena MRV) — ingressos, pedido de A&amp;B antecipado, estacionamento, navegação por GPS interno, streaming, gamificação e acesso 100% facial num login só. É exatamente o playbook que a Seja Arena vende, só que para a arena ser dona.</p>
+
+  <div class="call mandate">
+    <p class="tag">⚖️ O vento a favor — a lei</p>
+    <p>A <b>Lei Geral do Esporte (14.597/2023)</b> tornou o <b>reconhecimento facial obrigatório</b> em estádios acima de 20 mil lugares, em vigor desde meados de 2025. Ou seja: todo estádio grande é <b>obrigado</b> a digitalizar a catraca, e o torcedor <b>já</b> se cadastra e entra pelo celular. A ANPD está fiscalizando (LGPD). A porta digital já está aberta — a disputa é sobre quem fica com o que vem depois dela.</p>
+  </div>
+
+  <p class="say" style="margin-top:22px"><b>O ecossistema de fornecedores</b> (peças que a gente integra, não reconstrói):</p>
+  <div class="chips">
+    <span class="chip">Facial: <b>Bepass</b> (~70% da Série A) · Imply</span>
+    <span class="chip">Ingressos: <b>FutebolCard</b> · Imply · Ingresse</span>
+    <span class="chip">Cashless/PDV: <b>Zig</b> · netPDV</span>
+    <span class="chip">Fan token: <b>Socios/Chiliz</b></span>
+    <span class="chip">CRM sócio: OneFan · Code&amp;Go · Vindi</span>
+  </div>
+
+  <div class="call internal">
+    <p class="tag">⚠️ Interno — o concorrente que já existe</p>
+    <p>Já existem <b>construtores white-label de super app</b> no Brasil: <b>Sportheca/OneFan, Stations, Fanbase</b> (juntos, ~30% da Série A/B). Você <b>não</b> vende no vácuo. Mas todos são <b>centrados no CLUBE</b> (sócio/conteúdo). Nenhum entrega o que a Seja quer: uma plataforma <b>centrada na ARENA</b> — Wi-Fi/portal cativo + A&amp;B por assento + inventário de anúncios — que a <b>arena é dona e revende como IP</b>. Aí está a nossa brecha.</p>
+  </div>
+</div></section>
+
+<!-- 02 -->
+<section><div class="wrap">
+  <div class="movehead"><span class="num">02</span><h2>Nossa posição: integrar, não reconstruir</h2></div>
+  <p class="say">A leitura que baixa custo, prazo e risco: a Seja Arena é uma <b>camada de integração + engajamento + carteira/CRM</b> por cima dos trilhos já obrigatórios (facial, ingressos, cashless). A gente <b>constrói</b> a parte que dá dinheiro e é ownable; a gente <b>integra</b> o resto.</p>
+  <div class="grid g2">
+    <div class="c"><span class="k">A gente constrói (o valor)</span><h3>🏗️ A camada ownable</h3><p>Super app com a marca da arena, inventário de anúncios, marketplace, programa de sócio/fidelidade, engajamento "segunda tela" e CRM/CDP — os dados e a receita ficam com a arena.</p></div>
+    <div class="c"><span class="k">A gente integra (a commodity)</span><h3>🔌 Os trilhos prontos</h3><p>Facial (Bepass/Imply), bilheteria (FutebolCard/Imply), cashless/PDV (Zig). Já existem, são obrigatórios ou consolidados — reconstruir seria queimar dinheiro e tempo.</p></div>
+    <div class="c"><span class="k">Nossa vantagem</span><h3>★ Por que nós</h3><p>Foco na ARENA (não no clube) + o diferencial de engajamento "o celular vira parte do jogo" + liderança em LGPD/biometria + a arena é dona do IP e revende para outras arenas.</p></div>
+    <div class="c"><span class="k">A parte difícil, resolvida</span><h3>🛡️ LGPD como força</h3><p>Biometria é dado sensível e a ANPD está de olho. Governança (consentimento, DPIA, alternativa ao facial, DPO) embutida desde o dia um vira argumento de confiança, não risco.</p></div>
+  </div>
+</div></section>
+
+<!-- 03 -->
+<section><div class="wrap">
+  <div class="movehead"><span class="num">03</span><h2>Como pedir o dinheiro para começar</h2></div>
+  <p class="say">A chave: você <b>não</b> pede para eles financiarem um build de milhões no escuro. Você <b>vende a Fase 0</b> — um Discovery &amp; Blueprint de escopo fixo que, em 90 dias, entrega um protótipo clicável e um preço fixo do MVP. É pequeno, seguro e concreto — e resolve a pressa deles (a Fase 0 é justamente o tempo pago para desenhar direito).</p>
+
+  <div class="grid g3">
+    <div class="c"><span class="k">O pedido</span><h3>R$430–670 mil</h3><p>Fase 0 — Discovery &amp; Blueprint, escopo fixo, 90 dias.</p></div>
+    <div class="c"><span class="k">Como cobrar</span><h3>Sinal de 40–50%</h3><p>Na assinatura, para começar na hora. O resto por marcos. Nunca mais de um pagamento à frente da entrega.</p></div>
+    <div class="c"><span class="k">O portão (proteção)</span><h3>Prova antes do build</h3><p>Antes de comprometer recursos: autorização assinada da <b>Arena BSB</b> + prova de verba.</p></div>
+  </div>
+
+  <div class="script">
+    <p class="who">▸ Roteiro para a reunião (o que dizer)</p>
+    <p><q>Não estou pedindo para vocês financiarem um projeto de milhões no escuro. O primeiro passo é uma <b>Fase 0 de escopo fixo</b>: em 90 dias vocês têm nas mãos um protótipo clicável da Seja Arena e um <b>preço fixo</b> para o MVP. A maior decisão vocês tomam com dados, não na esperança.</q></p>
+    <p><q>A Fase 0 é R$430 a R$670 mil, com <b>sinal de 40% na assinatura</b> para colocarmos os 90 dias em movimento imediatamente. E cada fase seguinte só começa depois que a anterior se paga — você nunca assina um cheque em branco gigante.</q></p>
+    <p><q>Para começarmos sem retrabalho, preciso alinhar duas coisas com vocês: a <b>autorização da Arena BSB</b> (detentora da concessão) e a <b>confirmação do orçamento</b>. Com isso travado, começamos na hora.</q></p>
+  </div>
+  <div class="call internal">
+    <p class="tag">⚠️ Interno — por que o portão importa</p>
+    <p>A Seja Telecom é uma EPP pequena (capital R$300k), sem histórico e <b>sem direito confirmado sobre a arena</b> (a concessão é da Arena BSB; conectividade é V.tal; bilheteria é Eventim). Pedir a autorização + prova de verba não é desconfiança — é o que te protege de trabalhar de graça para um projeto que pode não existir. <b>Sinal na conta antes de qualquer entrega.</b></p>
+  </div>
+</div></section>
+
+<!-- 04 -->
+<section><div class="wrap">
+  <div class="movehead"><span class="num">04</span><h2>Como o dinheiro é usado no início</h2></div>
+  <p class="say">Onde vão os R$430–670 mil da Fase 0 — e o que cada frente entrega em 90 dias. Esta é a tabela que você mostra ao cliente para justificar o valor.</p>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Frente de trabalho</th><th>O que entrega em 90 dias</th><th class="num-c">Investimento (BRL)</th></tr></thead>
+    <tbody>
+      <tr><td>Discovery &amp; arquitetura</td><td>Arquitetura multi-tenant, modelo de dados, modelo de assento/QR, plano de carga</td><td class="num-c">R$90–130k</td></tr>
+      <tr><td>UX/UI + protótipo</td><td>Demo clicável, com a marca, de toda a jornada do torcedor</td><td class="num-c">R$70–110k</td></tr>
+      <tr><td>Blueprint de integrações</td><td>Pagamentos (Pix/cartão), PDV, portal Wi-Fi, ingressos, acesso facial</td><td class="num-c">R$60–100k</td></tr>
+      <tr><td>Privacidade &amp; conformidade</td><td>Framework LGPD, consentimento, plano fiscal (NFC-e)</td><td class="num-c">R$40–70k</td></tr>
+      <tr><td>Fundações técnicas do MVP</td><td>Nuvem, CI/CD, serviços core, esqueleto do 1º módulo</td><td class="num-c">R$130–200k</td></tr>
+      <tr><td>Gestão &amp; governança</td><td>Cadência semanal, roadmap, orçamento fixo do MVP</td><td class="num-c">R$40–60k</td></tr>
+      <tr class="tot"><td>Total — 90 dias</td><td>Protótipo funcional + plano construível de preço fixo</td><td class="num-c">R$430–670k</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call internal">
+    <p class="tag">⚠️ Interno — a conta que fica com você (não mostrar ao cliente)</p>
+    <p>Você <b>não tira do bolso</b> para o build. O que você precisa para <em>começar</em> é só a capacidade de entregar a Fase 0 — e o sinal já cobre isso:</p>
+  </div>
+  <div class="money">
+    <div class="m"><p class="lbl">Seu custo de entrega — Fase 0</p><div class="val neutral">R$150–250k</div><small>Time enxuto: arquiteto + UX + PM + dev meio-período × 90 dias (estimativa).</small></div>
+    <div class="m"><p class="lbl">Sinal na assinatura (40–50%)</p><div class="val">R$170–335k</div><small>Sozinho, já cobre (ou quase) o custo de entrega. Você fica no positivo desde o dia 1.</small></div>
+    <div class="m"><p class="lbl">Margem da Fase 0</p><div class="val">R$180–420k</div><small>Financia o negócio e o seu tempo — antes mesmo de o build começar.</small></div>
+  </div>
+  <p class="say tight"><b>Para chegar até a reunião</b>, o gasto é perto de zero: a apresentação, o vídeo e o protótipo-conceito já existem. Um teaser clicável mais caprichado é opcional (~R$10–20k com designer, ou você mesmo faz). <b>O capital do build de milhões é sempre do cliente, fase a fase</b> — MVP R$1,0–1,9M (6–8 meses), plataforma completa R$4,5–10,4M (14–20 meses), cada etapa financiada pela anterior.</p>
+</div></section>
+
+<!-- 05 -->
+<section style="border-bottom:0"><div class="wrap">
+  <div class="movehead"><span class="num">05</span><h2>Próximos passos — a sequência</h2></div>
+  <div class="flow">
+    <div class="frow"><span class="n">1</span><div><b>Agende a reunião de trabalho</b><p>É o CTA da página de venda. Entre na sala com a arena e as integrações na cabeça.</p></div></div>
+    <div class="frow"><span class="n">2</span><div><b>Alinhe arena + orçamento (o portão)</b><p>De forma diplomática: autorização da Arena BSB + confirmação de verba, "para colocarmos os 90 dias em movimento sem retrabalho".</p></div></div>
+    <div class="frow"><span class="n">3</span><div><b>Venda a Fase 0 com sinal na assinatura</b><p>Escopo fixo, 40–50% de sinal. Isso te dá entrada segura e converte a pressa deles em runway pago.</p></div></div>
+    <div class="frow"><span class="n">4</span><div><b>Alinhe os parceiros de integração</b><p>Conversas com Bepass, FutebolCard/Imply e Zig — para o orçamento do MVP ser crível e barato, e "integrar em vez de reconstruir" ser real.</p></div></div>
+    <div class="frow"><span class="n">5</span><div><b>Monte o time enxuto da Fase 0</b><p>Defina quem entra no dia 1 (arquiteto, UX, PM, dev meio-período) para começar assim que o sinal cair.</p></div></div>
+  </div>
+  <div class="grid g2" style="margin-top:18px">
+    <div class="c"><span class="k">Contrato — proteja-se</span><h3>📄 Termos</h3><p>Sinal adiantado · cobrança por marcos · cessão da camada sob medida no pagamento · <b>licença</b> do framework reutilizável (exclusividade com prêmio) · escrow + portabilidade.</p></div>
+    <div class="c"><span class="k">Sua pressa, resolvida</span><h3>⏱️ Tempo</h3><p>Não desenhe a plataforma toda sob pressão. <b>Venda o Discovery</b> — a Fase 0 existe justamente para usar 90 dias <em>pagos</em> desenhando direito e fechando o preço do MVP.</p></div>
+  </div>
+</div></section>
+
+<footer>
+  <b>Seja Arena — Plano Interno &amp; Cenário de Mercado.</b> Documento de bastidor da Raw Business Solution — <b>confidencial, não mostrar ao cliente</b>. A apresentação de venda é a página separada <a href="https://raw-ai.vercel.app/seja-arena.html">raw-ai.vercel.app/seja-arena.html</a>.<br>
+  Valores são estimativas de trabalho (câmbio ref. US$1 = R$5,1); custo/margem de entrega são ordens de grandeza a confirmar no Discovery. Dados de mercado com fontes públicas (PDAD/lei/imprensa) coletados em 09/2025 &mdash; ver memória do projeto. Versão 1 · 10/09/2026.
+</footer>
+</div><!-- /#site -->
+
+<script>
+  (function(){
+    var HASH="6cf29e6706db1867f304673c8f12e483d96639d2d298c56d725a0eac6fd98b4c";
+    var gate=document.getElementById('gate'), site=document.getElementById('site');
+    function reveal(){ if(gate) gate.remove(); site.hidden=false; }
+    try{ if(sessionStorage.getItem('seja_int_unlocked')==='1'){ reveal(); return; } }catch(e){}
+    async function sha(s){ var b=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)); return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0');}).join(''); }
+    var f=document.getElementById('gateForm');
+    f.addEventListener('submit', async function(e){
+      e.preventDefault();
+      var pw=document.getElementById('gatePw').value, err=document.getElementById('gateErr');
+      try{
+        var h=await sha(pw);
+        if(h===HASH){ try{sessionStorage.setItem('seja_int_unlocked','1');}catch(e){} reveal(); }
+        else { err.hidden=false; document.getElementById('gatePw').value=''; document.getElementById('gatePw').focus(); }
+      }catch(_){ err.hidden=false; }
+    });
+    document.getElementById('gatePw').focus();
+  })();
+</script>
