@@ -19,7 +19,10 @@
     }
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+  html{background:var(--bg)}
+  body{margin:0;background:transparent;color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+  /* Constellation ambient background — painted behind all content (opaque base = --bg, so text contrast is preserved) */
+  #bgfx{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;display:block}
   .wrap{max-width:940px;margin:0 auto;padding:0 clamp(16px,4vw,36px)}
   h1,h2,h3{letter-spacing:-.02em;text-wrap:balance}
 
@@ -101,7 +104,7 @@
   a{color:var(--acc)}
   @media (prefers-reduced-motion:no-preference){.c{transition:border-color .15s,transform .15s}.c:hover{border-color:color-mix(in srgb,var(--acc) 40%,var(--line))}}
   [hidden]{display:none!important}
-  #gate{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px;background:radial-gradient(60% 80% at 82% -8%, var(--acc-soft), transparent 60%),linear-gradient(180deg,var(--bg2),var(--bg))}
+  #gate{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px;background:radial-gradient(60% 80% at 82% -8%, var(--acc-soft), transparent 60%),linear-gradient(180deg,color-mix(in srgb,var(--bg2) 78%,transparent),color-mix(in srgb,var(--bg) 78%,transparent));backdrop-filter:blur(3px)}
   .gatecard{width:100%;max-width:380px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px 28px;text-align:center;display:flex;flex-direction:column;gap:14px;box-shadow:0 30px 80px -40px #000}
   .glogo{display:flex;align-items:center;justify-content:center;gap:9px;font-weight:800;font-size:14px}
   .glogo .dot{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--acc),var(--acc2));display:grid;place-items:center;color:#04140d;font-weight:900;font-family:var(--mono);font-size:13px}
@@ -112,6 +115,8 @@
   .gatecard button{width:100%;padding:13px;border:0;border-radius:11px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#04140d;font:inherit;font-weight:800;font-size:15px;cursor:pointer}
   .gerr{color:var(--coral);font-size:13px;margin:0}
 </style>
+
+<canvas id="bgfx" aria-hidden="true"></canvas>
 
 <div id="gate">
   <form id="gateForm" class="gatecard">
@@ -327,6 +332,176 @@
   Valores são estimativas de trabalho (câmbio ref. US$1 = R$5,1); custo/margem de entrega são ordens de grandeza a confirmar no Discovery. Dados de mercado com fontes públicas (PDAD/lei/imprensa) coletados em 09/2025 &mdash; ver memória do projeto. Fluxo de caixa &amp; calendário (§06) são estimativas de trabalho; volume de eventos é cenário ilustrativo. Versão 2.2 · 11/09/2026 (+ gráficos de caixa; eventos a 4/mês; faixa melhor–pior caso).
 </footer>
 </div><!-- /#site -->
+
+<script>
+  /* Constellation ambient background — vanilla port of the ConstellationGrid React component,
+     re-tuned to this dossier's palette (green accent on --bg base) and demoted to a behind-content
+     atmosphere. Opaque base color matches --bg so prose/table contrast is unchanged. */
+  (function(){
+    var canvas = document.getElementById('bgfx');
+    if(!canvas) return;
+    var ctx = canvas.getContext('2d', { alpha:false });
+    if(!ctx) return;
+
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var width = 0, height = 0, dpr = 1;
+    var nodes = [];
+    var mouse = { x:-1000, y:-1000, prevX:-1000, prevY:-1000, vx:0, vy:0, radius:220 };
+
+    function isDark(){
+      var t = document.documentElement.getAttribute('data-theme');
+      if(t === 'dark') return true;
+      if(t === 'light') return false;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+    // Palette aligned to this page's design tokens (see :root in the <style> block)
+    function palette(){
+      return isDark()
+        ? { bg:'#0c1016', node:'238, 242, 247', accent:'47, 191, 134' }   /* --bg / --ink / --acc */
+        : { bg:'#f4f6f9', node:'20, 27, 38',    accent:'18, 146, 95'  };
+    }
+
+    function initNodes(){
+      nodes = [];
+      var spacing = 55;
+      var cols = Math.ceil(width / spacing) + 1;
+      var rows = Math.ceil(height / spacing) + 1;
+      for(var i=0;i<cols;i++){
+        for(var j=0;j<rows;j++){
+          var x = i*spacing, y = j*spacing;
+          nodes.push({
+            x:x, y:y, vx:0, vy:0, baseX:x, baseY:y,
+            radius: Math.random()*1.2 + 1.2,
+            label: (i*7).toString(16).toUpperCase() + ':' + (j*11).toString(16).toUpperCase(),
+            pulse: Math.random()*Math.PI*2
+          });
+        }
+      }
+    }
+
+    function resize(){
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width*dpr;
+      canvas.height = height*dpr;
+      canvas.style.width = width+'px';
+      canvas.style.height = height+'px';
+      ctx.setTransform(1,0,0,1,0,0); /* reset before scaling so repeated resizes don't compound */
+      ctx.scale(dpr, dpr);
+      initNodes();
+      if(reduceMotion) drawStatic();
+    }
+
+    // Static single-frame render for reduced-motion users: the mesh without the animation.
+    function drawStatic(){
+      var p = palette();
+      ctx.fillStyle = p.bg; ctx.fillRect(0,0,width,height);
+      var MAX=75, MAXSQ=MAX*MAX;
+      for(var i=0;i<nodes.length;i++){
+        var n=nodes[i];
+        for(var j=i+1;j<nodes.length;j++){
+          var n2=nodes[j], dx=n.x-n2.x, dy=n.y-n2.y, d2=dx*dx+dy*dy;
+          if(d2<MAXSQ){
+            var a=(1-Math.sqrt(d2)/MAX)*(isDark()?0.14:0.07);
+            ctx.strokeStyle='rgba('+p.node+', '+a+')'; ctx.lineWidth=0.7;
+            ctx.beginPath(); ctx.moveTo(n.x,n.y); ctx.lineTo(n2.x,n2.y); ctx.stroke();
+          }
+        }
+      }
+      for(var k=0;k<nodes.length;k++){
+        var m=nodes[k];
+        ctx.fillStyle='rgba('+p.node+', 0.22)';
+        ctx.beginPath(); ctx.arc(m.x,m.y,m.radius,0,Math.PI*2); ctx.fill();
+      }
+    }
+
+    var lastTime = 0, rafId;
+    function render(now){
+      var dt = Math.min((now - lastTime)/1000, 0.05);
+      lastTime = now;
+
+      mouse.vx = (mouse.x - mouse.prevX)/(dt*1000 || 1);
+      mouse.vy = (mouse.y - mouse.prevY)/(dt*1000 || 1);
+      mouse.prevX = mouse.x; mouse.prevY = mouse.y;
+      var speed = Math.sqrt(mouse.vx*mouse.vx + mouse.vy*mouse.vy);
+
+      var p = palette();
+      ctx.fillStyle = p.bg; ctx.fillRect(0,0,width,height);
+
+      var SPRING_K = 18, DAMPING = 0.82;
+      for(var i=0;i<nodes.length;i++){
+        var n = nodes[i];
+        n.pulse += dt*3;
+        var dx = mouse.x - n.x, dy = mouse.y - n.y;
+        var dist = Math.sqrt(dx*dx + dy*dy);
+        if(dist < mouse.radius && dist > 0){
+          var power = (1 - dist/mouse.radius);
+          var force = power*(1500 + speed*150);
+          var angle = Math.atan2(dy, dx);
+          n.vx -= Math.cos(angle)*force*dt;
+          n.vy -= Math.sin(angle)*force*dt;
+        }
+        n.vx += (n.baseX - n.x)*SPRING_K*dt;
+        n.vy += (n.baseY - n.y)*SPRING_K*dt;
+        n.vx *= DAMPING; n.vy *= DAMPING;
+        n.x += n.vx*dt*60; n.y += n.vy*dt*60;
+      }
+
+      var MAX = 75, MAXSQ = MAX*MAX;
+      for(var a=0;a<nodes.length;a++){
+        var na = nodes[a];
+        for(var b=a+1;b<nodes.length;b++){
+          var nb = nodes[b];
+          var cdx = na.x-nb.x, cdy = na.y-nb.y, d2 = cdx*cdx + cdy*cdy;
+          if(d2 < MAXSQ){
+            var alpha = (1 - Math.sqrt(d2)/MAX)*(isDark()?0.16:0.07);
+            ctx.strokeStyle = 'rgba('+p.node+', '+alpha+')';
+            ctx.lineWidth = 0.7;
+            ctx.beginPath(); ctx.moveTo(na.x,na.y); ctx.lineTo(nb.x,nb.y); ctx.stroke();
+          }
+        }
+      }
+
+      for(var c=0;c<nodes.length;c++){
+        var nc = nodes[c];
+        var mdx = mouse.x-nc.x, mdy = mouse.y-nc.y;
+        var mdist = Math.sqrt(mdx*mdx + mdy*mdy);
+        var isNear = mdist < mouse.radius;
+        var baseAlpha = isNear ? 0.9 : 0.22 + Math.sin(nc.pulse)*0.09;
+        ctx.fillStyle = isNear ? 'rgba('+p.accent+', '+baseAlpha+')' : 'rgba('+p.node+', '+baseAlpha+')';
+        var r = isNear ? nc.radius*2.2 : nc.radius + Math.sin(nc.pulse)*0.3;
+        ctx.beginPath(); ctx.arc(nc.x, nc.y, Math.max(0.5, r), 0, Math.PI*2); ctx.fill();
+        if(mdist < 90){
+          var pulseRing = ((nc.pulse*20) % 30) + 4;
+          var ringAlpha = (1 - pulseRing/34)*0.4;
+          ctx.strokeStyle = 'rgba('+p.accent+', '+ringAlpha+')';
+          ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.arc(nc.x, nc.y, pulseRing, 0, Math.PI*2); ctx.stroke();
+          ctx.font = '8px ui-monospace, SFMono-Regular, Consolas, monospace';
+          ctx.fillStyle = 'rgba('+p.accent+', 0.85)';
+          ctx.fillText(nc.label, nc.x+10, nc.y-10);
+        }
+      }
+
+      rafId = requestAnimationFrame(render);
+    }
+
+    window.addEventListener('resize', resize);
+    if(!reduceMotion){
+      window.addEventListener('mousemove', function(e){ mouse.x = e.clientX; mouse.y = e.clientY; });
+      window.addEventListener('mouseleave', function(){ mouse.x = -1000; mouse.y = -1000; });
+      // Pause the loop when the tab is hidden (saves battery / CPU)
+      document.addEventListener('visibilitychange', function(){
+        if(document.hidden){ if(rafId) cancelAnimationFrame(rafId); rafId = 0; }
+        else if(!rafId){ lastTime = performance.now(); rafId = requestAnimationFrame(render); }
+      });
+    }
+
+    resize();
+    if(!reduceMotion){ lastTime = performance.now(); rafId = requestAnimationFrame(render); }
+  })();
+</script>
 
 <script>
   (function(){
