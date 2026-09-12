@@ -363,7 +363,7 @@
 
     function initNodes(){
       nodes = [];
-      var spacing = 55;
+      var spacing = 72; /* thinner mesh = calmer, less busy */
       var cols = Math.ceil(width / spacing) + 1;
       var rows = Math.ceil(height / spacing) + 1;
       for(var i=0;i<cols;i++){
@@ -403,16 +403,16 @@
         for(var j=i+1;j<nodes.length;j++){
           var n2=nodes[j], dx=n.x-n2.x, dy=n.y-n2.y, d2=dx*dx+dy*dy;
           if(d2<MAXSQ){
-            var a=(1-Math.sqrt(d2)/MAX)*(isDark()?0.14:0.07);
-            ctx.strokeStyle='rgba('+p.node+', '+a+')'; ctx.lineWidth=0.7;
+            var a=(1-Math.sqrt(d2)/MAX)*(isDark()?0.05:0.025);
+            ctx.strokeStyle='rgba('+p.node+', '+a+')'; ctx.lineWidth=0.6;
             ctx.beginPath(); ctx.moveTo(n.x,n.y); ctx.lineTo(n2.x,n2.y); ctx.stroke();
           }
         }
       }
       for(var k=0;k<nodes.length;k++){
         var m=nodes[k];
-        ctx.fillStyle='rgba('+p.node+', 0.22)';
-        ctx.beginPath(); ctx.arc(m.x,m.y,m.radius,0,Math.PI*2); ctx.fill();
+        ctx.fillStyle='rgba('+p.node+', 0.10)';
+        ctx.beginPath(); ctx.arc(m.x,m.y,m.radius*0.8,0,Math.PI*2); ctx.fill();
       }
     }
 
@@ -455,9 +455,9 @@
           var nb = nodes[b];
           var cdx = na.x-nb.x, cdy = na.y-nb.y, d2 = cdx*cdx + cdy*cdy;
           if(d2 < MAXSQ){
-            var alpha = (1 - Math.sqrt(d2)/MAX)*(isDark()?0.16:0.07);
+            var alpha = (1 - Math.sqrt(d2)/MAX)*(isDark()?0.06:0.03);
             ctx.strokeStyle = 'rgba('+p.node+', '+alpha+')';
-            ctx.lineWidth = 0.7;
+            ctx.lineWidth = 0.6;
             ctx.beginPath(); ctx.moveTo(na.x,na.y); ctx.lineTo(nb.x,nb.y); ctx.stroke();
           }
         }
@@ -468,18 +468,18 @@
         var mdx = mouse.x-nc.x, mdy = mouse.y-nc.y;
         var mdist = Math.sqrt(mdx*mdx + mdy*mdy);
         var isNear = mdist < mouse.radius;
-        var baseAlpha = isNear ? 0.9 : 0.22 + Math.sin(nc.pulse)*0.09;
+        var baseAlpha = isNear ? 0.5 : 0.09 + Math.sin(nc.pulse)*0.035;
         ctx.fillStyle = isNear ? 'rgba('+p.accent+', '+baseAlpha+')' : 'rgba('+p.node+', '+baseAlpha+')';
-        var r = isNear ? nc.radius*2.2 : nc.radius + Math.sin(nc.pulse)*0.3;
-        ctx.beginPath(); ctx.arc(nc.x, nc.y, Math.max(0.5, r), 0, Math.PI*2); ctx.fill();
-        if(mdist < 90){
+        var r = isNear ? nc.radius*1.7 : nc.radius*0.8 + Math.sin(nc.pulse)*0.25;
+        ctx.beginPath(); ctx.arc(nc.x, nc.y, Math.max(0.4, r), 0, Math.PI*2); ctx.fill();
+        if(mdist < 70){
           var pulseRing = ((nc.pulse*20) % 30) + 4;
-          var ringAlpha = (1 - pulseRing/34)*0.4;
+          var ringAlpha = (1 - pulseRing/34)*0.16;
           ctx.strokeStyle = 'rgba('+p.accent+', '+ringAlpha+')';
           ctx.lineWidth = 1;
           ctx.beginPath(); ctx.arc(nc.x, nc.y, pulseRing, 0, Math.PI*2); ctx.stroke();
           ctx.font = '8px ui-monospace, SFMono-Regular, Consolas, monospace';
-          ctx.fillStyle = 'rgba('+p.accent+', 0.85)';
+          ctx.fillStyle = 'rgba('+p.accent+', 0.4)';
           ctx.fillText(nc.label, nc.x+10, nc.y-10);
         }
       }
