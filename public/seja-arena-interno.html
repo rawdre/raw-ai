@@ -1,3 +1,8 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
 <title>Seja Arena — Plano Interno & Cenário de Mercado</title>
 <style>
   :root{
@@ -19,7 +24,7 @@
     }
   }
   *{box-sizing:border-box}
-  html{background:var(--bg)}
+  html{background:var(--bg);-webkit-text-size-adjust:100%;text-size-adjust:100%}
   body{margin:0;background:transparent;color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
   /* Constellation ambient background — painted behind all content (opaque base = --bg, so text contrast is preserved) */
   #bgfx{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;display:block}
@@ -114,6 +119,42 @@
   #gatePw:focus{outline:2px solid var(--acc);outline-offset:1px;border-color:var(--acc)}
   .gatecard button{width:100%;padding:13px;border:0;border-radius:11px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#04140d;font:inherit;font-weight:800;font-size:15px;cursor:pointer}
   .gerr{color:var(--coral);font-size:13px;margin:0}
+
+  /* ===== Mobile readability (phones) ===== */
+  @media (max-width:600px){
+    .wrap{padding:0 15px}
+    .bar .in{gap:8px;padding:10px 15px}
+    .brand{font-size:12px;gap:7px}
+    .brand .dot{width:21px;height:21px;font-size:11px}
+    .conf{font-size:9px;letter-spacing:.1em;padding:3px 8px}
+    .hero .in{padding:34px 0 26px}
+    .eyebrow{font-size:10.5px;margin-bottom:14px}
+    .lede{font-size:15px}
+    section{padding:30px 0}
+    .movehead{gap:10px;flex-wrap:wrap}
+    .num{font-size:12px;padding:3px 8px}
+    .say{font-size:14.5px}
+    /* Tables: keep them scrollable but tighter, and hint that they scroll sideways */
+    .tblwrap{margin-top:16px;-webkit-overflow-scrolling:touch}
+    table{font-size:13px;min-width:460px}
+    th,td{padding:9px 11px}
+    th{font-size:10px}
+    .grid{gap:11px;margin-top:16px}
+    .c{padding:15px}
+    .call{padding:15px 16px;margin-top:16px}
+    .script{padding:14px 15px;font-size:13.5px}
+    .money{gap:10px;margin-top:16px}
+    .money .m{padding:14px}
+    .flow{gap:9px}
+    .frow{padding:12px 13px;gap:12px}
+    .chip{font-size:11.5px;padding:5px 10px}
+    footer{padding:22px 15px 48px}
+  }
+  @media (max-width:380px){
+    h1{font-size:26px}
+    .lede{font-size:14px}
+    table{min-width:420px}
+  }
 </style>
 
 <canvas id="bgfx" aria-hidden="true"></canvas>
@@ -329,7 +370,7 @@
 
 <footer>
   <b>Seja Arena — Plano Interno &amp; Cenário de Mercado.</b> Documento de bastidor da Raw Business Solution — <b>confidencial, não mostrar ao cliente</b>. A apresentação de venda é a página separada <a href="https://raw-ai.vercel.app/seja-arena.html">raw-ai.vercel.app/seja-arena.html</a>.<br>
-  Valores são estimativas de trabalho (câmbio ref. US$1 = R$5,1); custo/margem de entrega são ordens de grandeza a confirmar no Discovery. Dados de mercado com fontes públicas (PDAD/lei/imprensa) coletados em 09/2025 &mdash; ver memória do projeto. Fluxo de caixa &amp; calendário (§06) são estimativas de trabalho; volume de eventos é cenário ilustrativo. Versão 2.2 · 11/09/2026 (+ gráficos de caixa; eventos a 4/mês; faixa melhor–pior caso).
+  Valores são estimativas de trabalho (câmbio ref. US$1 = R$5,1); custo/margem de entrega são ordens de grandeza a confirmar no Discovery. Dados de mercado com fontes públicas (PDAD/lei/imprensa) coletados em 09/2025 &mdash; ver memória do projeto. Fluxo de caixa &amp; calendário (§06) são estimativas de trabalho; volume de eventos é cenário ilustrativo. Versão 2.3 · 13/09/2026 (+ fundo constelação interativo; layout responsivo para mobile).
 </footer>
 </div><!-- /#site -->
 
