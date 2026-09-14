@@ -1,0 +1,674 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="dark">
+<title>Seja Arena — Plano de investimento</title>
+<!--
+  Seja Arena — Plano de investimento (setembro de 2026).
+  Para mudar números: edite o bloco PLANO no <script> perto do fim do arquivo.
+-->
+<style>
+  :root{
+    --bg:#0a0d13; --bg2:#0f1420; --card:#141b28; --card2:#18202f; --ink:#eef2f8; --muted:#9aa7bc; --line:#232d3f;
+    --gold:#f5b942; --gold2:#ffcf6b; --gold-soft:#f5b9421a;
+    --green:#43c98a; --green-soft:#43c98a1a; --blue:#5b9cf6; --blue-soft:#5b9cf61a; --violet:#b39bff; --violet-soft:#b39bff1a;
+    --radius:16px;
+    --sans:"Segoe UI Variable Display","Segoe UI",system-ui,-apple-system,sans-serif;
+    --mono:ui-monospace,"Cascadia Code","SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;background:var(--bg)}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+  h1,h2,h3{letter-spacing:-.02em}
+  a{color:var(--gold)}
+  [hidden]{display:none!important}
+
+  .zyfx-overlay{position:fixed;inset:0;z-index:0;pointer-events:none;mix-blend-mode:screen;opacity:.5}
+  .zyfx-overlay canvas{display:block;width:100%;height:100%}
+  #site{position:relative;z-index:1}
+
+  /* barra */
+  .bar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .bar .in{max-width:1120px;margin:0 auto;display:flex;align-items:baseline;gap:22px;padding:15px clamp(16px,4vw,40px)}
+  .brandmark{display:flex;align-items:baseline;gap:8px;font-family:var(--mono);font-weight:700;font-size:14px;letter-spacing:.03em;color:var(--ink);text-decoration:none}
+  .brandmark b{color:var(--gold);font-weight:700}
+  .brandmark .tagline{font-family:var(--sans);font-weight:400;font-size:12px;color:var(--muted);letter-spacing:0;padding-left:8px;border-left:1px solid var(--line)}
+  .navlinks{display:flex;gap:16px;flex-wrap:wrap}
+  .navlinks a{color:var(--muted);font-size:13px;font-weight:600;text-decoration:none}
+  .navlinks a:hover,.navlinks a:focus-visible{color:var(--ink)}
+  .conf{margin-left:auto;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);background:var(--gold-soft);padding:4px 10px;border-radius:999px;white-space:nowrap}
+  @media (max-width:900px){.navlinks{display:none}}
+  @media (max-width:560px){.brandmark .tagline{display:none}.bar .in{gap:10px}}
+
+  /* seções */
+  section{padding-block:clamp(44px,6vw,76px);border-bottom:1px solid var(--line)}
+  .lbl{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:800;margin:0 0 12px}
+  .lbl .n{font-family:var(--mono);background:var(--gold-soft);border:1px solid color-mix(in srgb,var(--gold) 30%,transparent);border-radius:7px;padding:2px 8px;letter-spacing:.04em}
+  h2{font-size:clamp(24px,3.4vw,36px);margin:0 0 12px;font-weight:800;max-width:28ch;text-wrap:balance;line-height:1.15}
+  h3{font-size:17px;margin:30px 0 8px}
+  .say{font-size:clamp(15px,1.8vw,16.5px);color:var(--muted);max-width:72ch;margin:0 0 10px}
+  .say b,.muted b{color:var(--ink)}
+  .muted{color:var(--muted)}
+
+  /* hero */
+  .hero .in{padding-block:clamp(56px,9vw,104px) clamp(38px,6vw,60px)}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:800;border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);border-radius:999px;padding:6px 14px;margin:0 0 22px;background:color-mix(in srgb,var(--bg) 40%,var(--gold-soft))}
+  h1{font-size:clamp(34px,6vw,62px);line-height:1.04;margin:0 0 18px;font-weight:900;max-width:19ch;text-wrap:balance}
+  h1 .g{background:linear-gradient(120deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .herosub{font-size:clamp(16px,2.1vw,19px);color:var(--muted);max-width:64ch;margin:0}
+  .herosub b{color:var(--ink)}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:34px}
+  @media (max-width:860px){.stats{grid-template-columns:1fr 1fr}}
+  .stat{background:color-mix(in srgb,var(--card) 88%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px 16px 14px}
+  .stat .v{font-size:clamp(20px,2.6vw,27px);font-weight:900;line-height:1.05;font-variant-numeric:tabular-nums;color:var(--gold)}
+  .stat small{display:block;color:var(--muted);font-size:12.5px;margin-top:6px;line-height:1.4}
+
+  /* controles de cenário */
+  .ctrl{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:22px;padding:14px 18px;border:1px solid color-mix(in srgb,var(--gold) 30%,var(--line));border-radius:14px;background:var(--card2)}
+  .ctrl .t{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:800}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--bg2)}
+  .seg button{appearance:none;border:0;background:transparent;color:var(--muted);font:inherit;font-weight:700;font-size:13px;padding:7px 14px;cursor:pointer;transition:background .15s,color .15s}
+  .seg button:hover{color:var(--ink)}
+  .seg button[aria-pressed="true"]{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1200}
+  .seg button:focus-visible,.chk input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  .chk{display:inline-flex;align-items:center;gap:9px;font-size:14px;font-weight:600;cursor:pointer}
+  .chk input{width:18px;height:18px;accent-color:var(--violet);cursor:pointer}
+  .ctrl .note{flex-basis:100%;font-size:12.5px;color:var(--muted);margin:0}
+
+  /* horizontes */
+  .hz{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:22px}
+  @media (max-width:1000px){.hz{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:680px){.hz{grid-template-columns:1fr}}
+  .h{position:relative;background:color-mix(in srgb,var(--card) 92%,transparent);border:1px solid var(--line);border-radius:var(--radius);padding:18px 16px 16px;min-width:0;display:flex;flex-direction:column}
+  .h::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;border-radius:var(--radius) var(--radius) 0 0;background:var(--accent,var(--gold))}
+  .h .when{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
+  .h .hn{font-size:24px;font-weight:900;margin:2px 0 2px;line-height:1.1}
+  .h .st{font-size:13.5px;font-weight:700;color:var(--accent,var(--gold));margin:0 0 12px}
+  .h .row{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:12.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px;margin-top:8px}
+  .h .row b{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink);font-size:13px;white-space:nowrap}
+  .h .acc{margin-top:10px}
+  .h .acc .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:800}
+  .h .acc .v{font-size:clamp(22px,2.4vw,27px);font-weight:900;line-height:1.05;font-variant-numeric:tabular-nums;background:linear-gradient(120deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .h ul{list-style:none;padding:0;margin:14px 0 0;font-size:13px;color:var(--muted)}
+  .h li{position:relative;padding-left:16px;margin:5px 0;line-height:1.45}
+  .h li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;border-radius:2px;background:var(--accent,var(--gold));opacity:.8}
+  .h li b{color:var(--ink)}
+
+  /* gráficos */
+  .chartbox{background:color-mix(in srgb,var(--card) 92%,transparent);border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px 14px;margin-top:18px}
+  .chartbox .ct{font-size:15px;font-weight:800;margin:0 0 2px}
+  .chartbox .cs{font-size:13.5px;color:var(--muted);margin:0 0 10px}
+  .chartscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:10px;font-size:12.5px;color:var(--muted)}
+  .legend i{display:inline-block;width:11px;height:11px;border-radius:3px;vertical-align:-1px;margin-right:6px}
+  @media (max-width:640px){.chartscroll svg{min-width:720px}}
+
+  /* tabelas */
+  .tblwrap{overflow-x:auto;margin-top:16px;border:1px solid var(--line);border-radius:14px;background:color-mix(in srgb,var(--card) 88%,transparent)}
+  table{border-collapse:collapse;width:100%;font-size:14px;min-width:620px}
+  th,td{text-align:left;padding:11px 15px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--gold-soft);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:800}
+  tr:last-child td{border-bottom:0}
+  td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+  td small{display:block;color:var(--muted);font-size:12.5px}
+  tr.grp td{background:color-mix(in srgb,var(--card2) 70%,transparent);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:800;padding-block:8px}
+  tr.total td{background:var(--gold-soft);font-weight:800}
+  tr.opt td{color:var(--muted)}
+  .dot{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:8px;vertical-align:0}
+  .pill{display:inline-block;font-size:11px;font-weight:800;padding:2px 9px;border-radius:999px;white-space:nowrap;margin-left:6px}
+  .pill.fix{color:var(--green);background:var(--green-soft)} .pill.ref{color:var(--gold);background:var(--gold-soft)} .pill.opt{color:var(--violet);background:var(--violet-soft)}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+  @media (max-width:860px){.grid2,.grid3{grid-template-columns:1fr}}
+  .b{background:color-mix(in srgb,var(--card) 92%,transparent);border:1px solid var(--line);border-radius:var(--radius);padding:18px;min-width:0}
+  .b .k{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:800;margin-bottom:6px}
+  .b .v{font-size:clamp(24px,3.2vw,32px);font-weight:900;line-height:1.05;font-variant-numeric:tabular-nums;margin-bottom:6px}
+  .b h4{margin:0 0 8px;font-size:15.5px;display:flex;align-items:center;gap:9px}
+  .b p{margin:0;font-size:13.5px;color:var(--muted)}
+  .b p b{color:var(--ink)}
+  .b ul{margin:0;padding-left:18px;font-size:13.5px;color:var(--muted)} .b li{margin:4px 0} .b li b{color:var(--ink)}
+  .v.gold{background:linear-gradient(120deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .v.green{color:var(--green)}
+  .icosvg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+  .call{border-radius:14px;padding:16px 18px;margin-top:18px;border:1px solid color-mix(in srgb,var(--gold) 45%,var(--line));background:var(--gold-soft)}
+  .call .tag{font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin:0 0 6px;color:var(--gold)}
+  .call p{margin:0;font-size:14.5px} .call p+p{margin-top:6px}
+
+  .gates{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+  @media (max-width:860px){.gates{grid-template-columns:1fr}}
+  .gate{display:flex;gap:12px;background:color-mix(in srgb,var(--card) 92%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  .gate .m{font-family:var(--mono);font-weight:900;font-size:12px;color:#1a1200;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:8px;padding:4px 8px;height:fit-content;white-space:nowrap}
+  .gate b{display:block;font-size:14.5px;margin-bottom:2px}
+  .gate small{color:var(--muted);font-size:13px;line-height:1.45;display:block}
+  .gate small b{display:inline;font-size:inherit;margin:0;color:var(--ink)}
+
+  .check{list-style:none;padding:0;margin:14px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:4px 28px}
+  @media (max-width:760px){.check{grid-template-columns:1fr}}
+  .check li{position:relative;padding-left:28px;margin:6px 0;font-size:14.5px;color:var(--muted)}
+  .check li b{color:var(--ink)}
+  .check li::before{content:"";position:absolute;left:0;top:5px;width:14px;height:14px;border:1.6px solid var(--gold);border-radius:4px}
+
+  footer{max-width:1120px;margin:0 auto;padding:26px clamp(16px,4vw,40px) 60px;color:var(--muted);font-size:12.5px}
+  footer b{color:var(--ink)}
+
+  /* senha */
+  #gate{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px;
+    background:radial-gradient(60% 80% at 82% -8%, color-mix(in srgb,var(--gold) 22%,transparent), transparent 60%),
+      radial-gradient(50% 70% at 12% 0%, color-mix(in srgb,var(--blue) 16%,transparent), transparent 55%), var(--bg)}
+  .gatecard{width:100%;max-width:380px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px 28px;text-align:center;display:flex;flex-direction:column;gap:14px;box-shadow:0 30px 80px -40px #000}
+  .glogo{font-family:var(--mono);font-weight:700;font-size:15px;letter-spacing:.03em}
+  .glogo b{color:var(--gold)}
+  .gh{margin:2px 0 0;font-size:20px}
+  .gp{margin:0;color:var(--muted);font-size:13px}
+  #gatePw{width:100%;padding:13px 15px;border-radius:11px;border:1px solid var(--line);background:var(--bg2);color:var(--ink);font:inherit;font-size:15px;text-align:center}
+  #gatePw:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
+  .gatecard button{width:100%;padding:13px;border:0;border-radius:11px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1200;font:inherit;font-weight:800;font-size:15px;cursor:pointer}
+  .gerr{color:#e5533d;font-size:13px;margin:0}
+
+  @media print{
+    .zyfx-overlay,.ctrl,.bar{display:none!important}
+    section{break-inside:avoid-page}
+  }
+</style>
+</head>
+<body>
+
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true"><defs>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4Z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/></symbol>
+  <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M3 12h4l3-7 4 14 3-7h4"/></symbol>
+  <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4Z"/><path d="M13 6v12" stroke-dasharray="2 2"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18h10a4 4 0 0 0 .5-8A6 6 0 0 0 6 9a4.5 4.5 0 0 0 1 9Z"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6Z"/><path d="M14 2v6h6"/><path d="M9 13h8M9 17h6"/></symbol>
+</defs></svg>
+
+<div id="gate">
+  <form id="gateForm" class="gatecard">
+    <div class="glogo">SEJA <b>ARENA</b></div>
+    <h2 class="gh">Plano de investimento</h2>
+    <p class="gp">Apresentação privada. Digite a senha para continuar.</p>
+    <input id="gatePw" type="password" autocomplete="off" spellcheck="false" placeholder="Senha" aria-label="Senha">
+    <button type="submit">Entrar →</button>
+    <p id="gateErr" class="gerr" hidden>Senha incorreta</p>
+  </form>
+</div>
+
+<div id="site" hidden>
+<div class="zyfx-overlay" aria-hidden="true"><canvas id="zyFxCanvas"></canvas></div>
+
+<div class="bar"><div class="in">
+  <a class="brandmark" href="#top">SEJA <b>ARENA</b><span class="tagline">Plano de investimento</span></a>
+  <nav class="navlinks" aria-label="Seções">
+    <a href="#momentos">Cinco momentos</a><a href="#cronograma">Cronograma</a><a href="#pagamentos">Pagamentos</a><a href="#incluido">O que inclui</a><a href="#condicoes">Condições</a>
+  </nav>
+  <span class="conf">Confidencial</span>
+</div></div>
+
+<header class="hero" id="top"><div class="wrap in">
+  <span class="eyebrow">Plano de investimento · Proposta de referência</span>
+  <h1>Investimento em fases — <span class="g">e o que você tem pronto</span> em cada etapa.</h1>
+  <p class="herosub">O projeto avança por etapas. <b>Cada fase só começa com a anterior entregue e aprovada</b>, e cada pagamento acompanha uma entrega. Abaixo, o investimento visto em cinco momentos: <b>3 meses, 6 meses, 1 ano, 2 anos e 3 anos</b>.</p>
+  <div class="stats">
+    <div class="stat"><div class="v" data-out="pFase0">—</div><small>Fase 0 · Discovery &amp; Blueprint<br><b>preço fixo</b>, meses 1 a 3</small></div>
+    <div class="stat"><div class="v" data-out="pMvp">—</div><small>MVP núcleo · meses 4 a 9<br><b>valor de referência</b></small></div>
+    <div class="stat"><div class="v">Mês 9</div><small>plataforma no ar, com<br>piloto em evento real</small></div>
+    <div class="stat"><div class="v" data-out="pMensal">—</div><small>operação a partir do mês 10<br><span data-out="mensalNota">—</span></small></div>
+  </div>
+</div></header>
+
+<!-- 01 CINCO MOMENTOS -->
+<section id="momentos"><div class="wrap">
+  <p class="lbl"><span class="n">01</span>Cinco momentos</p>
+  <h2>O que está pronto e quanto foi investido em cada momento</h2>
+  <p class="say">Cada coluna mostra o <b>investimento no período</b>, o <b>total acumulado</b> desde o início e o que você tem nas mãos naquele ponto.</p>
+
+  <div class="ctrl" role="group" aria-label="Cenário">
+    <span class="t">Eventos por mês na arena</span>
+    <span class="seg" id="segEventos">
+      <button type="button" data-ev="1" aria-pressed="true">1 · base</button>
+      <button type="button" data-ev="2" aria-pressed="false">2</button>
+      <button type="button" data-ev="4" aria-pressed="false">4</button>
+    </span>
+    <label class="chk"><input type="checkbox" id="chkFase2"> Incluir Fase 2 — expansão (opcional)</label>
+    <p class="note">A base usa <b>1 evento por mês</b>, a conta mais conservadora. Mais eventos aumentam a operação; a Fase 2 só é contratada depois que o MVP comprovar resultado.</p>
+  </div>
+
+  <div class="hz" id="horizontes"></div>
+
+  <div class="chartbox">
+    <p class="ct">Investimento acumulado</p>
+    <p class="cs">A maior parte do investimento acontece no primeiro ano, na construção. Depois do go-live, entra só a operação mensal.</p>
+    <div class="chartscroll" id="chartAcum"></div>
+    <div class="legend">
+      <span><i style="background:var(--gold)"></i>Fase 0 · Discovery &amp; Blueprint</span>
+      <span><i style="background:var(--blue)"></i>MVP núcleo</span>
+      <span><i style="background:var(--green)"></i>Operação e eventos</span>
+      <span id="legF2" hidden><i style="background:var(--violet)"></i>Fase 2 · expansão</span>
+    </div>
+  </div>
+</div></section>
+
+<!-- 02 CRONOGRAMA -->
+<section id="cronograma"><div class="wrap">
+  <p class="lbl"><span class="n">02</span>Cronograma</p>
+  <h2>36 meses, do primeiro protótipo à plataforma madura</h2>
+  <p class="say">As linhas tracejadas marcam os cinco momentos. Os losangos marcam as decisões: é nelas que você aprova a próxima etapa.</p>
+  <div class="chartbox">
+    <div class="chartscroll" id="gantt"></div>
+  </div>
+
+  <div class="gates">
+    <div class="gate"><span class="m">Mês 3</span><div><b>Aprovação do MVP</b><small>Com protótipo, integrações validadas e <b>preço fechado</b> do MVP em mãos, você decide seguir para a construção.</small></div></div>
+    <div class="gate"><span class="m">Mês 9</span><div><b>Go-live</b><small>Piloto em evento real e plataforma no ar. Começam a operação e o suporte a eventos.</small></div></div>
+    <div class="gate"><span class="m">Ano 2</span><div><b>Decisão da expansão</b><small>Com o MVP comprovado, a Fase 2 (marketplace, anúncios, fidelidade) pode ser contratada.</small></div></div>
+  </div>
+
+  <div class="chartbox">
+    <p class="ct">Desembolso mês a mês</p>
+    <p class="cs">Quanto sai do caixa em cada mês. O pico é o mês 4, com o sinal do MVP; do mês 10 em diante, a operação fica estável.</p>
+    <div class="chartscroll" id="chartMes"></div>
+    <div class="legend">
+      <span><i style="background:var(--gold)"></i>Fase 0</span>
+      <span><i style="background:var(--blue)"></i>MVP núcleo</span>
+      <span><i style="background:var(--green)"></i>Operação e eventos</span>
+      <span id="legF2b" hidden><i style="background:var(--violet)"></i>Fase 2</span>
+    </div>
+  </div>
+</div></section>
+
+<!-- 03 PAGAMENTOS -->
+<section id="pagamentos"><div class="wrap">
+  <p class="lbl"><span class="n">03</span>Pagamentos</p>
+  <h2>Cada pagamento acompanha uma entrega</h2>
+  <p class="say">Sem cheque único: a Fase 0 é paga por entrega, o MVP em parcelas mensais e a operação mês a mês. Parcelas vencem <b>no início do mês de trabalho</b>.</p>
+  <div class="tblwrap"><table id="tPag"></table></div>
+
+  <div class="grid3">
+    <div class="b"><div class="k">Primeiro ano · média mensal</div><div class="v gold" data-out="media1">—</div><p>Construção da plataforma: Fase 0 + MVP + primeiros meses de operação.</p></div>
+    <div class="b"><div class="k">Do 2º ano em diante · por mês</div><div class="v green" data-out="mensal2">—</div><p><span data-out="mensal2Nota">—</span></p></div>
+    <div class="b"><div class="k">Em 3 anos · total</div><div class="v gold" data-out="total36">—</div><p><span data-out="total36Nota">—</span></p></div>
+  </div>
+</div></section>
+
+<!-- 04 O QUE INCLUI -->
+<section id="incluido"><div class="wrap">
+  <p class="lbl"><span class="n">04</span>O que inclui</p>
+  <h2>O que cada valor cobre — e o que é pago à parte</h2>
+  <div class="grid2">
+    <div class="b"><h4><svg class="icosvg"><use href="#i-doc"/></svg>Fase 0 · Discovery &amp; Blueprint</h4><ul>
+      <li><b>Protótipo clicável</b> com a sua marca</li>
+      <li><b>Integrações validadas por escrito</b>: Arena BSB, Eventim, V.tal, reconhecimento facial e PDV</li>
+      <li>Desenho de <b>LGPD</b> e relatório de impacto (DPIA)</li>
+      <li><b>Preço fechado do MVP</b>, com escopo travado</li>
+    </ul></div>
+    <div class="b"><h4><svg class="icosvg"><use href="#i-box"/></svg>MVP núcleo</h4><ul>
+      <li>Nuvem e esteira de publicação (CI/CD)</li>
+      <li><b>Portal Wi-Fi</b> com cadastro e consentimento</li>
+      <li><b>App iOS e Android</b> com QR do assento</li>
+      <li>Pedido de <b>A&amp;B</b> em 1–2 setores · <b>Pix e cartão</b> com divisão entre vendedores</li>
+      <li>1 integração de PDV · backoffice · teste de invasão (pentest)</li>
+      <li><b>Piloto em evento real</b> e <b>3 meses de garantia</b> depois do go-live</li>
+    </ul></div>
+    <div class="b"><h4><svg class="icosvg"><use href="#i-pulse"/></svg><span>Operação mensal · <span data-out="pSust">—</span>/mês</span></h4><ul>
+      <li>Monitoramento, infraestrutura e suporte</li>
+      <li>Até <b>80 horas/mês</b> de correções e ajustes</li>
+      <li>Gestão da operação e <b>pentest anual</b></li>
+    </ul></div>
+    <div class="b"><h4><svg class="icosvg"><use href="#i-ticket"/></svg><span>Por evento · <span data-out="pEvento">—</span></span></h4><ul>
+      <li>Montagem da <b>loja e do catálogo</b> do evento no app</li>
+      <li><b>Plantão técnico</b> de 2 pessoas durante o evento</li>
+    </ul></div>
+  </div>
+  <div class="grid2">
+    <div class="b"><h4><svg class="icosvg"><use href="#i-cloud"/></svg>Pago à parte, pelo custo real</h4><p>Uso de <b>nuvem, notificações, WhatsApp e taxas de pagamento</b> varia com o volume da arena. É repassado pelo custo real, com câmbio do dia, IOF e taxa de gestão — <b>fora dos valores desta página</b>.</p></div>
+    <div class="b"><h4><svg class="icosvg"><use href="#i-plus"/></svg><span>Fase 2 · expansão · <span data-out="pFase2">—</span> <span class="pill opt">opcional</span></span></h4><p><b>Marketplace, venda de anúncios, fidelidade/CRM</b> e segunda tela básica, em cerca de 5 meses. Contratada só depois que o MVP comprovar resultado.</p></div>
+  </div>
+</div></section>
+
+<!-- 05 CONDIÇÕES -->
+<section id="condicoes" style="border-bottom:0"><div class="wrap">
+  <p class="lbl"><span class="n">05</span>Condições</p>
+  <h2>Como os números funcionam</h2>
+  <div class="call">
+    <p class="tag">Como ler estes valores</p>
+    <p>A <b>Fase 0 tem preço fixo</b>. O <b>MVP aparece pelo valor de referência</b>: o preço fechado é entregue no fim da Fase 0, com as integrações validadas e o escopo travado — é para isso que a Fase 0 existe.</p>
+  </div>
+  <ul class="check">
+    <li><b>Autorização formal da Arena BSB</b>, com acesso aos sistemas e à rede, antes do início.</li>
+    <li><b>Acesso por escrito</b> às integrações (ingressos, conectividade, facial, PDV), validado na Fase 0.</li>
+    <li><b>Orçamento de cada fase aprovado</b> antes de a fase começar.</li>
+    <li>Parcelas pagas <b>no início de cada mês de trabalho</b>.</li>
+    <li>Mudanças de escopo viram <b>orçamento novo</b>, aprovado antes de serem feitas.</li>
+    <li>Valores <b>sem CBS/IBS</b>: a partir de 2027, os novos tributos da reforma são acrescidos na nota conforme a lei.</li>
+  </ul>
+</div></section>
+
+<footer>
+  <p><b>Seja Arena — Plano de investimento.</b> Proposta de referência para discussão, em reais, setembro de 2026. O preço do MVP é confirmado no fim da Fase 0. Uso de nuvem, mensagens e taxas de pagamento é repassado à parte. Raw Business Solution.</p>
+</footer>
+</div><!-- /#site -->
+
+<script>
+/* =====================================================================
+   PLANO — edite aqui para mudar os números. Valores em reais.
+   Tudo na página é recalculado a partir deste bloco.
+   ===================================================================== */
+var PLANO = {
+  fase0:    { preco: 850000,  inicio: 1, fim: 3, pagamento: [0.50, 0.25, 0.25], marcos: ['Assinatura', 'Entrega do protótipo', 'Entrega do blueprint e do preço fechado do MVP'] },
+  mvp:      { preco: 2430000, inicio: 4, fim: 9, sinal: 0.20 },
+  garantia: { inicio: 10, fim: 12 },
+  operacao: { inicio: 10, mensal: 68000, evento: 16000 },
+  fase2:    { preco: 2400000, inicio: 13, fim: 17 },
+  meses: 36,
+  eventosBase: 1
+};
+</script>
+
+<script>
+(function () {
+  var P = PLANO, estado = { eventos: P.eventosBase, fase2: false };
+
+  /* ---------- formatação ---------- */
+  function curto(v) {
+    var a = Math.abs(v);
+    if (a >= 1e6) return 'R$ ' + (a / 1e6).toFixed(2).replace(/\.?0+$/, '').replace('.', ',') + ' mi';
+    if (a >= 1e5) return 'R$ ' + Math.round(a / 1e3) + ' mil';
+    if (a >= 1e3) return 'R$ ' + (Math.round(a / 100) / 10).toFixed(1).replace('.', ',').replace(',0', '') + ' mil';
+    return 'R$ ' + Math.round(a);
+  }
+  function cheio(v) { return 'R$ ' + Math.round(v).toLocaleString('pt-BR'); }
+  function out(key, html) { document.querySelectorAll('[data-out="' + key + '"]').forEach(function (el) { el.innerHTML = html; }); }
+  function plural(n, s, p) { return n + ' ' + (n === 1 ? s : p); }
+
+  /* ---------- modelo ---------- */
+  function mensalOperacao() { return P.operacao.mensal + estado.eventos * P.operacao.evento; }
+  function mes(m) {
+    var r = { f0: 0, mvp: 0, op: 0, f2: 0 };
+    if (m >= P.fase0.inicio && m <= P.fase0.fim) r.f0 = P.fase0.preco * P.fase0.pagamento[m - P.fase0.inicio];
+    var nMvp = P.mvp.fim - P.mvp.inicio + 1;
+    if (m >= P.mvp.inicio && m <= P.mvp.fim) r.mvp = P.mvp.preco * (1 - P.mvp.sinal) / nMvp + (m === P.mvp.inicio ? P.mvp.preco * P.mvp.sinal : 0);
+    if (m >= P.operacao.inicio) r.op = mensalOperacao();
+    if (estado.fase2 && m >= P.fase2.inicio && m <= P.fase2.fim) r.f2 = P.fase2.preco / (P.fase2.fim - P.fase2.inicio + 1);
+    r.total = r.f0 + r.mvp + r.op + r.f2;
+    return r;
+  }
+  function soma(de, ate) {
+    var s = { f0: 0, mvp: 0, op: 0, f2: 0, total: 0 };
+    for (var m = de; m <= ate; m++) { var x = mes(m); for (var k in s) s[k] += x[k]; }
+    return s;
+  }
+  function mesesOperacao(ate) { return Math.max(0, ate - P.operacao.inicio + 1); }
+
+  /* ---------- os cinco momentos ---------- */
+  var MOMENTOS = [
+    { ate: 3,  de: 1,  nome: '3 meses', quando: 'mês 3', cor: 'var(--gold)', status: 'Fase 0 concluída',
+      itens: function () { return ['<b>Protótipo clicável</b> com a sua marca', 'Integrações <b>validadas por escrito</b>', 'LGPD e DPIA desenhados', '<b>Preço fechado do MVP</b> para decidir']; } },
+    { ate: 6,  de: 4,  nome: '6 meses', quando: 'mês 6', cor: 'var(--blue)', status: 'MVP em construção',
+      itens: function () { return ['Construção na <b>metade</b>: 3 de 6 meses', 'Escopo e preço travados na Fase 0', 'Sinal + 3 parcelas mensais pagas']; } },
+    { ate: 12, de: 7,  nome: '1 ano', quando: 'mês 12', cor: 'var(--green)', status: 'Plataforma no ar',
+      itens: function () { return ['<b>Go-live no mês 9</b>, com piloto em evento real', '<b>Garantia</b> nos meses 10 a 12, já incluída', 'Operação e eventos desde o mês 10']; } },
+    { ate: 24, de: 13, nome: '2 anos', quando: 'mês 24', cor: 'var(--green)', status: 'Operação estável',
+      itens: function () {
+        var l = ['<b>' + plural(mesesOperacao(24), 'mês', 'meses') + '</b> de operação no total', '<b>' + (mesesOperacao(24) * estado.eventos) + ' eventos</b> atendidos até aqui'];
+        l.push(estado.fase2 ? '<b>Fase 2 entregue</b>: marketplace, anúncios, fidelidade' : 'Fase 2 <b>disponível</b> para decisão');
+        return l; } },
+    { ate: 36, de: 25, nome: '3 anos', quando: 'mês 36', cor: 'var(--gold2)', status: 'Plataforma madura',
+      itens: function () { return ['<b>' + plural(mesesOperacao(36), 'mês', 'meses') + '</b> de operação no total', '<b>' + (mesesOperacao(36) * estado.eventos) + ' eventos</b> atendidos', 'Base pronta para <b>levar a outras arenas</b>']; } }
+  ];
+
+  function renderMomentos() {
+    var acc = 0;
+    document.getElementById('horizontes').innerHTML = MOMENTOS.map(function (h) {
+      var per = soma(h.de, h.ate).total; acc += per;
+      return '<article class="h" style="--accent:' + h.cor + '">' +
+        '<span class="when">' + h.quando + '</span><div class="hn">' + h.nome + '</div><p class="st">' + h.status + '</p>' +
+        '<div class="row"><span>No período <small class="muted">(meses ' + h.de + '–' + h.ate + ')</small></span><b>' + curto(per) + '</b></div>' +
+        '<div class="acc"><div class="k">Acumulado</div><div class="v">' + curto(acc) + '</div></div>' +
+        '<ul>' + h.itens().map(function (i) { return '<li>' + i + '</li>'; }).join('') + '</ul></article>';
+    }).join('');
+  }
+
+  /* ---------- gráfico: acumulado por momento ---------- */
+  var CORES = { f0: 'var(--gold)', mvp: 'var(--blue)', op: 'var(--green)', f2: 'var(--violet)' };
+  function passo(max) { var s = [250000, 500000, 1000000, 2000000]; for (var i = 0; i < s.length; i++) if (max / s[i] <= 6) return s[i]; return 5000000; }
+  function eixoY(s, L, R, W, T, ph, yMax, step, y) {
+    for (var g = 0; g <= yMax + 1; g += step) {
+      s += '<line x1="' + L + '" y1="' + y(g).toFixed(1) + '" x2="' + (W - R) + '" y2="' + y(g).toFixed(1) + '" style="stroke:var(--line)" stroke-width="' + (g === 0 ? 1.6 : 1) + '"/>';
+      s += '<text x="' + (L - 8) + '" y="' + (y(g) + 3.5).toFixed(1) + '" text-anchor="end" style="fill:var(--muted)" font-size="10">' + (g === 0 ? '0' : (g >= 1e6 ? (g / 1e6).toFixed(1).replace('.', ',').replace(',0', '') + ' mi' : (g / 1e3) + ' mil')) + '</text>';
+    }
+    return s;
+  }
+  function chartAcum() {
+    var W = 780, H = 300, L = 62, R = 16, T = 26, B = 46, pw = W - L - R, ph = H - T - B;
+    var dados = MOMENTOS.map(function (h) { return soma(1, h.ate); });
+    var max = Math.max.apply(null, dados.map(function (d) { return d.total; }));
+    var step = passo(max), yMax = Math.ceil(max * 1.08 / step) * step;
+    function y(v) { return T + (1 - v / yMax) * ph; }
+    var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" style="display:block;height:auto;font-family:var(--mono)" role="img" aria-label="Investimento acumulado em 3, 6, 12, 24 e 36 meses">';
+    s = eixoY(s, L, R, W, T, ph, yMax, step, y);
+    var slot = pw / dados.length, bw = Math.min(92, slot * 0.56);
+    dados.forEach(function (d, i) {
+      var cx = L + slot * (i + 0.5), x0 = cx - bw / 2, base = 0;
+      ['f0', 'mvp', 'op', 'f2'].forEach(function (k) {
+        if (!d[k]) return;
+        var y1 = y(base + d[k]), y0 = y(base), hgt = Math.max(0, y0 - y1);
+        s += '<rect x="' + x0.toFixed(1) + '" y="' + y1.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + hgt.toFixed(1) + '" rx="3" style="fill:' + CORES[k] + ';stroke:var(--card)" stroke-width="1.5"><title>' + MOMENTOS[i].nome + ' · ' + curto(d[k]) + '</title></rect>';
+        if (hgt > 17) s += '<text x="' + cx.toFixed(1) + '" y="' + (y1 + hgt / 2 + 4).toFixed(1) + '" text-anchor="middle" fill="#10141c" font-size="10" font-weight="700">' + curto(d[k]).replace('R$ ', '') + '</text>';
+        base += d[k];
+      });
+      s += '<text x="' + cx.toFixed(1) + '" y="' + (y(d.total) - 8).toFixed(1) + '" text-anchor="middle" style="fill:var(--ink)" font-size="12" font-weight="700">' + curto(d.total) + '</text>';
+      s += '<text x="' + cx.toFixed(1) + '" y="' + (T + ph + 18) + '" text-anchor="middle" style="fill:var(--ink)" font-size="11.5" font-weight="700">' + MOMENTOS[i].nome + '</text>';
+      s += '<text x="' + cx.toFixed(1) + '" y="' + (T + ph + 33) + '" text-anchor="middle" style="fill:var(--muted)" font-size="9.5">' + MOMENTOS[i].status.toLowerCase() + '</text>';
+    });
+    document.getElementById('chartAcum').innerHTML = s + '</svg>';
+  }
+
+  /* ---------- gráfico: desembolso mês a mês ---------- */
+  function chartMes() {
+    var W = 780, H = 250, L = 62, R = 16, T = 26, B = 36, pw = W - L - R, ph = H - T - B, N = P.meses;
+    var dados = []; for (var m = 1; m <= N; m++) dados.push(mes(m));
+    var max = Math.max.apply(null, dados.map(function (d) { return d.total; }));
+    var step = passo(max), yMax = Math.ceil(max * 1.1 / step) * step;
+    function y(v) { return T + (1 - v / yMax) * ph; }
+    function x(i) { return L + i * (pw / N); }
+    var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" style="display:block;height:auto;font-family:var(--mono)" role="img" aria-label="Desembolso mensal ao longo de 36 meses">';
+    s = eixoY(s, L, R, W, T, ph, yMax, step, y);
+    MOMENTOS.forEach(function (h) {
+      var xm = x(h.ate);
+      s += '<line x1="' + xm.toFixed(1) + '" y1="' + (T - 8) + '" x2="' + xm.toFixed(1) + '" y2="' + (T + ph) + '" style="stroke:var(--muted)" stroke-dasharray="3 3" opacity="0.45"/>';
+      s += '<text x="' + (xm - 4).toFixed(1) + '" y="' + (T - 12) + '" text-anchor="end" style="fill:var(--muted)" font-size="9.5">' + h.nome + '</text>';
+    });
+    var bw = pw / N * 0.72;
+    dados.forEach(function (d, i) {
+      var x0 = x(i) + (pw / N - bw) / 2, base = 0;
+      ['f0', 'mvp', 'op', 'f2'].forEach(function (k) {
+        if (!d[k]) return;
+        var y1 = y(base + d[k]), y0 = y(base);
+        s += '<rect x="' + x0.toFixed(1) + '" y="' + y1.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + Math.max(0, y0 - y1).toFixed(1) + '" rx="2" style="fill:' + CORES[k] + '"><title>Mês ' + (i + 1) + ' · ' + curto(d[k]) + '</title></rect>';
+        base += d[k];
+      });
+    });
+    var pico = dados.reduce(function (a, d, i) { return d.total > dados[a].total ? i : a; }, 0);
+    s += '<text x="' + (x(pico) + pw / N / 2).toFixed(1) + '" y="' + (y(dados[pico].total) - 6).toFixed(1) + '" text-anchor="middle" style="fill:var(--ink)" font-size="10.5" font-weight="700">' + curto(dados[pico].total) + '</text>';
+    var op = dados[N - 1];
+    s += '<text x="' + (x(N) - 2).toFixed(1) + '" y="' + (y(op.total) - 6).toFixed(1) + '" text-anchor="end" style="fill:var(--green)" font-size="10.5" font-weight="700">' + curto(op.total) + '/mês</text>';
+    [1, 3, 6, 9, 12, 18, 24, 30, 36].forEach(function (mm) { s += '<text x="' + (x(mm - 1) + pw / N / 2).toFixed(1) + '" y="' + (T + ph + 15) + '" text-anchor="middle" style="fill:var(--muted)" font-size="9.5">' + mm + '</text>'; });
+    s += '<text x="' + (L + pw / 2).toFixed(1) + '" y="' + (H - 4) + '" text-anchor="middle" style="fill:var(--muted)" font-size="9.5">mês</text>';
+    document.getElementById('chartMes').innerHTML = s + '</svg>';
+  }
+
+  /* ---------- cronograma (Gantt) ---------- */
+  function gantt() {
+    var linhas = [
+      { n: 'Fase 0 · Discovery & Blueprint', de: P.fase0.inicio, ate: P.fase0.fim, c: 'var(--gold)' },
+      { n: 'MVP núcleo · construção', de: P.mvp.inicio, ate: P.mvp.fim, c: 'var(--blue)' },
+      { n: 'Garantia (incluída no MVP)', de: P.garantia.inicio, ate: P.garantia.fim, c: 'var(--blue)', leve: true },
+      { n: 'Operação e eventos', de: P.operacao.inicio, ate: P.meses, c: 'var(--green)' },
+      { n: 'Fase 2 · expansão (opcional)', de: P.fase2.inicio, ate: P.fase2.fim, c: 'var(--violet)', opcional: true }
+    ];
+    var W = 780, L = 196, R = 16, T = 30, rh = 34, H = T + linhas.length * rh + 30, pw = W - L - R, N = P.meses;
+    function x(m) { return L + m * (pw / N); }
+    var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" style="display:block;height:auto;font-family:var(--mono)" role="img" aria-label="Cronograma de 36 meses por fase">';
+    for (var m = 0; m <= N; m += 6) s += '<line x1="' + x(m).toFixed(1) + '" y1="' + T + '" x2="' + x(m).toFixed(1) + '" y2="' + (T + linhas.length * rh) + '" style="stroke:var(--line)" stroke-width="1"/>';
+    MOMENTOS.forEach(function (h, i) {
+      var anc = i === 0 || h.ate === N ? 'end' : (i === 1 ? 'start' : 'middle'), dx = anc === 'end' ? -4 : (anc === 'start' ? 4 : 0);
+      s += '<line x1="' + x(h.ate).toFixed(1) + '" y1="' + (T - 10) + '" x2="' + x(h.ate).toFixed(1) + '" y2="' + (T + linhas.length * rh) + '" style="stroke:var(--gold)" stroke-dasharray="3 3" opacity="0.55"/>';
+      s += '<text x="' + (x(h.ate) + dx).toFixed(1) + '" y="' + (T - 14) + '" text-anchor="' + anc + '" style="fill:var(--gold)" font-size="10" font-weight="700">' + h.nome + '</text>';
+    });
+    linhas.forEach(function (l, i) {
+      var yy = T + i * rh, x0 = x(l.de - 1), x1 = x(l.ate), off = l.opcional && !estado.fase2;
+      s += '<text x="' + (L - 10) + '" y="' + (yy + rh / 2 + 4) + '" text-anchor="end" style="fill:' + (off ? 'var(--muted)' : 'var(--ink)') + ';font-family:var(--sans)" font-size="12" font-weight="600">' + l.n + '</text>';
+      s += '<rect x="' + x0.toFixed(1) + '" y="' + (yy + 7) + '" width="' + (x1 - x0).toFixed(1) + '" height="' + (rh - 14) + '" rx="6" style="fill:' + l.c + (off ? ';fill-opacity:0.12;stroke:' + l.c : '') + '"' + (off ? ' stroke-dasharray="4 3" stroke-width="1.2"' : '') + ' opacity="' + (l.leve ? 0.35 : 1) + '"><title>' + l.n + ' · meses ' + l.de + '–' + l.ate + '</title></rect>';
+      var lab = 'meses ' + l.de + '–' + l.ate;
+      if ((x1 - x0) > 70) s += '<text x="' + (x0 + 8).toFixed(1) + '" y="' + (yy + rh / 2 + 4) + '" style="fill:' + (off || l.leve ? 'var(--ink)' : '#10141c') + '" font-size="10" font-weight="700">' + lab + '</text>';
+      else s += '<text x="' + (x1 + 14).toFixed(1) + '" y="' + (yy + rh / 2 + 4) + '" style="fill:var(--muted)" font-size="10">' + lab + '</text>';
+    });
+    [[P.fase0.fim, 0, 'preço fechado do MVP'], [P.mvp.fim, 1, 'go-live']].forEach(function (g) {
+      var gx = x(g[0]), gy = T + g[1] * rh + rh / 2;
+      s += '<path d="M' + gx.toFixed(1) + ',' + (gy - 8) + ' l8,8 l-8,8 l-8,-8 Z" style="fill:var(--gold2);stroke:var(--bg)" stroke-width="1.5"><title>' + g[2] + '</title></path>';
+    });
+    for (var t = 0; t <= N; t += 6) s += '<text x="' + x(t).toFixed(1) + '" y="' + (T + linhas.length * rh + 16) + '" text-anchor="middle" style="fill:var(--muted)" font-size="9.5">' + (t === 0 ? 'início' : 'mês ' + t) + '</text>';
+    document.getElementById('gantt').innerHTML = s + '</svg>';
+  }
+
+  /* ---------- tabela de pagamentos ---------- */
+  function tabelaPagamentos() {
+    var acc = 0, h = '<thead><tr><th>Marco</th><th>Quando</th><th class="num">Valor</th><th class="num">Acumulado</th></tr></thead><tbody>';
+    function linha(marco, quando, valor, soma, cls) { if (soma) acc += valor; return '<tr' + (cls ? ' class="' + cls + '"' : '') + '><td>' + marco + '</td><td>' + quando + '</td><td class="num">' + (typeof valor === 'number' ? cheio(valor) : valor) + '</td><td class="num">' + (soma ? cheio(acc) : '—') + '</td></tr>'; }
+    h += '<tr class="grp"><td colspan="4"><span class="dot" style="background:var(--gold)"></span>Fase 0 · ' + cheio(P.fase0.preco) + ' <span class="pill fix">preço fixo</span></td></tr>';
+    P.fase0.pagamento.forEach(function (p, i) { h += linha(P.fase0.marcos[i] + ' <small>' + Math.round(p * 100) + '% da Fase 0</small>', 'mês ' + (P.fase0.inicio + i), P.fase0.preco * p, true); });
+    var nMvp = P.mvp.fim - P.mvp.inicio + 1, parcela = P.mvp.preco * (1 - P.mvp.sinal) / nMvp;
+    h += '<tr class="grp"><td colspan="4"><span class="dot" style="background:var(--blue)"></span>MVP núcleo · ' + cheio(P.mvp.preco) + ' <span class="pill ref">valor de referência</span></td></tr>';
+    h += linha('Sinal <small>' + Math.round(P.mvp.sinal * 100) + '% do MVP, na assinatura</small>', 'mês ' + P.mvp.inicio, P.mvp.preco * P.mvp.sinal, true);
+    h += linha(nMvp + ' parcelas mensais de ' + cheio(parcela) + ' <small>no início de cada mês de construção</small>', 'meses ' + P.mvp.inicio + '–' + P.mvp.fim, parcela * nMvp, true);
+    h += linha('Garantia de 3 meses <small>correções depois do go-live</small>', 'meses ' + P.garantia.inicio + '–' + P.garantia.fim, 'incluída', false);
+    h += '<tr class="total"><td>Construção completa (Fase 0 + MVP)</td><td>meses 1–9</td><td class="num">' + cheio(P.fase0.preco + P.mvp.preco) + '</td><td class="num">' + cheio(acc) + '</td></tr>';
+    h += '<tr class="grp"><td colspan="4"><span class="dot" style="background:var(--green)"></span>Operação · a partir do mês ' + P.operacao.inicio + '</td></tr>';
+    h += linha('Mensalidade de operação', 'todo mês', cheio(P.operacao.mensal) + '/mês', false);
+    h += linha('Por evento <small>base: ' + plural(estado.eventos, 'evento', 'eventos') + ' por mês</small>', 'por evento', cheio(P.operacao.evento), false);
+    h += linha('<b>Total mensal da operação</b>', 'todo mês', '<b>' + cheio(mensalOperacao()) + '/mês</b>', false);
+    h += linha('Nuvem, mensagens e taxas de pagamento', 'todo mês', 'custo real', false, 'opt');
+    h += '<tr class="grp"><td colspan="4"><span class="dot" style="background:var(--violet)"></span>Fase 2 · expansão <span class="pill opt">opcional</span></td></tr>';
+    h += linha('Marketplace, anúncios, fidelidade/CRM <small>depois que o MVP comprovar; condições na contratação</small>', 'a partir do ano 2', cheio(P.fase2.preco), false, estado.fase2 ? '' : 'opt');
+    document.getElementById('tPag').innerHTML = h + '</tbody>';
+  }
+
+  /* ---------- números soltos ---------- */
+  function numeros() {
+    var mo = mensalOperacao(), a1 = soma(1, 12).total, t36 = soma(1, 36).total;
+    out('pFase0', curto(P.fase0.preco)); out('pMvp', curto(P.mvp.preco)); out('pFase2', curto(P.fase2.preco));
+    out('pSust', curto(P.operacao.mensal)); out('pEvento', curto(P.operacao.evento));
+    out('pMensal', curto(mo) + '<small style="display:inline;font-size:.55em;color:var(--muted);font-weight:700">/mês</small>');
+    out('mensalNota', 'mensalidade + ' + plural(estado.eventos, 'evento', 'eventos') + '/mês');
+    out('media1', curto(a1 / 12) + '<small style="font-size:.5em;color:var(--muted);-webkit-text-fill-color:var(--muted)">/mês</small>');
+    out('mensal2', curto(mo));
+    out('mensal2Nota', 'Mensalidade de ' + curto(P.operacao.mensal) + ' + ' + plural(estado.eventos, 'evento', 'eventos') + ' de ' + curto(P.operacao.evento) + '. Uso de nuvem e taxas à parte.');
+    out('total36', curto(t36));
+    out('total36Nota', 'Construção de ' + curto(P.fase0.preco + P.mvp.preco) + ' + ' + mesesOperacao(36) + ' meses de operação' + (estado.fase2 ? ' + Fase 2' : '') + '.');
+    document.getElementById('legF2').hidden = !estado.fase2; document.getElementById('legF2b').hidden = !estado.fase2;
+  }
+
+  function render() { numeros(); renderMomentos(); chartAcum(); chartMes(); gantt(); tabelaPagamentos(); }
+
+  /* ---------- controles ---------- */
+  document.querySelectorAll('#segEventos button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      estado.eventos = parseInt(b.dataset.ev, 10);
+      document.querySelectorAll('#segEventos button').forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); });
+      render();
+    });
+  });
+  document.getElementById('chkFase2').addEventListener('change', function (e) { estado.fase2 = e.target.checked; render(); });
+
+  render();
+})();
+</script>
+
+<script>
+/* Fundo animado dourado — o mesmo da landing e da página de valores */
+(function () {
+  var canvas = document.getElementById('zyFxCanvas');
+  if (!canvas) return;
+  var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  function syncSize() {
+    var w = Math.round((canvas.clientWidth || innerWidth) * dpr), h = Math.round((canvas.clientHeight || innerHeight) * dpr);
+    if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+  }
+  if (typeof ResizeObserver !== 'undefined') { new ResizeObserver(syncSize).observe(canvas); }
+  syncSize();
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  var vs = 'attribute vec2 a_position; varying vec2 v_texCoord; void main(){ v_texCoord = a_position*0.5+0.5; gl_Position = vec4(a_position,0.0,1.0); }';
+  var fs = 'precision highp float; uniform float u_time; uniform vec2 u_resolution; uniform vec2 u_mouse; varying vec2 v_texCoord;' +
+    'vec3 permute(vec3 x){ return mod(((x*34.0)+1.0)*x, 289.0); }' +
+    'float snoise(vec2 v){ const vec4 C=vec4(0.211324865405187,0.366025403784439,-0.577350269189626,0.024390243902439);' +
+    'vec2 i=floor(v+dot(v,C.yy)); vec2 x0=v-i+dot(i,C.xx); vec2 i1; i1=(x0.x>x0.y)?vec2(1.0,0.0):vec2(0.0,1.0);' +
+    'vec4 x12=x0.xyxy+C.xxzz; x12.xy-=i1; i=mod(i,289.0);' +
+    'vec3 p=permute(permute(i.y+vec3(0.0,i1.y,1.0))+i.x+vec3(0.0,i1.x,1.0));' +
+    'vec3 m=max(0.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.0); m=m*m; m=m*m;' +
+    'vec3 x=2.0*fract(p*C.www)-1.0; vec3 h=abs(x)-0.5; vec3 a0=x-floor(x+0.5);' +
+    'vec3 g; g.x=a0.x*x0.x+h.x*x0.y; g.yz=a0.yz*x12.xz+h.yz*x12.yw; return 130.0*dot(m,g); }' +
+    'void main(){ vec2 uv=v_texCoord; vec2 mouse=u_mouse/u_resolution; vec3 color=vec3(0.0);' +
+    'vec3 primary=vec3(0.961,0.725,0.259); vec3 neon=vec3(1.0,0.812,0.420);' +
+    'float aspect=u_resolution.x/max(u_resolution.y,1.0);' +
+    'float dust1=snoise(uv*vec2(60.0*aspect,60.0)+vec2(0.0,-u_time*0.05));' +
+    'color += neon*smoothstep(0.90,0.995,dust1)*0.28;' +
+    'float dust2=snoise(uv*vec2(28.0*aspect,28.0)+vec2(u_time*0.02,-u_time*0.03)+13.7);' +
+    'color += primary*smoothstep(0.92,0.995,dust2)*0.20;' +
+    'for (int k=0; k<2; k++){ float fk=float(k); float c=fract(u_time*0.022+fk*0.5); float pos=mix(-0.3,1.3,c);' +
+    'float d=abs((uv.x-pos)+ (uv.y-0.5)*0.55); float beam=smoothstep(0.16,0.0,d)*smoothstep(0.0,0.12,c)*smoothstep(1.0,0.82,c);' +
+    'color += primary*beam*0.10; }' +
+    'float mDist=distance(uv*vec2(aspect,1.0),mouse*vec2(aspect,1.0)); color += primary*(1.0-smoothstep(0.0,0.42,mDist))*0.07;' +
+    'gl_FragColor=vec4(color,1.0); }';
+  function cs(type, src) { var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; }
+  var prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs)); gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog); gl.useProgram(prog);
+  var buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+  var pos = gl.getAttribLocation(prog, 'a_position'); gl.enableVertexAttribArray(pos); gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  var uTime = gl.getUniformLocation(prog, 'u_time'), uRes = gl.getUniformLocation(prog, 'u_resolution'), uMouse = gl.getUniformLocation(prog, 'u_mouse');
+  var mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', function (e) {
+    var r = canvas.getBoundingClientRect();
+    if (r.width && r.height) { mouse.x = ((e.clientX - r.left) / r.width) * canvas.width; mouse.y = (1.0 - (e.clientY - r.top) / r.height) * canvas.height; }
+  });
+  function frame(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001); if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height); if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    if (!still) requestAnimationFrame(frame);
+  }
+  frame(0);
+})();
+</script>
+
+<script>
+/* Senha — a mesma da apresentação do cliente (verificação no navegador, não é segurança forte) */
+(function () {
+  var HASH = "b2282bd7b5d30095f35d37a6f85e72d542c8ffc86a9c0a260cf6a0c39db6d83f";
+  var gate = document.getElementById('gate'), site = document.getElementById('site');
+  function reveal() { if (gate) gate.remove(); site.hidden = false; }
+  try { if (sessionStorage.getItem('seja_invest_unlocked') === '1') { reveal(); return; } } catch (e) {}
+  async function sha(s) { var b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)); return Array.from(new Uint8Array(b)).map(function (x) { return x.toString(16).padStart(2, '0'); }).join(''); }
+  document.getElementById('gateForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var pw = document.getElementById('gatePw').value, err = document.getElementById('gateErr');
+    try {
+      if (await sha(pw) === HASH) { try { sessionStorage.setItem('seja_invest_unlocked', '1'); } catch (x) {} reveal(); }
+      else { err.hidden = false; document.getElementById('gatePw').value = ''; document.getElementById('gatePw').focus(); }
+    } catch (_) { err.hidden = false; }
+  });
+  document.getElementById('gatePw').focus();
+})();
+</script>
+</body>
+</html>
