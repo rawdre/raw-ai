@@ -97,6 +97,36 @@
   .h li{position:relative;padding-left:16px;margin:5px 0;line-height:1.45}
   .h li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;border-radius:2px;background:var(--accent,var(--gold));opacity:.8}
   .h li b{color:var(--ink)}
+  .h .pk{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:800;margin-top:2px}
+  .h .pv{font-size:clamp(22px,2.4vw,27px);font-weight:900;line-height:1.05;font-variant-numeric:tabular-nums;color:var(--ink);margin-top:2px}
+  .h .pm{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.4}
+  .h .next{margin-top:14px;padding:9px 11px;border-radius:10px;background:var(--card2);border:1px solid var(--line);font-size:12.5px;color:var(--muted);line-height:1.45}
+  .h .next .nk{display:block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:var(--accent,var(--gold));margin-bottom:2px}
+  .h .next b{color:var(--ink)}
+  .h .grow{flex:1}
+
+  /* escada de decisões */
+  .ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px}
+  @media (max-width:980px){.ladder{grid-template-columns:1fr 1fr}}
+  @media (max-width:600px){.ladder{grid-template-columns:1fr}}
+  .step{position:relative;background:color-mix(in srgb,var(--card) 92%,transparent);border:1px solid var(--line);border-radius:var(--radius);padding:18px 16px 16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+  .step.now{border-color:color-mix(in srgb,var(--gold) 65%,var(--line));background:linear-gradient(180deg,color-mix(in srgb,var(--gold) 14%,var(--card)),color-mix(in srgb,var(--card) 92%,transparent) 70%);box-shadow:0 22px 60px -38px var(--gold)}
+  .step .when{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .step.now .when{color:var(--gold)}
+  .step h3{margin:0;font-size:17px}
+  .step .v{font-size:clamp(24px,2.8vw,31px);font-weight:900;line-height:1.05;font-variant-numeric:tabular-nums;color:var(--accent,var(--ink));margin-top:4px}
+  .step .v small{font-size:.5em;color:var(--muted);font-weight:700;-webkit-text-fill-color:var(--muted)}
+  .step .v.gold{background:linear-gradient(120deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .step p{margin:0;font-size:13px;color:var(--muted);line-height:1.5}
+  .step p b{color:var(--ink)}
+  .step .how{margin-top:auto;padding-top:10px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--muted);line-height:1.5}
+  .step .how b{color:var(--ink)}
+  .step .how .m{font-family:var(--mono);color:var(--ink);font-weight:700;white-space:nowrap}
+
+  /* construção × operação */
+  .bar100{display:flex;height:38px;border-radius:10px;overflow:hidden;margin:20px 0 8px;border:1px solid var(--line)}
+  .bar100 span{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11.5px;color:#10141c;white-space:nowrap;overflow:hidden;font-weight:800;padding:0 8px;min-width:0}
+  .bar100 + .muted{font-size:12.5px;margin:0}
 
   /* gráficos */
   .chartbox{background:color-mix(in srgb,var(--card) 92%,transparent);border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px 14px;margin-top:18px}
@@ -105,7 +135,7 @@
   .chartscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
   .legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:10px;font-size:12.5px;color:var(--muted)}
   .legend i{display:inline-block;width:11px;height:11px;border-radius:3px;vertical-align:-1px;margin-right:6px}
-  @media (max-width:640px){.chartscroll svg{min-width:720px}}
+  .swipe{display:none}
 
   /* tabelas */
   .tblwrap{overflow-x:auto;margin-top:16px;border:1px solid var(--line);border-radius:14px;background:color-mix(in srgb,var(--card) 88%,transparent)}
@@ -171,6 +201,76 @@
   .gatecard button{width:100%;padding:13px;border:0;border-radius:11px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1200;font:inherit;font-weight:800;font-size:15px;cursor:pointer}
   .gerr{color:#e5533d;font-size:13px;margin:0}
 
+  /* ===== celular: letra maior e leitura confortável ===== */
+  @media (max-width:640px){
+    body{font-size:16px}
+    .wrap{padding-inline:18px}
+    section{padding-block:40px}
+    h2{font-size:26px}
+    .say{font-size:16px;line-height:1.6}
+    .herosub{font-size:17px}
+    .eyebrow{font-size:11px;letter-spacing:.12em}
+    .lbl{font-size:12.5px}
+    .stats{grid-template-columns:1fr;gap:10px}
+    .stat{display:flex;align-items:center;gap:14px;padding:14px 16px}
+    .stat .v{font-size:24px;white-space:nowrap;flex:0 0 auto;min-width:8.2ch}
+    .stat small{font-size:14px;margin:0}
+    .ctrl{padding:16px}
+    .ctrl .t{font-size:12.5px}
+    .seg button{font-size:15px;padding:9px 16px}
+    .chk{font-size:15px}
+    .ctrl .note{font-size:14px}
+    .h{padding:20px 18px}
+    .h .when{font-size:12.5px}
+    .h .hn{font-size:26px}
+    .h .st{font-size:15px}
+    .h .pk{font-size:12px}
+    .h .pv{font-size:30px}
+    .h .pm{font-size:14.5px}
+    .h ul{font-size:15px}
+    .h li::before{top:8px}
+    .h .next{font-size:14.5px;padding:11px 13px}
+    .h .next .nk{font-size:11.5px}
+    .h .row{font-size:14px}
+    .h .row b{font-size:15px}
+    .step{padding:20px 18px}
+    .step .when{font-size:12.5px}
+    .step h3{font-size:18px}
+    .step .v{font-size:32px}
+    .step p{font-size:15px}
+    .step .how{font-size:14.5px}
+    .chartbox{padding:16px 14px 12px}
+    .chartbox .ct{font-size:16.5px}
+    .chartbox .cs{font-size:14.5px}
+    .chartscroll svg{min-width:780px}
+    .swipe{display:block;font-size:13px;color:var(--gold);margin:0 0 8px;font-weight:700}
+    .legend{font-size:14px}
+    .b{padding:20px 18px}
+    .b .k{font-size:12.5px}
+    .b p,.b ul{font-size:15px}
+    .b h4{font-size:17px}
+    .bar100 span{font-size:12.5px}
+    .bar100 + .muted{font-size:14px}
+    .call p{font-size:15.5px}
+    .check li{font-size:15.5px}
+    footer{font-size:14px}
+    .conf{font-size:10px;padding:3px 8px}
+    /* tabela de pagamentos vira lista empilhada */
+    #tPag{min-width:0;font-size:15px}
+    #tPag thead{display:none}
+    #tPag tr{display:block;border-bottom:1px solid var(--line);padding:12px 16px}
+    #tPag tr:last-child{border-bottom:0}
+    #tPag td{display:block;border:0;padding:2px 0;text-align:left}
+    #tPag td small{font-size:13.5px}
+    #tPag td[data-l]{display:flex;justify-content:space-between;align-items:baseline;gap:12px;white-space:normal}
+    #tPag td[data-l]::before{content:attr(data-l);color:var(--muted);font-family:var(--sans);font-size:13.5px;font-weight:600}
+    #tPag tr.grp{padding:9px 16px;background:color-mix(in srgb,var(--card2) 70%,transparent)}
+    #tPag tr.grp td{padding:0;background:none}
+    #tPag tr.total{background:var(--gold-soft)}
+    #tPag tr.total td{background:none}
+    #tPag td.nil{display:none}
+  }
+
   @media print{
     .zyfx-overlay,.ctrl,.bar{display:none!important}
     section{break-inside:avoid-page}
@@ -205,28 +305,36 @@
 <div class="bar"><div class="in">
   <a class="brandmark" href="#top">SEJA <b>ARENA</b><span class="tagline">Plano de investimento</span></a>
   <nav class="navlinks" aria-label="Seções">
-    <a href="#momentos">Cinco momentos</a><a href="#cronograma">Cronograma</a><a href="#pagamentos">Pagamentos</a><a href="#incluido">O que inclui</a><a href="#condicoes">Condições</a>
+    <a href="#decisoes">Decisões</a><a href="#momentos">Cinco momentos</a><a href="#cronograma">Cronograma</a><a href="#pagamentos">Pagamentos</a><a href="#incluido">O que inclui</a><a href="#condicoes">Condições</a>
   </nav>
   <span class="conf">Confidencial</span>
 </div></div>
 
 <header class="hero" id="top"><div class="wrap in">
   <span class="eyebrow">Plano de investimento · Proposta de referência</span>
-  <h1>Investimento em fases — <span class="g">e o que você tem pronto</span> em cada etapa.</h1>
-  <p class="herosub">O projeto avança por etapas. <b>Cada fase só começa com a anterior entregue e aprovada</b>, e cada pagamento acompanha uma entrega. Abaixo, o investimento visto em cinco momentos: <b>3 meses, 6 meses, 1 ano, 2 anos e 3 anos</b>.</p>
+  <h1>Um passo de cada vez — <span class="g">você só decide o próximo.</span></h1>
+  <p class="herosub">O projeto foi desenhado de ponta a ponta, mas o investimento acontece por etapas: <b>cada fase só começa com a anterior entregue e aprovada</b>, e cada pagamento acompanha uma entrega. <b>Hoje, a decisão é só a Fase 0.</b></p>
   <div class="stats">
-    <div class="stat"><div class="v" data-out="pFase0">—</div><small>Fase 0 · Discovery &amp; Blueprint<br><b>preço fixo</b>, meses 1 a 3</small></div>
-    <div class="stat"><div class="v" data-out="pMvp">—</div><small>MVP núcleo · meses 4 a 9<br><b>valor de referência</b></small></div>
-    <div class="stat"><div class="v">Mês 9</div><small>plataforma no ar, com<br>piloto em evento real</small></div>
-    <div class="stat"><div class="v" data-out="pMensal">—</div><small>operação a partir do mês 10<br><span data-out="mensalNota">—</span></small></div>
+    <div class="stat"><div class="v" data-out="pFase0">—</div><small>a decisão de hoje: Fase 0<br><b>preço fixo</b>, 3 meses</small></div>
+    <div class="stat"><div class="v" data-out="pSinalF0">—</div><small>na assinatura; o restante<br>só com as entregas</small></div>
+    <div class="stat"><div class="v">Mês 3</div><small>o MVP é decidido com protótipo<br>e <b>preço fechado</b> em mãos</small></div>
+    <div class="stat"><div class="v" data-out="pMensal">—</div><small>depois do go-live<br><span data-out="mensalNota">—</span></small></div>
   </div>
 </div></header>
 
-<!-- 01 CINCO MOMENTOS -->
+<!-- 01 DECISÕES -->
+<section id="decisoes"><div class="wrap">
+  <p class="lbl"><span class="n">01</span>Uma decisão de cada vez</p>
+  <h2>Quatro decisões, cada uma no seu momento — e com a informação certa</h2>
+  <p class="say">Ninguém assina o projeto inteiro no primeiro dia. Cada degrau é aprovado <b>depois</b> que o anterior entregou — e com números mais firmes do que os de hoje.</p>
+  <div class="ladder" id="ladder"></div>
+</div></section>
+
+<!-- 02 CINCO MOMENTOS -->
 <section id="momentos"><div class="wrap">
-  <p class="lbl"><span class="n">01</span>Cinco momentos</p>
-  <h2>O que está pronto e quanto foi investido em cada momento</h2>
-  <p class="say">Cada coluna mostra o <b>investimento no período</b>, o <b>total acumulado</b> desde o início e o que você tem nas mãos naquele ponto.</p>
+  <p class="lbl"><span class="n">02</span>Cinco momentos</p>
+  <h2>O que está pronto e quanto se investe em cada momento</h2>
+  <p class="say">Cada coluna mostra <b>quanto é pago naquele período</b>, o que você já tem nas mãos e qual é a próxima decisão. O total acumulado aparece no rodapé de cada coluna.</p>
 
   <div class="ctrl" role="group" aria-label="Cenário">
     <span class="t">Eventos por mês na arena</span>
@@ -242,37 +350,9 @@
   <div class="hz" id="horizontes"></div>
 
   <div class="chartbox">
-    <p class="ct">Investimento acumulado</p>
-    <p class="cs">A maior parte do investimento acontece no primeiro ano, na construção. Depois do go-live, entra só a operação mensal.</p>
-    <div class="chartscroll" id="chartAcum"></div>
-    <div class="legend">
-      <span><i style="background:var(--gold)"></i>Fase 0 · Discovery &amp; Blueprint</span>
-      <span><i style="background:var(--blue)"></i>MVP núcleo</span>
-      <span><i style="background:var(--green)"></i>Operação e eventos</span>
-      <span id="legF2" hidden><i style="background:var(--violet)"></i>Fase 2 · expansão</span>
-    </div>
-  </div>
-</div></section>
-
-<!-- 02 CRONOGRAMA -->
-<section id="cronograma"><div class="wrap">
-  <p class="lbl"><span class="n">02</span>Cronograma</p>
-  <h2>36 meses, do primeiro protótipo à plataforma madura</h2>
-  <p class="say">As linhas tracejadas marcam os cinco momentos. Os losangos marcam as decisões: é nelas que você aprova a próxima etapa.</p>
-  <div class="chartbox">
-    <div class="chartscroll" id="gantt"></div>
-  </div>
-
-  <div class="gates">
-    <div class="gate"><span class="m">Mês 3</span><div><b>Aprovação do MVP</b><small>Com protótipo, integrações validadas e <b>preço fechado</b> do MVP em mãos, você decide seguir para a construção.</small></div></div>
-    <div class="gate"><span class="m">Mês 9</span><div><b>Go-live</b><small>Piloto em evento real e plataforma no ar. Começam a operação e o suporte a eventos.</small></div></div>
-    <div class="gate"><span class="m">Ano 2</span><div><b>Decisão da expansão</b><small>Com o MVP comprovado, a Fase 2 (marketplace, anúncios, fidelidade) pode ser contratada.</small></div></div>
-  </div>
-
-  <div class="chartbox">
-    <p class="ct">Desembolso mês a mês</p>
-    <p class="cs">Quanto sai do caixa em cada mês. O pico é o mês 4, com o sinal do MVP; do mês 10 em diante, a operação fica estável.</p>
-    <div class="chartscroll" id="chartMes"></div>
+    <p class="ct">Quanto sai do caixa, mês a mês</p>
+    <p class="cs">O esforço maior fica concentrado nos 9 meses de construção. Do mês 10 em diante, o investimento cai para a operação mensal — e fica estável.</p>
+    <p class="swipe">Arraste o gráfico para o lado →</p><div class="chartscroll" id="chartMes"></div>
     <div class="legend">
       <span><i style="background:var(--gold)"></i>Fase 0</span>
       <span><i style="background:var(--blue)"></i>MVP núcleo</span>
@@ -282,23 +362,49 @@
   </div>
 </div></section>
 
-<!-- 03 PAGAMENTOS -->
+<!-- 03 CRONOGRAMA -->
+<section id="cronograma"><div class="wrap">
+  <p class="lbl"><span class="n">03</span>Cronograma</p>
+  <h2>36 meses, do primeiro protótipo à plataforma madura</h2>
+  <p class="say">As linhas tracejadas marcam os cinco momentos. Os losangos marcam as decisões: é nelas que você aprova a próxima etapa.</p>
+  <div class="chartbox">
+    <p class="swipe">Arraste o gráfico para o lado →</p><div class="chartscroll" id="gantt"></div>
+  </div>
+</div></section>
+
+<!-- 04 PAGAMENTOS -->
 <section id="pagamentos"><div class="wrap">
-  <p class="lbl"><span class="n">03</span>Pagamentos</p>
+  <p class="lbl"><span class="n">04</span>Pagamentos</p>
   <h2>Cada pagamento acompanha uma entrega</h2>
   <p class="say">Sem cheque único: a Fase 0 é paga por entrega, o MVP em parcelas mensais e a operação mês a mês. Parcelas vencem <b>no início do mês de trabalho</b>.</p>
   <div class="tblwrap"><table id="tPag"></table></div>
 
+  <h3>Visão de 3 anos: construção e operação são coisas diferentes</h3>
+  <p class="say">O total de 3 anos soma dois tipos de investimento. A <b>construção</b> é paga uma vez e vira um ativo seu. A <b>operação</b> é um serviço mensal, que acompanha o uso da arena.</p>
   <div class="grid3">
-    <div class="b"><div class="k">Primeiro ano · média mensal</div><div class="v gold" data-out="media1">—</div><p>Construção da plataforma: Fase 0 + MVP + primeiros meses de operação.</p></div>
-    <div class="b"><div class="k">Do 2º ano em diante · por mês</div><div class="v green" data-out="mensal2">—</div><p><span data-out="mensal2Nota">—</span></p></div>
-    <div class="b"><div class="k">Em 3 anos · total</div><div class="v gold" data-out="total36">—</div><p><span data-out="total36Nota">—</span></p></div>
+    <div class="b"><div class="k">Construção · paga uma vez</div><div class="v gold" data-out="spConstr">—</div><p><span data-out="spConstrNota">—</span> Vira um <b>ativo seu</b>: plataforma com a sua marca, código com escrow e os dados dos torcedores — pronta para ser levada a outras arenas.</p></div>
+    <div class="b"><div class="k">Operação · mês a mês</div><div class="v green" data-out="mensal2">—</div><p><span data-out="mensal2Nota">—</span></p></div>
+    <div class="b"><div class="k">3 anos · tudo somado</div><div class="v" data-out="total36">—</div><p><span data-out="total36Nota">—</span></p></div>
+  </div>
+  <div class="bar100" id="split" role="img" aria-label="Divisão do total de 3 anos entre construção e operação"></div>
+  <p class="muted" id="splitNota"></p>
+
+  <div class="chartbox">
+    <p class="ct">Investimento acumulado nos cinco momentos</p>
+    <p class="cs">A construção termina no mês 9; daí em diante, o acumulado cresce só no ritmo da operação mensal.</p>
+    <p class="swipe">Arraste o gráfico para o lado →</p><div class="chartscroll" id="chartAcum"></div>
+    <div class="legend">
+      <span><i style="background:var(--gold)"></i>Fase 0 · Discovery &amp; Blueprint</span>
+      <span><i style="background:var(--blue)"></i>MVP núcleo</span>
+      <span><i style="background:var(--green)"></i>Operação e eventos</span>
+      <span id="legF2" hidden><i style="background:var(--violet)"></i>Fase 2 · expansão</span>
+    </div>
   </div>
 </div></section>
 
-<!-- 04 O QUE INCLUI -->
+<!-- 05 O QUE INCLUI -->
 <section id="incluido"><div class="wrap">
-  <p class="lbl"><span class="n">04</span>O que inclui</p>
+  <p class="lbl"><span class="n">05</span>O que inclui</p>
   <h2>O que cada valor cobre — e o que é pago à parte</h2>
   <div class="grid2">
     <div class="b"><h4><svg class="icosvg"><use href="#i-doc"/></svg>Fase 0 · Discovery &amp; Blueprint</h4><ul>
@@ -331,9 +437,9 @@
   </div>
 </div></section>
 
-<!-- 05 CONDIÇÕES -->
+<!-- 06 CONDIÇÕES -->
 <section id="condicoes" style="border-bottom:0"><div class="wrap">
-  <p class="lbl"><span class="n">05</span>Condições</p>
+  <p class="lbl"><span class="n">06</span>Condições</p>
   <h2>Como os números funcionam</h2>
   <div class="call">
     <p class="tag">Como ler estes valores</p>
@@ -374,6 +480,11 @@ var PLANO = {
 (function () {
   var P = PLANO, estado = { eventos: P.eventosBase, fase2: false };
 
+  /* celular: gráficos redesenhados com letra maior (e margens maiores para caber) */
+  var mq = window.matchMedia ? window.matchMedia('(max-width: 640px)') : { matches: false };
+  var FS = mq.matches ? 1.4 : 1;
+  function fs(n) { return +(n * FS).toFixed(1); }
+
   /* ---------- formatação ---------- */
   function curto(v) {
     var a = Math.abs(v);
@@ -383,6 +494,8 @@ var PLANO = {
     return 'R$ ' + Math.round(a);
   }
   function cheio(v) { return 'R$ ' + Math.round(v).toLocaleString('pt-BR'); }
+  /* valor de pagamento: sem arredondar (R$ 212,5 mil, não R$ 213 mil) */
+  function exato(v) { if (v >= 1e6) return curto(v); var k = v / 1e3; return 'R$ ' + (k % 1 === 0 ? k : k.toFixed(1).replace('.', ',')) + ' mil'; }
   function out(key, html) { document.querySelectorAll('[data-out="' + key + '"]').forEach(function (el) { el.innerHTML = html; }); }
   function plural(n, s, p) { return n + ' ' + (n === 1 ? s : p); }
 
@@ -407,31 +520,80 @@ var PLANO = {
 
   /* ---------- os cinco momentos ---------- */
   var MOMENTOS = [
-    { ate: 3,  de: 1,  nome: '3 meses', quando: 'mês 3', cor: 'var(--gold)', status: 'Fase 0 concluída',
-      itens: function () { return ['<b>Protótipo clicável</b> com a sua marca', 'Integrações <b>validadas por escrito</b>', 'LGPD e DPIA desenhados', '<b>Preço fechado do MVP</b> para decidir']; } },
-    { ate: 6,  de: 4,  nome: '6 meses', quando: 'mês 6', cor: 'var(--blue)', status: 'MVP em construção',
-      itens: function () { return ['Construção na <b>metade</b>: 3 de 6 meses', 'Escopo e preço travados na Fase 0', 'Sinal + 3 parcelas mensais pagas']; } },
-    { ate: 12, de: 7,  nome: '1 ano', quando: 'mês 12', cor: 'var(--green)', status: 'Plataforma no ar',
-      itens: function () { return ['<b>Go-live no mês 9</b>, com piloto em evento real', '<b>Garantia</b> nos meses 10 a 12, já incluída', 'Operação e eventos desde o mês 10']; } },
-    { ate: 24, de: 13, nome: '2 anos', quando: 'mês 24', cor: 'var(--green)', status: 'Operação estável',
+    { ate: 3,  de: 1,  nome: '3 meses', cor: 'var(--gold)', status: 'Fase 0 concluída',
+      como: function () { return 'pago em 3 entregas'; },
+      itens: function () { return ['<b>Protótipo clicável</b> com a sua marca', 'Integrações <b>validadas por escrito</b>', '<b>Preço fechado do MVP</b>']; },
+      proxima: function () { return '<b>Aprovar o MVP</b>, com protótipo e preço fechado em mãos'; } },
+    { ate: 6,  de: 4,  nome: '6 meses', cor: 'var(--blue)', status: 'MVP em construção',
+      como: function () { return 'sinal + parcelas mensais do MVP'; },
+      itens: function () { return ['Construção na <b>metade</b>: 3 de 6 meses', 'Escopo e preço travados na Fase 0']; },
+      proxima: function () { return 'Nenhuma: construção em andamento, acompanhada mês a mês'; } },
+    { ate: 12, de: 7,  nome: '1 ano', cor: 'var(--green)', status: 'Plataforma no ar',
+      como: function () { return 'fim do MVP + primeiros meses de operação'; },
+      itens: function () { return ['<b>Go-live no mês 9</b>, com piloto em evento real', '<b>Garantia</b> nos meses 10 a 12, já incluída']; },
+      proxima: function () { return 'A operação passa a ser <b>só a mensalidade</b>'; } },
+    { ate: 24, de: 13, nome: '2 anos', cor: 'var(--green)', status: 'Operação estável',
+      como: function () { return estado.fase2 ? 'operação mensal + Fase 2' : 'só a operação mensal'; },
       itens: function () {
-        var l = ['<b>' + plural(mesesOperacao(24), 'mês', 'meses') + '</b> de operação no total', '<b>' + (mesesOperacao(24) * estado.eventos) + ' eventos</b> atendidos até aqui'];
-        l.push(estado.fase2 ? '<b>Fase 2 entregue</b>: marketplace, anúncios, fidelidade' : 'Fase 2 <b>disponível</b> para decisão');
-        return l; } },
-    { ate: 36, de: 25, nome: '3 anos', quando: 'mês 36', cor: 'var(--gold2)', status: 'Plataforma madura',
-      itens: function () { return ['<b>' + plural(mesesOperacao(36), 'mês', 'meses') + '</b> de operação no total', '<b>' + (mesesOperacao(36) * estado.eventos) + ' eventos</b> atendidos', 'Base pronta para <b>levar a outras arenas</b>']; } }
+        var l = ['<b>' + plural(mesesOperacao(24), 'mês', 'meses') + '</b> de operação no total', '<b>' + (mesesOperacao(24) * estado.eventos) + ' eventos</b> atendidos'];
+        if (estado.fase2) l.push('<b>Fase 2 entregue</b>: marketplace, anúncios, fidelidade');
+        return l; },
+      proxima: function () { return estado.fase2 ? 'Fase 2 contratada e entregue' : '<b>Fase 2 (opcional)</b>, se o MVP comprovar resultado'; } },
+    { ate: 36, de: 25, nome: '3 anos', cor: 'var(--gold2)', status: 'Plataforma madura',
+      como: function () { return 'só a operação mensal'; },
+      itens: function () { return ['<b>' + plural(mesesOperacao(36), 'mês', 'meses') + '</b> de operação no total', '<b>' + (mesesOperacao(36) * estado.eventos) + ' eventos</b> atendidos']; },
+      proxima: function () { return 'Levar a plataforma <b>a outras arenas</b>'; } }
   ];
 
   function renderMomentos() {
     var acc = 0;
     document.getElementById('horizontes').innerHTML = MOMENTOS.map(function (h) {
-      var per = soma(h.de, h.ate).total; acc += per;
+      var per = soma(h.de, h.ate).total, n = h.ate - h.de + 1; acc += per;
       return '<article class="h" style="--accent:' + h.cor + '">' +
-        '<span class="when">' + h.quando + '</span><div class="hn">' + h.nome + '</div><p class="st">' + h.status + '</p>' +
-        '<div class="row"><span>No período <small class="muted">(meses ' + h.de + '–' + h.ate + ')</small></span><b>' + curto(per) + '</b></div>' +
-        '<div class="acc"><div class="k">Acumulado</div><div class="v">' + curto(acc) + '</div></div>' +
-        '<ul>' + h.itens().map(function (i) { return '<li>' + i + '</li>'; }).join('') + '</ul></article>';
+        '<span class="when">meses ' + h.de + '–' + h.ate + '</span><div class="hn">' + h.nome + '</div><p class="st">' + h.status + '</p>' +
+        '<div class="pk">No período</div><div class="pv">' + curto(per) + '</div>' +
+        '<div class="pm">≈ ' + curto(per / n) + '/mês · ' + h.como() + '</div>' +
+        '<ul>' + h.itens().map(function (i) { return '<li>' + i + '</li>'; }).join('') + '</ul>' +
+        '<div class="grow"></div>' +
+        '<div class="next"><span class="nk">Próxima decisão</span>' + h.proxima() + '</div>' +
+        '<div class="row"><span>Acumulado desde o início</span><b>' + curto(acc) + '</b></div></article>';
     }).join('');
+  }
+
+  /* ---------- escada de decisões ---------- */
+  function renderLadder() {
+    var nMvp = P.mvp.fim - P.mvp.inicio + 1, parcela = P.mvp.preco * (1 - P.mvp.sinal) / nMvp;
+    var passos = [
+      { cls: 'now', cor: 'var(--gold)', quando: 'Agora <span class="pill fix">decisão de hoje</span>', t: 'Fase 0 · Discovery &amp; Blueprint',
+        v: '<span class="v gold">' + curto(P.fase0.preco) + '</span>',
+        p: '<b>Preço fixo</b>, 3 meses. Entrega protótipo, integrações validadas e o <b>preço fechado do MVP</b>.',
+        how: '<span class="m">' + exato(P.fase0.preco * P.fase0.pagamento[0]) + '</span> na assinatura · <span class="m">' + exato(P.fase0.preco * P.fase0.pagamento[1]) + '</span> no protótipo · <span class="m">' + exato(P.fase0.preco * P.fase0.pagamento[2]) + '</span> no blueprint' },
+      { cls: '', cor: 'var(--blue)', quando: 'Mês 3', t: 'MVP núcleo',
+        v: '<span class="v">' + curto(P.mvp.preco) + '</span>',
+        p: 'Valor de <b>referência</b> — o preço fechado sai da Fase 0. Você decide com o protótipo em mãos.',
+        how: '<span class="m">' + Math.round(P.mvp.sinal * 100) + '%</span> no início + <span class="m">' + nMvp + '× ' + exato(parcela) + '</span>, uma por mês de construção' },
+      { cls: '', cor: 'var(--green)', quando: 'Mês 9 · go-live', t: 'Operação da plataforma',
+        v: '<span class="v">' + curto(mensalOperacao()) + '<small>/mês</small></span>',
+        p: 'Começa <b>só com a plataforma no ar</b>. Mensalidade de ' + curto(P.operacao.mensal) + ' + ' + curto(P.operacao.evento) + ' por evento.',
+        how: 'Base de ' + plural(estado.eventos, 'evento', 'eventos') + ' por mês · uso de nuvem e taxas pelo custo real' },
+      { cls: '', cor: 'var(--violet)', quando: 'Ano 2 <span class="pill opt">opcional</span>', t: 'Fase 2 · expansão',
+        v: '<span class="v">' + curto(P.fase2.preco) + '</span>',
+        p: 'Marketplace, anúncios e fidelidade. <b>Só se o MVP comprovar resultado</b> — nunca antes.',
+        how: 'Condições definidas na contratação' }
+    ];
+    document.getElementById('ladder').innerHTML = passos.map(function (s) {
+      return '<article class="step ' + s.cls + '" style="--accent:' + s.cor + '"><span class="when">' + s.quando + '</span><h3>' + s.t + '</h3>' + s.v + '<p>' + s.p + '</p><div class="how">' + s.how + '</div></article>';
+    }).join('');
+  }
+
+  /* ---------- construção × operação ---------- */
+  function renderSplit() {
+    var d = soma(1, P.meses), constr = d.f0 + d.mvp, partes = [[constr, 'var(--gold)', 'construção'], [d.op, 'var(--green)', 'operação'], [d.f2, 'var(--violet)', 'Fase 2']];
+    document.getElementById('split').innerHTML = partes.filter(function (x) { return x[0] > 0; }).map(function (x) {
+      var pc = x[0] / d.total * 100;
+      return '<span style="width:' + pc.toFixed(2) + '%;background:' + x[1] + '" title="' + x[2] + ' · ' + curto(x[0]) + '">' + (pc > 14 ? x[2] + ' · ' + Math.round(pc) + '%' : Math.round(pc) + '%') + '</span>';
+    }).join('');
+    document.getElementById('splitNota').innerHTML = 'Em 3 anos, <b>' + Math.round(constr / d.total * 100) + '%</b> do total é a construção — paga uma vez, nos primeiros 9 meses.';
   }
 
   /* ---------- gráfico: acumulado por momento ---------- */
@@ -440,12 +602,12 @@ var PLANO = {
   function eixoY(s, L, R, W, T, ph, yMax, step, y) {
     for (var g = 0; g <= yMax + 1; g += step) {
       s += '<line x1="' + L + '" y1="' + y(g).toFixed(1) + '" x2="' + (W - R) + '" y2="' + y(g).toFixed(1) + '" style="stroke:var(--line)" stroke-width="' + (g === 0 ? 1.6 : 1) + '"/>';
-      s += '<text x="' + (L - 8) + '" y="' + (y(g) + 3.5).toFixed(1) + '" text-anchor="end" style="fill:var(--muted)" font-size="10">' + (g === 0 ? '0' : (g >= 1e6 ? (g / 1e6).toFixed(1).replace('.', ',').replace(',0', '') + ' mi' : (g / 1e3) + ' mil')) + '</text>';
+      s += '<text x="' + (L - 8) + '" y="' + (y(g) + 3.5).toFixed(1) + '" text-anchor="end" style="fill:var(--muted)" font-size="' + fs(10) + '">' + (g === 0 ? '0' : (g >= 1e6 ? (g / 1e6).toFixed(1).replace('.', ',').replace(',0', '') + ' mi' : (g / 1e3) + ' mil')) + '</text>';
     }
     return s;
   }
   function chartAcum() {
-    var W = 780, H = 300, L = 62, R = 16, T = 26, B = 46, pw = W - L - R, ph = H - T - B;
+    var W = 780, H = Math.round(300 + 40 * (FS - 1)), L = Math.round(62 * FS), R = 16, T = Math.round(26 * FS), B = Math.round(46 * FS), pw = W - L - R, ph = H - T - B;
     var dados = MOMENTOS.map(function (h) { return soma(1, h.ate); });
     var max = Math.max.apply(null, dados.map(function (d) { return d.total; }));
     var step = passo(max), yMax = Math.ceil(max * 1.08 / step) * step;
@@ -459,19 +621,19 @@ var PLANO = {
         if (!d[k]) return;
         var y1 = y(base + d[k]), y0 = y(base), hgt = Math.max(0, y0 - y1);
         s += '<rect x="' + x0.toFixed(1) + '" y="' + y1.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + hgt.toFixed(1) + '" rx="3" style="fill:' + CORES[k] + ';stroke:var(--card)" stroke-width="1.5"><title>' + MOMENTOS[i].nome + ' · ' + curto(d[k]) + '</title></rect>';
-        if (hgt > 17) s += '<text x="' + cx.toFixed(1) + '" y="' + (y1 + hgt / 2 + 4).toFixed(1) + '" text-anchor="middle" fill="#10141c" font-size="10" font-weight="700">' + curto(d[k]).replace('R$ ', '') + '</text>';
+        if (hgt > 17 * FS) s +='<text x="' + cx.toFixed(1) + '" y="' + (y1 + hgt / 2 + 4).toFixed(1) + '" text-anchor="middle" fill="#10141c" font-size="' + fs(10) + '" font-weight="700">' + curto(d[k]).replace('R$ ', '') + '</text>';
         base += d[k];
       });
-      s += '<text x="' + cx.toFixed(1) + '" y="' + (y(d.total) - 8).toFixed(1) + '" text-anchor="middle" style="fill:var(--ink)" font-size="12" font-weight="700">' + curto(d.total) + '</text>';
-      s += '<text x="' + cx.toFixed(1) + '" y="' + (T + ph + 18) + '" text-anchor="middle" style="fill:var(--ink)" font-size="11.5" font-weight="700">' + MOMENTOS[i].nome + '</text>';
-      s += '<text x="' + cx.toFixed(1) + '" y="' + (T + ph + 33) + '" text-anchor="middle" style="fill:var(--muted)" font-size="9.5">' + MOMENTOS[i].status.toLowerCase() + '</text>';
+      s += '<text x="' + cx.toFixed(1) + '" y="' + (y(d.total) - 8).toFixed(1) + '" text-anchor="middle" style="fill:var(--ink)" font-size="' + fs(12) + '" font-weight="700">' + curto(d.total) + '</text>';
+      s += '<text x="' + cx.toFixed(1) + '" y="' + (T + ph + 18) + '" text-anchor="middle" style="fill:var(--ink)" font-size="' + fs(11.5) + '" font-weight="700">' + MOMENTOS[i].nome + '</text>';
+      s += '<text x="' + cx.toFixed(1) + '" y="' + (T + ph + 33) + '" text-anchor="middle" style="fill:var(--muted)" font-size="' + fs(9.5) + '">' + MOMENTOS[i].status.toLowerCase() + '</text>';
     });
     document.getElementById('chartAcum').innerHTML = s + '</svg>';
   }
 
   /* ---------- gráfico: desembolso mês a mês ---------- */
   function chartMes() {
-    var W = 780, H = 250, L = 62, R = 16, T = 26, B = 36, pw = W - L - R, ph = H - T - B, N = P.meses;
+    var W = 780, H = Math.round(250 + 40 * (FS - 1)), L = Math.round(62 * FS), R = 16, T = Math.round(26 * FS), B = Math.round(36 * FS), pw = W - L - R, ph = H - T - B, N = P.meses;
     var dados = []; for (var m = 1; m <= N; m++) dados.push(mes(m));
     var max = Math.max.apply(null, dados.map(function (d) { return d.total; }));
     var step = passo(max), yMax = Math.ceil(max * 1.1 / step) * step;
@@ -479,10 +641,10 @@ var PLANO = {
     function x(i) { return L + i * (pw / N); }
     var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" style="display:block;height:auto;font-family:var(--mono)" role="img" aria-label="Desembolso mensal ao longo de 36 meses">';
     s = eixoY(s, L, R, W, T, ph, yMax, step, y);
-    MOMENTOS.forEach(function (h) {
-      var xm = x(h.ate);
+    MOMENTOS.forEach(function (h, i) {
+      var xm = x(h.ate), anc = i === 1 ? 'start' : 'end', dx = anc === 'start' ? 4 : -4;
       s += '<line x1="' + xm.toFixed(1) + '" y1="' + (T - 8) + '" x2="' + xm.toFixed(1) + '" y2="' + (T + ph) + '" style="stroke:var(--muted)" stroke-dasharray="3 3" opacity="0.45"/>';
-      s += '<text x="' + (xm - 4).toFixed(1) + '" y="' + (T - 12) + '" text-anchor="end" style="fill:var(--muted)" font-size="9.5">' + h.nome + '</text>';
+      s += '<text x="' + (xm + dx).toFixed(1) + '" y="' + (T - 12) + '" text-anchor="' + anc + '" style="fill:var(--muted)" font-size="' + fs(9.5) + '">' + h.nome + '</text>';
     });
     var bw = pw / N * 0.72;
     dados.forEach(function (d, i) {
@@ -495,11 +657,11 @@ var PLANO = {
       });
     });
     var pico = dados.reduce(function (a, d, i) { return d.total > dados[a].total ? i : a; }, 0);
-    s += '<text x="' + (x(pico) + pw / N / 2).toFixed(1) + '" y="' + (y(dados[pico].total) - 6).toFixed(1) + '" text-anchor="middle" style="fill:var(--ink)" font-size="10.5" font-weight="700">' + curto(dados[pico].total) + '</text>';
+    s += '<text x="' + (x(pico) + pw / N / 2).toFixed(1) + '" y="' + (y(dados[pico].total) - 6).toFixed(1) + '" text-anchor="middle" style="fill:var(--ink)" font-size="' + fs(10.5) + '" font-weight="700">' + curto(dados[pico].total) + '</text>';
     var op = dados[N - 1];
-    s += '<text x="' + (x(N) - 2).toFixed(1) + '" y="' + (y(op.total) - 6).toFixed(1) + '" text-anchor="end" style="fill:var(--green)" font-size="10.5" font-weight="700">' + curto(op.total) + '/mês</text>';
-    [1, 3, 6, 9, 12, 18, 24, 30, 36].forEach(function (mm) { s += '<text x="' + (x(mm - 1) + pw / N / 2).toFixed(1) + '" y="' + (T + ph + 15) + '" text-anchor="middle" style="fill:var(--muted)" font-size="9.5">' + mm + '</text>'; });
-    s += '<text x="' + (L + pw / 2).toFixed(1) + '" y="' + (H - 4) + '" text-anchor="middle" style="fill:var(--muted)" font-size="9.5">mês</text>';
+    s += '<text x="' + (x(N) - 2).toFixed(1) + '" y="' + (y(op.total) - 6).toFixed(1) + '" text-anchor="end" style="fill:var(--green)" font-size="' + fs(10.5) + '" font-weight="700">' + curto(op.total) + '/mês</text>';
+    [1, 3, 6, 9, 12, 18, 24, 30, 36].forEach(function (mm) { s += '<text x="' + (x(mm - 1) + pw / N / 2).toFixed(1) + '" y="' + (T + ph + 15) + '" text-anchor="middle" style="fill:var(--muted)" font-size="' + fs(9.5) + '">' + mm + '</text>'; });
+    s += '<text x="' + (L + pw / 2).toFixed(1) + '" y="' + (H - 4) + '" text-anchor="middle" style="fill:var(--muted)" font-size="' + fs(9.5) + '">mês</text>';
     document.getElementById('chartMes').innerHTML = s + '</svg>';
   }
 
@@ -512,35 +674,39 @@ var PLANO = {
       { n: 'Operação e eventos', de: P.operacao.inicio, ate: P.meses, c: 'var(--green)' },
       { n: 'Fase 2 · expansão (opcional)', de: P.fase2.inicio, ate: P.fase2.fim, c: 'var(--violet)', opcional: true }
     ];
-    var W = 780, L = 196, R = 16, T = 30, rh = 34, H = T + linhas.length * rh + 30, pw = W - L - R, N = P.meses;
+    /* no celular o nome da fase vai EM CIMA da barra, para as barras aparecerem já na primeira tela */
+    var mob = FS > 1, band = mob ? 26 : 0, barH = mob ? 24 : 20, barOff = mob ? band : 7;
+    var W = 780, L = mob ? 16 : 196, R = 16, T = Math.round(30 * FS), rh = mob ? band + barH + 16 : 34, H = T + linhas.length * rh + Math.round(30 * FS), pw = W - L - R, N = P.meses;
     function x(m) { return L + m * (pw / N); }
     var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" style="display:block;height:auto;font-family:var(--mono)" role="img" aria-label="Cronograma de 36 meses por fase">';
     for (var m = 0; m <= N; m += 6) s += '<line x1="' + x(m).toFixed(1) + '" y1="' + T + '" x2="' + x(m).toFixed(1) + '" y2="' + (T + linhas.length * rh) + '" style="stroke:var(--line)" stroke-width="1"/>';
     MOMENTOS.forEach(function (h, i) {
       var anc = i === 0 || h.ate === N ? 'end' : (i === 1 ? 'start' : 'middle'), dx = anc === 'end' ? -4 : (anc === 'start' ? 4 : 0);
       s += '<line x1="' + x(h.ate).toFixed(1) + '" y1="' + (T - 10) + '" x2="' + x(h.ate).toFixed(1) + '" y2="' + (T + linhas.length * rh) + '" style="stroke:var(--gold)" stroke-dasharray="3 3" opacity="0.55"/>';
-      s += '<text x="' + (x(h.ate) + dx).toFixed(1) + '" y="' + (T - 14) + '" text-anchor="' + anc + '" style="fill:var(--gold)" font-size="10" font-weight="700">' + h.nome + '</text>';
+      s += '<text x="' + (x(h.ate) + dx).toFixed(1) + '" y="' + (T - 14) + '" text-anchor="' + anc + '" style="fill:var(--gold)" font-size="' + fs(10) + '" font-weight="700">' + h.nome + '</text>';
     });
     linhas.forEach(function (l, i) {
-      var yy = T + i * rh, x0 = x(l.de - 1), x1 = x(l.ate), off = l.opcional && !estado.fase2;
-      s += '<text x="' + (L - 10) + '" y="' + (yy + rh / 2 + 4) + '" text-anchor="end" style="fill:' + (off ? 'var(--muted)' : 'var(--ink)') + ';font-family:var(--sans)" font-size="12" font-weight="600">' + l.n + '</text>';
-      s += '<rect x="' + x0.toFixed(1) + '" y="' + (yy + 7) + '" width="' + (x1 - x0).toFixed(1) + '" height="' + (rh - 14) + '" rx="6" style="fill:' + l.c + (off ? ';fill-opacity:0.12;stroke:' + l.c : '') + '"' + (off ? ' stroke-dasharray="4 3" stroke-width="1.2"' : '') + ' opacity="' + (l.leve ? 0.35 : 1) + '"><title>' + l.n + ' · meses ' + l.de + '–' + l.ate + '</title></rect>';
+      var yy = T + i * rh, x0 = x(l.de - 1), x1 = x(l.ate), off = l.opcional && !estado.fase2, by = yy + barOff, ty = by + barH / 2 + fs(3.6);
+      var cor = off ? 'var(--muted)' : 'var(--ink)';
+      if (mob) s += '<text x="' + L + '" y="' + (yy + 18) + '" style="fill:' + cor + ';font-family:var(--sans)" font-size="' + fs(11) + '" font-weight="700">' + l.n + '</text>';
+      else s += '<text x="' + (L - 10) + '" y="' + ty.toFixed(1) + '" text-anchor="end" style="fill:' + cor + ';font-family:var(--sans)" font-size="' + fs(12) + '" font-weight="600">' + l.n + '</text>';
+      s += '<rect x="' + x0.toFixed(1) + '" y="' + by + '" width="' + (x1 - x0).toFixed(1) + '" height="' + barH + '" rx="6" style="fill:' + l.c + (off ? ';fill-opacity:0.12;stroke:' + l.c : '') + '"' + (off ? ' stroke-dasharray="4 3" stroke-width="1.2"' : '') + ' opacity="' + (l.leve ? 0.35 : 1) + '"><title>' + l.n + ' · meses ' + l.de + '–' + l.ate + '</title></rect>';
       var lab = 'meses ' + l.de + '–' + l.ate;
-      if ((x1 - x0) > 70) s += '<text x="' + (x0 + 8).toFixed(1) + '" y="' + (yy + rh / 2 + 4) + '" style="fill:' + (off || l.leve ? 'var(--ink)' : '#10141c') + '" font-size="10" font-weight="700">' + lab + '</text>';
-      else s += '<text x="' + (x1 + 14).toFixed(1) + '" y="' + (yy + rh / 2 + 4) + '" style="fill:var(--muted)" font-size="10">' + lab + '</text>';
+      if ((x1 - x0) > 70 * FS) s += '<text x="' + (x0 + 8).toFixed(1) + '" y="' + ty.toFixed(1) + '" style="fill:' + (off || l.leve ? 'var(--ink)' : '#10141c') + '" font-size="' + fs(10) + '" font-weight="700">' + lab + '</text>';
+      else s += '<text x="' + (x1 + 14).toFixed(1) + '" y="' + ty.toFixed(1) + '" style="fill:var(--muted)" font-size="' + fs(10) + '">' + lab + '</text>';
     });
     [[P.fase0.fim, 0, 'preço fechado do MVP'], [P.mvp.fim, 1, 'go-live']].forEach(function (g) {
-      var gx = x(g[0]), gy = T + g[1] * rh + rh / 2;
+      var gx = x(g[0]), gy = T + g[1] * rh + barOff + barH / 2;
       s += '<path d="M' + gx.toFixed(1) + ',' + (gy - 8) + ' l8,8 l-8,8 l-8,-8 Z" style="fill:var(--gold2);stroke:var(--bg)" stroke-width="1.5"><title>' + g[2] + '</title></path>';
     });
-    for (var t = 0; t <= N; t += 6) s += '<text x="' + x(t).toFixed(1) + '" y="' + (T + linhas.length * rh + 16) + '" text-anchor="middle" style="fill:var(--muted)" font-size="9.5">' + (t === 0 ? 'início' : 'mês ' + t) + '</text>';
+    for (var t = 0; t <= N; t += 6) s += '<text x="' + x(t).toFixed(1) + '" y="' + (T + linhas.length * rh + Math.round(16 * FS)) + '" text-anchor="' + (t === 0 ? 'start' : (t === N ? 'end' : 'middle')) + '" style="fill:var(--muted)" font-size="' + fs(9.5) + '">' + (t === 0 ? 'início' : 'mês ' + t) + '</text>';
     document.getElementById('gantt').innerHTML = s + '</svg>';
   }
 
   /* ---------- tabela de pagamentos ---------- */
   function tabelaPagamentos() {
     var acc = 0, h = '<thead><tr><th>Marco</th><th>Quando</th><th class="num">Valor</th><th class="num">Acumulado</th></tr></thead><tbody>';
-    function linha(marco, quando, valor, soma, cls) { if (soma) acc += valor; return '<tr' + (cls ? ' class="' + cls + '"' : '') + '><td>' + marco + '</td><td>' + quando + '</td><td class="num">' + (typeof valor === 'number' ? cheio(valor) : valor) + '</td><td class="num">' + (soma ? cheio(acc) : '—') + '</td></tr>'; }
+    function linha(marco, quando, valor, soma, cls) { if (soma) acc += valor; return '<tr' + (cls ? ' class="' + cls + '"' : '') + '><td>' + marco + '</td><td data-l="Quando">' + quando + '</td><td class="num" data-l="Valor">' + (typeof valor === 'number' ? cheio(valor) : valor) + '</td>' + (soma ? '<td class="num" data-l="Acumulado">' + cheio(acc) : '<td class="num nil">—') + '</td></tr>'; }
     h += '<tr class="grp"><td colspan="4"><span class="dot" style="background:var(--gold)"></span>Fase 0 · ' + cheio(P.fase0.preco) + ' <span class="pill fix">preço fixo</span></td></tr>';
     P.fase0.pagamento.forEach(function (p, i) { h += linha(P.fase0.marcos[i] + ' <small>' + Math.round(p * 100) + '% da Fase 0</small>', 'mês ' + (P.fase0.inicio + i), P.fase0.preco * p, true); });
     var nMvp = P.mvp.fim - P.mvp.inicio + 1, parcela = P.mvp.preco * (1 - P.mvp.sinal) / nMvp;
@@ -548,7 +714,7 @@ var PLANO = {
     h += linha('Sinal <small>' + Math.round(P.mvp.sinal * 100) + '% do MVP, na assinatura</small>', 'mês ' + P.mvp.inicio, P.mvp.preco * P.mvp.sinal, true);
     h += linha(nMvp + ' parcelas mensais de ' + cheio(parcela) + ' <small>no início de cada mês de construção</small>', 'meses ' + P.mvp.inicio + '–' + P.mvp.fim, parcela * nMvp, true);
     h += linha('Garantia de 3 meses <small>correções depois do go-live</small>', 'meses ' + P.garantia.inicio + '–' + P.garantia.fim, 'incluída', false);
-    h += '<tr class="total"><td>Construção completa (Fase 0 + MVP)</td><td>meses 1–9</td><td class="num">' + cheio(P.fase0.preco + P.mvp.preco) + '</td><td class="num">' + cheio(acc) + '</td></tr>';
+    h += '<tr class="total"><td>Construção completa (Fase 0 + MVP)</td><td data-l="Quando">meses 1–9</td><td class="num" data-l="Valor">' + cheio(P.fase0.preco + P.mvp.preco) + '</td><td class="num nil">' + cheio(acc) + '</td></tr>';
     h += '<tr class="grp"><td colspan="4"><span class="dot" style="background:var(--green)"></span>Operação · a partir do mês ' + P.operacao.inicio + '</td></tr>';
     h += linha('Mensalidade de operação', 'todo mês', cheio(P.operacao.mensal) + '/mês', false);
     h += linha('Por evento <small>base: ' + plural(estado.eventos, 'evento', 'eventos') + ' por mês</small>', 'por evento', cheio(P.operacao.evento), false);
@@ -563,18 +729,21 @@ var PLANO = {
   function numeros() {
     var mo = mensalOperacao(), a1 = soma(1, 12).total, t36 = soma(1, 36).total;
     out('pFase0', curto(P.fase0.preco)); out('pMvp', curto(P.mvp.preco)); out('pFase2', curto(P.fase2.preco));
+    out('pSinalF0', exato(P.fase0.preco * P.fase0.pagamento[0]));
+    out('spConstr', curto(P.fase0.preco + P.mvp.preco));
+    out('spConstrNota', 'Fase 0 + MVP, nos meses 1 a 9.');
     out('pSust', curto(P.operacao.mensal)); out('pEvento', curto(P.operacao.evento));
     out('pMensal', curto(mo) + '<small style="display:inline;font-size:.55em;color:var(--muted);font-weight:700">/mês</small>');
     out('mensalNota', 'mensalidade + ' + plural(estado.eventos, 'evento', 'eventos') + '/mês');
     out('media1', curto(a1 / 12) + '<small style="font-size:.5em;color:var(--muted);-webkit-text-fill-color:var(--muted)">/mês</small>');
-    out('mensal2', curto(mo));
-    out('mensal2Nota', 'Mensalidade de ' + curto(P.operacao.mensal) + ' + ' + plural(estado.eventos, 'evento', 'eventos') + ' de ' + curto(P.operacao.evento) + '. Uso de nuvem e taxas à parte.');
+    out('mensal2', curto(mo) + '<small style="font-size:.5em;color:var(--muted);font-weight:700">/mês</small>');
+    out('mensal2Nota', 'A partir do mês 10: mensalidade de ' + curto(P.operacao.mensal) + ' + ' + plural(estado.eventos, 'evento', 'eventos') + ' de ' + curto(P.operacao.evento) + '. Em 3 anos, ' + mesesOperacao(36) + ' meses = <b>' + curto(soma(1, 36).op) + '</b>. Uso de nuvem e taxas à parte.');
     out('total36', curto(t36));
-    out('total36Nota', 'Construção de ' + curto(P.fase0.preco + P.mvp.preco) + ' + ' + mesesOperacao(36) + ' meses de operação' + (estado.fase2 ? ' + Fase 2' : '') + '.');
+    out('total36Nota', 'Construção de ' + curto(P.fase0.preco + P.mvp.preco) + ' + ' + mesesOperacao(36) + ' meses de operação' + (estado.fase2 ? ' + Fase 2 de ' + curto(P.fase2.preco) : '') + '. Média de <b>' + curto(t36 / 36) + '/mês</b> nos 3 anos.');
     document.getElementById('legF2').hidden = !estado.fase2; document.getElementById('legF2b').hidden = !estado.fase2;
   }
 
-  function render() { numeros(); renderMomentos(); chartAcum(); chartMes(); gantt(); tabelaPagamentos(); }
+  function render() { numeros(); renderLadder(); renderMomentos(); chartMes(); gantt(); tabelaPagamentos(); renderSplit(); chartAcum(); }
 
   /* ---------- controles ---------- */
   document.querySelectorAll('#segEventos button').forEach(function (b) {
@@ -585,6 +754,8 @@ var PLANO = {
     });
   });
   document.getElementById('chkFase2').addEventListener('change', function (e) { estado.fase2 = e.target.checked; render(); });
+  function aoMudarTela() { var novo = mq.matches ? 1.4 : 1; if (novo !== FS) { FS = novo; render(); } }
+  if (mq.addEventListener) mq.addEventListener('change', aoMudarTela); else if (mq.addListener) mq.addListener(aoMudarTela);
 
   render();
 })();
