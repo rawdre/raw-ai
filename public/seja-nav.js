@@ -9,19 +9,27 @@
 (function () {
   'use strict';
 
-  // Every destination in the project. `ext:true` opens in a new tab.
+  // Every destination in the project, grouped. `ext:true` opens in a new tab.
   var LINKS = [
     { href: 'https://apresentacoes.zystudio-contabo.duckdns.org/seja-arena/', ext: true,
-      pt: 'Apresentação (cliente)', en: 'Presentation (client)',
+      group: { pt: 'Cliente', en: 'Client-facing' },
+      pt: 'Apresentação', en: 'Presentation',
       subPt: 'a apresentação em uso no projeto', subEn: 'the presentation we use in this project',
       badge: { pt: 'principal', en: 'main' } },
+    { href: 'https://seja-arena-valores.zystudio-contabo.duckdns.org/investimento.html', ext: true,
+      group: { pt: 'Cliente', en: 'Client-facing' },
+      pt: 'Investimento / valores', en: 'Investment / pricing',
+      subPt: 'os números e o plano de investimento', subEn: 'the numbers and the investment plan' },
     { href: '/seja-arena-interno.html',
+      group: { pt: 'Interno', en: 'Internal' },
       pt: 'Dossiê interno — plano & dinheiro', en: 'Internal dossier — plan & money',
       subPt: 'cenário, jogada, fluxo de caixa (uso interno)', subEn: 'market, play, cash flow (internal)' },
     { href: '/seja-arena-superapps.html',
+      group: { pt: 'Interno', en: 'Internal' },
       pt: 'Scan global de super apps', en: 'Global super-app scan',
       subPt: 'o que são e o tamanho do trabalho', subEn: 'what they are and the size of the work' },
     { href: '/seja-arena.html',
+      group: { pt: 'Arquivo', en: 'Archive' },
       pt: 'Deck antigo (raw-ai)', en: 'Old deck (raw-ai)',
       subPt: 'a apresentação anterior — mantida', subEn: 'the earlier presentation — kept' }
   ];
@@ -125,9 +133,15 @@
     var back = document.createElement('div'); back.className = 'sejaback';
     var draw = document.createElement('div'); draw.className = 'sejadrawer'; draw.setAttribute('role', 'dialog'); draw.setAttribute('aria-label', 'Seja Arena — navegação');
     var here = location.pathname.replace(/\/index\.html$/, '/');
+    var lastGroup = null;
     var rows = LINKS.map(function (lk) {
+      var cap = '';
+      if (lk.group && lk.group.pt !== lastGroup) {
+        lastGroup = lk.group.pt;
+        cap = '<div class="cap" data-i18n-pt="' + lk.group.pt + '" data-i18n-en="' + lk.group.en + '">' + lk.group.pt + '</div>';
+      }
       var isCur = !lk.ext && (here === lk.href || here === lk.href.replace(/\.html$/, ''));
-      return '<a class="sejalink' + (isCur ? ' cur' : '') + '" href="' + lk.href + '"' + (lk.ext ? ' target="_blank" rel="noopener"' : '') + '>' +
+      return cap + '<a class="sejalink' + (isCur ? ' cur' : '') + '" href="' + lk.href + '"' + (lk.ext ? ' target="_blank" rel="noopener"' : '') + '>' +
         '<span class="t"><span data-i18n-pt="' + lk.pt + '" data-i18n-en="' + lk.en + '">' + lk.pt + '</span>' +
         (lk.badge ? '<span class="badge" data-i18n-pt="' + lk.badge.pt + '" data-i18n-en="' + lk.badge.en + '">' + lk.badge.pt + '</span>' : '') +
         (lk.ext ? '<span class="ext">↗</span>' : (isCur ? '<span class="ext">•</span>' : '')) + '</span>' +
@@ -136,7 +150,6 @@
     draw.innerHTML =
       '<div class="dh"><span class="dot">S</span><b>Seja Arena</b>' +
         '<button class="x" type="button" aria-label="Fechar / Close">&times;</button></div>' +
-      '<div class="cap" data-i18n-pt="Tudo do projeto" data-i18n-en="Everything in the project">Tudo do projeto</div>' +
       rows +
       '<div class="foot" data-i18n-pt="Uso interno · Raw Business Solution. As páginas internas pedem senha." ' +
         'data-i18n-en="Internal use · Raw Business Solution. Internal pages are password-gated.">' +
