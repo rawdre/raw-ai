@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-deflang="pt" data-theme="dark">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark light">
@@ -7,7 +7,7 @@
 <style>
   :root{
     --bg:#0c1016; --bg2:#0f141d; --card:#141c28; --card2:#19222f; --ink:#eef2f7; --muted:#93a2b6; --line:#26313f;
-    --acc:#2fbf86; --acc2:#57e0a6; --acc-soft:#2fbf861f;
+    --acc:#f5b942; --acc2:#ffcf6b; --acc-soft:#f5b9421f;
     --amber:#e6a63a; --amber-soft:#e6a63a1f; --coral:#e5654b; --coral-soft:#e5654b1f; --blue:#5b9cf6;
     --radius:15px;
     --sans:"Segoe UI Variable Display","Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
@@ -15,12 +15,12 @@
   }
   :root[data-theme="light"]{
     --bg:#f4f6f9; --bg2:#eceff4; --card:#ffffff; --card2:#f5f7fb; --ink:#141b26; --muted:#54637a; --line:#dde3ec;
-    --acc:#12925f; --acc2:#0f7d51; --acc-soft:#12925f14; --amber:#b07d10; --amber-soft:#b07d1014; --coral:#c8442c; --coral-soft:#c8442c14;
+    --acc:#c98a10; --acc2:#e0a52a; --acc-soft:#c98a1014; --amber:#b07d10; --amber-soft:#b07d1014; --coral:#c8442c; --coral-soft:#c8442c14;
   }
   @media (prefers-color-scheme:light){
     :root:not([data-theme="dark"]){
       --bg:#f4f6f9; --bg2:#eceff4; --card:#ffffff; --card2:#f5f7fb; --ink:#141b26; --muted:#54637a; --line:#dde3ec;
-      --acc:#12925f; --acc2:#0f7d51; --acc-soft:#12925f14; --amber:#b07d10; --amber-soft:#b07d1014; --coral:#c8442c; --coral-soft:#c8442c14;
+      --acc:#c98a10; --acc2:#e0a52a; --acc-soft:#c98a1014; --amber:#b07d10; --amber-soft:#b07d1014; --coral:#c8442c; --coral-soft:#c8442c14;
     }
   }
   *{box-sizing:border-box}
@@ -33,7 +33,7 @@
   .bar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 84%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   .bar .in{max-width:940px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:11px clamp(16px,4vw,36px)}
   .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:14px}
-  .brand .dot{width:24px;height:24px;border-radius:7px;background:linear-gradient(135deg,var(--acc),var(--acc2));display:grid;place-items:center;color:#04140d;font-weight:900;font-family:var(--mono);font-size:13px}
+  .brand .dot{width:24px;height:24px;border-radius:7px;background:linear-gradient(135deg,var(--acc),var(--acc2));display:grid;place-items:center;color:#1a1200;font-weight:900;font-family:var(--mono);font-size:13px}
   .conf{margin-left:auto;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);border:1px solid color-mix(in srgb,var(--amber) 40%,transparent);background:var(--amber-soft);padding:4px 10px;border-radius:999px}
 
   .hero{border-bottom:1px solid var(--line);background:
@@ -49,14 +49,14 @@
   .movehead{display:flex;align-items:baseline;gap:14px;margin:0 0 6px}
   .num{font-family:var(--mono);font-weight:800;font-size:13px;color:var(--acc);background:var(--acc-soft);border:1px solid color-mix(in srgb,var(--acc) 30%,transparent);border-radius:8px;padding:4px 9px;flex-shrink:0}
   h2{font-size:clamp(21px,3vw,31px);margin:0;font-weight:800;max-width:26ch}
-  .say{font-size:15px;color:var(--muted);max-width:72ch;margin:12px 0 0}
+  .say{font-size:16px;color:var(--muted);max-width:72ch;margin:12px 0 0}
   .say b{color:var(--ink)}
   .say.tight{margin-top:8px}
 
   .tblwrap{overflow-x:auto;margin-top:20px;border:1px solid var(--line);border-radius:13px}
-  table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:560px}
-  th,td{text-align:left;padding:11px 15px;border-bottom:1px solid var(--line);vertical-align:top}
-  th{background:var(--card2);font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:560px}
+  th,td{text-align:left;padding:12px 15px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--card2);font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:700}
   tr:last-child td{border-bottom:0}
   td.c-c,th.c-c{text-align:center;white-space:nowrap}
   tr.tot td{background:var(--acc-soft);font-weight:800}
@@ -72,12 +72,12 @@
   .g3{grid-template-columns:repeat(3,1fr)}
   @media (max-width:720px){.g2,.g3{grid-template-columns:1fr}}
   .c{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;min-width:0}
-  .c h3{font-size:15px;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-  .c p{margin:0;font-size:13px;color:var(--muted)}
+  .c h3{font-size:16px;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .c p{margin:0;font-size:14px;color:var(--muted)}
   .c p+p{margin-top:8px}
   .c p b{color:var(--ink)}
-  .c .k{font-family:var(--mono);font-size:11px;color:var(--acc);letter-spacing:.04em;text-transform:uppercase;display:block;margin-bottom:7px}
-  .c .star{font-size:12px;color:var(--amber);font-weight:700;margin-top:9px}
+  .c .k{font-family:var(--mono);font-size:11.5px;color:var(--acc);letter-spacing:.04em;text-transform:uppercase;display:block;margin-bottom:7px}
+  .c .star{font-size:13px;color:var(--amber);font-weight:700;margin-top:9px}
   .c .star b{color:var(--ink)}
 
   .call{border-radius:14px;padding:18px 20px;margin-top:20px;border:1px solid var(--line);background:var(--card2)}
@@ -86,10 +86,10 @@
   .call.win{border-color:color-mix(in srgb,var(--acc) 42%,var(--line));background:var(--acc-soft)}
   .call .tag{font-family:var(--mono);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin:0 0 8px}
   .call.mandate .tag{color:var(--amber)} .call.internal .tag{color:var(--coral)} .call.win .tag{color:var(--acc)}
-  .call p{margin:0;font-size:13.5px;color:var(--ink)} .call p+p{margin-top:8px} .call p.sub{color:var(--muted)}
+  .call p{margin:0;font-size:14.5px;color:var(--ink)} .call p+p{margin-top:8px} .call p.sub{color:var(--muted)}
 
   .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-  .chip{font-size:12px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;color:var(--muted)}
+  .chip{font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 13px;color:var(--muted)}
   .chip b{color:var(--ink)}
 
   footer{max-width:940px;margin:0 auto;padding:24px clamp(16px,4vw,36px) 56px;color:var(--muted);font-size:12px;line-height:1.6}
@@ -100,12 +100,12 @@
   #gate{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px;background:radial-gradient(60% 80% at 82% -8%, var(--acc-soft), transparent 60%),linear-gradient(180deg,color-mix(in srgb,var(--bg2) 78%,transparent),color-mix(in srgb,var(--bg) 78%,transparent));backdrop-filter:blur(3px)}
   .gatecard{width:100%;max-width:380px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px 28px;text-align:center;display:flex;flex-direction:column;gap:14px;box-shadow:0 30px 80px -40px #000}
   .glogo{display:flex;align-items:center;justify-content:center;gap:9px;font-weight:800;font-size:14px}
-  .glogo .dot{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--acc),var(--acc2));display:grid;place-items:center;color:#04140d;font-weight:900;font-family:var(--mono);font-size:13px}
+  .glogo .dot{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--acc),var(--acc2));display:grid;place-items:center;color:#1a1200;font-weight:900;font-family:var(--mono);font-size:13px}
   .gh{margin:2px 0 0;font-size:19px}
   .gp{margin:0;color:var(--muted);font-size:13px}
   #gatePw{width:100%;padding:13px 15px;border-radius:11px;border:1px solid var(--line);background:var(--bg2);color:var(--ink);font:inherit;font-size:15px;text-align:center}
   #gatePw:focus{outline:2px solid var(--acc);outline-offset:1px;border-color:var(--acc)}
-  .gatecard button{width:100%;padding:13px;border:0;border-radius:11px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#04140d;font:inherit;font-weight:800;font-size:15px;cursor:pointer}
+  .gatecard button{width:100%;padding:13px;border:0;border-radius:11px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#1a1200;font:inherit;font-weight:800;font-size:15px;cursor:pointer}
   .gerr{color:var(--coral);font-size:13px;margin:0}
 
   @media (max-width:600px){
@@ -120,11 +120,11 @@
     section{padding:30px 0}
     .movehead{gap:10px;flex-wrap:wrap}
     .num{font-size:12px;padding:3px 8px}
-    .say{font-size:14.5px}
+    .say{font-size:15.5px}
     .tblwrap{margin-top:16px;-webkit-overflow-scrolling:touch}
-    table{font-size:13px;min-width:520px}
-    th,td{padding:9px 11px}
-    th{font-size:10px}
+    table{font-size:14px;min-width:520px}
+    th,td{padding:10px 11px}
+    th{font-size:10.5px}
     .grid{gap:11px;margin-top:16px}
     .c{padding:15px}
     .call{padding:15px 16px;margin-top:16px}
@@ -157,6 +157,7 @@
   <span class="conf">Confidencial · uso interno</span>
 </div></div>
 
+<div data-lang="pt">
 <div class="hero"><div class="wrap in">
   <span class="eyebrow">Scan de mercado · Raw Business Solution</span>
   <h1>Super apps de estádio, do mundo todo — o que são e o tamanho do trabalho.</h1>
@@ -347,9 +348,206 @@
 </div></section>
 
 <footer>
-  <b>Seja Arena — Super Apps de Estádio · Scan Global.</b> Documento de bastidor da Raw Business Solution — <b>confidencial, uso interno</b>. Complementa o <a href="https://raw-ai.vercel.app/seja-arena-interno.html">plano interno &amp; cenário de mercado</a> (o dinheiro e o faseamento) e a <a href="https://raw-ai.vercel.app/seja-arena.html">apresentação de venda</a>.<br>
+  <b>Seja Arena — Super Apps de Estádio · Scan Global.</b> Documento de bastidor da Raw Business Solution — <b>confidencial, uso interno</b>. Complementa o <a href="https://raw-ai.vercel.app/seja-arena-interno.html">plano interno &amp; cenário de mercado</a> (o dinheiro e o faseamento) e a <a href="https://apresentacoes.zystudio-contabo.duckdns.org/seja-arena/">apresentação</a>.<br>
   Levantamento de features com fontes públicas (sites oficiais de clubes/arenas + imprensa especializada 2023–2026), coletado em 14/09/2026. Funcionalidades listadas apenas quando confirmadas em fonte; itens não confirmados marcados como parciais (~). Métricas de download/uso raramente são públicas e foram omitidas quando não verificáveis. Versão 1.0 · 14/09/2026.
 </footer>
+</div>
+<div data-lang="en" hidden>
+<div class="hero"><div class="wrap in">
+  <span class="eyebrow">Market scan · Raw Business Solution</span>
+  <h1>Stadium super apps, from around the world — what they are and the size of the job.</h1>
+  <p class="lede">Before the reverse engineering, the map. Here are <b>the biggest stadium super apps on the planet</b>, what each one delivers to the fan, and the <b>module anatomy</b> that defines the size of any build — ours included. It's grouped by region: Europe, the US, Asia/Middle East/Oceania, and <b>Brazil</b> (the most important one, because it's Seja Arena's turf). <b>Internal use</b> — the plan and the money are in the <a href="https://raw-ai.vercel.app/seja-arena-interno.html">internal dossier</a>.</p>
+</div></div>
+
+<!-- 01 -->
+<section><div class="wrap">
+  <div class="movehead"><span class="num">01</span><h2>The anatomy: what a stadium super app IS</h2></div>
+  <p class="say">A "stadium super app" isn't an app — it's <b>~10 families of modules</b> stitched into a single identity. This is the ruler for sizing the work. The <b>effort</b> is about <em>building</em> (not value): <span class="pill low">Low</span> = standard app + one known API · <span class="pill mid">Medium</span> = real time, integrations, or arena hardware · <span class="pill hot">High</span> = deep systems integration, biometrics, ML, or financial compliance.</p>
+
+  <div class="tblwrap"><table>
+    <thead><tr><th>Module family</th><th>What it delivers to the fan</th><th>The hardest piece</th><th class="c-c">Effort</th></tr></thead>
+    <tbody>
+      <tr><td><b>1 · Ticketing &amp; access</b></td><td>Digital ticket, transfer, turnstile, facial entry</td><td>Facial recognition + access control</td><td class="c-c"><span class="pill hot">High</span></td></tr>
+      <tr><td><b>2 · Food &amp; beverage (F&amp;B)</b></td><td>Order from your seat, express pickup, "grab-and-go" store</td><td>Seat delivery / cashierless stores (computer vision)</td><td class="c-c"><span class="pill hot">High</span></td></tr>
+      <tr><td><b>3 · Payments &amp; cashless</b></td><td>Closed-loop wallet, balance, tap-to-pay, Pix, RFID</td><td>Closed-loop wallet + offline RFID</td><td class="c-c"><span class="pill hot">High</span></td></tr>
+      <tr><td><b>4 · Navigation &amp; operations</b></td><td>Map, find your seat, indoor "blue dot", real-time queues</td><td>Indoor navigation (BLE/UWB/5G) + queue time</td><td class="c-c"><span class="pill hot">High</span></td></tr>
+      <tr><td><b>5 · Content &amp; second screen</b></td><td>Live stats, multi-angle replay, auto highlights, AR</td><td>Multi-angle replay / AI highlights / streaming</td><td class="c-c"><span class="pill hot">High</span></td></tr>
+      <tr><td><b>6 · Loyalty &amp; gamification</b></td><td>Points, tiers, missions, predictions, badges, leaderboard</td><td>Points engine + rewards rules</td><td class="c-c"><span class="pill mid">Medium</span></td></tr>
+      <tr><td><b>7 · Member / identity / CRM</b></td><td>Single fan ID, SSO, membership management, fan token</td><td>Single fan ID linking ticket + wallet + loyalty</td><td class="c-c"><span class="pill hot">High</span></td></tr>
+      <tr><td><b>8 · Commerce</b></td><td>Merch store, marketplace, coupons, sponsorship activations, upsell</td><td>Multi-partner marketplace</td><td class="c-c"><span class="pill mid">Medium</span></td></tr>
+      <tr><td><b>9 · Communication &amp; engagement</b></td><td>Segmented push, polls, feed/community, live chat</td><td>Social feed + "watch-party" chat</td><td class="c-c"><span class="pill mid">Medium</span></td></tr>
+      <tr><td><b>10 · Data &amp; personalization</b></td><td>Single profile, recommendations, a home screen that changes at home vs. at the arena</td><td>Behavior-based recommendation (ML)</td><td class="c-c"><span class="pill hot">High</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call mandate">
+    <p class="tag">📐 The size of the job, in one sentence</p>
+    <p>It's <b>~60 modules</b> across 10 families. The good news: the hardest modules (<b>facial, cashless, ticketing</b>) are <b>"rails" that already exist off the shelf</b> in the market — we <b>integrate</b>, we don't rebuild. What <b>makes money and belongs to the arena</b> (wallet/CRM, loyalty, ad inventory, marketplace, second screen) is <b>medium</b> complexity — <b>that's</b> what we build. Nobody delivers all 10 families on day 1: you start with a slice (MVP) and grow. See the phasing in the <a href="https://raw-ai.vercel.app/seja-arena-interno.html">internal dossier</a>.</p>
+  </div>
+</div></section>
+
+<!-- 02 -->
+<section><div class="wrap">
+  <div class="movehead"><span class="num">02</span><h2>Matrix: the biggest in the world, side by side</h2></div>
+  <p class="say">How to read it: <span class="y">✓</span> has it &nbsp;·&nbsp; <span class="p">~</span> partial / unconfirmed &nbsp;·&nbsp; <span class="n">—</span> doesn't have it. "Level" is the ambition of the whole app. Brazil is in <b>section 06</b>, with the same columns, for a direct comparison against Galo.</p>
+  <div class="tblwrap"><table>
+    <thead><tr>
+      <th>App / arena</th><th class="c-c">Ticket</th><th class="c-c">Facial</th><th class="c-c">Mobile F&amp;B</th><th class="c-c">Cashless</th><th class="c-c">Indoor nav.</th><th class="c-c">2nd screen</th><th class="c-c">Loyalty</th><th class="c-c">Fan ID</th><th class="c-c">Store</th><th class="c-c">Level</th>
+    </tr></thead>
+    <tbody>
+      <tr><td><b>Intuit Dome</b> — Clippers 🇺🇸</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c"><span class="pill go">Super app</span></td></tr>
+      <tr><td><b>Levi's Stadium</b> — 49ers 🇺🇸</td><td class="c-c y">✓</td><td class="c-c n">—</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c n">—</td><td class="c-c p">~</td><td class="c-c p">~</td><td class="c-c"><span class="pill go">Super app</span></td></tr>
+      <tr><td><b>Tottenham Hotspur Stadium</b> 🏴</td><td class="c-c y">✓</td><td class="c-c n">—</td><td class="c-c p">~</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c p">~</td><td class="c-c p">~</td><td class="c-c y">✓</td><td class="c-c p">~</td><td class="c-c"><span class="pill go">Super app</span></td></tr>
+      <tr><td><b>Real Madrid</b> — Bernabéu 🇪🇸</td><td class="c-c y">✓</td><td class="c-c n">—</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c p">~</td><td class="c-c p">~</td><td class="c-c y">✓</td><td class="c-c"><span class="pill go">Super app</span></td></tr>
+      <tr><td><b>Hayya</b> — Qatar 2022 World Cup 🇶🇦</td><td class="c-c y">✓</td><td class="c-c p">~</td><td class="c-c n">—</td><td class="c-c p">~</td><td class="c-c y">✓</td><td class="c-c n">—</td><td class="c-c n">—</td><td class="c-c y">✓</td><td class="c-c n">—</td><td class="c-c"><span class="pill go">Super app*</span></td></tr>
+      <tr><td><b>Atlético de Madrid</b> — Metropolitano 🇪🇸</td><td class="c-c y">✓</td><td class="c-c n">—</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c n">—</td><td class="c-c y">✓</td><td class="c-c p">~</td><td class="c-c p">~</td><td class="c-c y">✓</td><td class="c-c"><span class="pill mid">Advanced</span></td></tr>
+      <tr><td><b>PSG</b> — Parc des Princes 🇫🇷</td><td class="c-c y">✓</td><td class="c-c n">—</td><td class="c-c p">~</td><td class="c-c p">~</td><td class="c-c n">—</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c p">~</td><td class="c-c y">✓</td><td class="c-c"><span class="pill mid">Advanced</span></td></tr>
+      <tr><td><b>SoFi Stadium</b> — Rams/Chargers 🇺🇸</td><td class="c-c y">✓</td><td class="c-c n">—</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c p">~</td><td class="c-c p">~</td><td class="c-c n">—</td><td class="c-c y">✓</td><td class="c-c"><span class="pill mid">Advanced</span></td></tr>
+      <tr><td><b>Mercedes-Benz Stadium</b> — Falcons 🇺🇸</td><td class="c-c y">✓</td><td class="c-c n">—</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c p">~</td><td class="c-c n">—</td><td class="c-c n">—</td><td class="c-c p">~</td><td class="c-c"><span class="pill mid">Advanced</span></td></tr>
+      <tr><td><b>AT&amp;T Stadium</b> — Cowboys 🇺🇸</td><td class="c-c y">✓</td><td class="c-c n">—</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c p">~</td><td class="c-c n">—</td><td class="c-c y">✓</td><td class="c-c"><span class="pill mid">Advanced</span></td></tr>
+      <tr><td><b>Allegiant Stadium</b> — Raiders 🇺🇸</td><td class="c-c y">✓</td><td class="c-c p">~</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c p">~</td><td class="c-c p">~</td><td class="c-c n">—</td><td class="c-c n">—</td><td class="c-c y">✓</td><td class="c-c"><span class="pill mid">Advanced</span></td></tr>
+      <tr><td><b>MetLife Stadium</b> — Giants/Jets 🇺🇸</td><td class="c-c y">✓</td><td class="c-c n">—</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c p">~</td><td class="c-c n">—</td><td class="c-c n">—</td><td class="c-c p">~</td><td class="c-c"><span class="pill mid">Advanced</span></td></tr>
+      <tr><td><b>Man City</b> — Etihad 🏴</td><td class="c-c y">✓</td><td class="c-c n">—</td><td class="c-c n">—</td><td class="c-c n">—</td><td class="c-c n">—</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c p">~</td><td class="c-c"><span class="pill mid">Advanced</span></td></tr>
+      <tr><td><b>Bayern</b> — Allianz Arena 🇩🇪</td><td class="c-c y">✓</td><td class="c-c n">—</td><td class="c-c n">—</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c p">~</td><td class="c-c n">—</td><td class="c-c p">~</td><td class="c-c n">—</td><td class="c-c"><span class="pill mid">Advanced</span></td></tr>
+      <tr><td><b>Vissel Kobe</b> — Rakuten 🇯🇵</td><td class="c-c y">✓</td><td class="c-c n">—</td><td class="c-c p">~</td><td class="c-c y">✓</td><td class="c-c p">~</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c"><span class="pill mid">Advanced</span></td></tr>
+      <tr><td><b>PayPay Dome</b> — Hawks 🇯🇵</td><td class="c-c y">✓</td><td class="c-c p">~</td><td class="c-c n">—</td><td class="c-c y">✓</td><td class="c-c n">—</td><td class="c-c n">—</td><td class="c-c y">✓</td><td class="c-c p">~</td><td class="c-c y">✓</td><td class="c-c"><span class="pill mid">Advanced</span></td></tr>
+      <tr><td><b>Marvel Stadium</b> — AFL 🇦🇺</td><td class="c-c y">✓</td><td class="c-c n">—</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c p">~</td><td class="c-c p">~</td><td class="c-c n">—</td><td class="c-c p">~</td><td class="c-c"><span class="pill mid">Advanced</span></td></tr>
+      <tr><td><b>Chelsea</b> — The 5th Stand 🏴</td><td class="c-c p">~</td><td class="c-c n">—</td><td class="c-c n">—</td><td class="c-c n">—</td><td class="c-c n">—</td><td class="c-c y">✓</td><td class="c-c y">✓</td><td class="c-c p">~</td><td class="c-c n">—</td><td class="c-c"><span class="pill low">Content+</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="say tight">The takeaway: almost everyone has <b>ticket + content</b>, and most are already <b>cashless</b>. Only a handful reach the <b>full super app</b> (seat-based F&amp;B + indoor navigation + wallet + loyalty + single ID): <b>Intuit Dome</b>, <b>Levi's</b>, <b>Tottenham</b>, <b>Bernabéu</b> — and, in Brazil, <b>Galo</b>. *Hayya is an <em>event</em> super app (World Cup), not a permanent arena one. The English club apps deliberately leave F&amp;B and cashless at the arena POS, not in the app.</p>
+</div></section>
+
+<!-- 03 -->
+<section><div class="wrap">
+  <div class="movehead"><span class="num">03</span><h2>Europe — club-content vs. arena-experience</h2></div>
+  <p class="say">Two archetypes. The <b>club app</b> (news + Match Centre + NFC ticket + membership, global audience) dominates; the <b>arena app</b> (indoor navigation, F&amp;B, fan-cam) is rare — Tottenham is the one that has both. The Spanish clubs push the on-site experience; the English push digital ticketing + gamification.</p>
+  <div class="grid g2">
+    <div class="c"><span class="k">Arena leader · 🏴</span><h3>Tottenham Hotspur Stadium <span class="pill go">Super app</span></h3><p>100% digital entry (pass in the wallet), <b>indoor navigation "from the street to your seat"</b> (Situm), and a <b>robotic Fan Cam</b> that snaps your selfie from your seat to share. Fully cashless in the arena. The most complete venue app in Europe.</p><p class="star">★ Copy: <b>indoor navigation + robotic fan-cam</b>.</p></div>
+    <div class="c"><span class="k">On-site experience · 🇪🇸</span><h3>Real Madrid — Bernabéu <span class="pill go">Super app</span></h3><p>The renovated Bernabéu: <b>AR "walls that turn transparent"</b>, beacon wayfinding, food ordering from your seat, a VIP app with concierge. Heavy content (stats, behind-the-scenes) and smart access at the turnstiles.</p><p class="star">★ Copy: <b>AR + beacon navigation</b> as a matchday layer.</p></div>
+    <div class="c"><span class="k">Single checkout · 🇪🇸</span><h3>Atlético de Madrid <span class="pill mid">Advanced</span></h3><p><b>MULTICART</b>: a single payment combines ticket + store + food + tour. Real-time notifications (goal, card, stats). The cleanest "single basket" implementation in the group.</p><p class="star">★ Copy: <b>single basket</b> (ticket+store+F&amp;B in one checkout).</p></div>
+    <div class="c"><span class="k">Commerce+content · 🇫🇷</span><h3>PSG — Parc des Princes <span class="pill mid">Advanced</span></h3><p>PSG TV (replays, behind-the-scenes), live Matchcenter, <b>MyParis loyalty</b> by status, and a <b>"single basket"</b> that combines ticket + MyParis + a streaming subscription in one payment.</p><p class="star">★ Copy: a bundle of <b>ticket + loyalty + streaming</b>.</p></div>
+    <div class="c"><span class="k">Loyalty leader · 🏴</span><h3>Man City — Etihad <span class="pill mid">Advanced</span></h3><p><b>City Points</b> (earned through attendance, purchases, engagement; redeemed for experiences) + <b>Score Predictor</b> (predict the score/top scorer, monthly prizes). In-stadium exclusives: 30s rewind, "Tactical Cam".</p><p class="star">★ Copy: <b>points economy + predictions</b>.</p></div>
+    <div class="c"><span class="k">Ticket wallet · 🏴🇩🇪🇮🇹</span><h3>Liverpool · Bayern · Juventus <span class="pill mid">Advanced</span></h3><p>Migrating to <b>100% digital ticketing in the app</b>: Liverpool with <b>NFC in the Apple/Google Wallet</b> + "My Match Credits"; Bayern and Juventus making the app the <b>only path to entry</b> (killing PDF/Wallet) starting in 2026/27. Allianz Arena is 100% cashless.</p><p class="star">★ Copy: a <b>first-party ticket wallet</b> (control of the entry funnel).</p></div>
+    <div class="c"><span class="k">Global community · 🏴</span><h3>Chelsea — The 5th Stand <span class="pill low">Content+</span></h3><p>An app for the fan <b>outside the stadium</b> ("the fifth stand"): Match Centre, highlights, <b>Play Predictor</b>, find the nearest supporters, forums. <b>+10 million downloads.</b></p><p class="star">★ Copy: engaging those who <b>don't</b> go to the match (global base).</p></div>
+    <div class="c"><span class="k">Smart stadium · 🇳🇱</span><h3>Johan Cruijff ArenA <span class="pill mid">Advanced</span></h3><p>Venue-led: a partner app (Close) does <b>personalized navigation + "follow this route"</b> via push to <b>control crowd flow</b> and cut queues. Operational wayfinding became fan comfort.</p><p class="star">★ Copy: <b>push that shapes crowd flow</b>.</p></div>
+  </div>
+</div></section>
+
+<!-- 04 -->
+<section><div class="wrap">
+  <div class="movehead"><span class="num">04</span><h2>United States — the frontier of on-site technology</h2></div>
+  <p class="say">Most run on the same white-label platform (<b>YinzCam</b>, with 150M+ downloads across 200+ clubs) and are a matchday app: mobile ticket, map, food ordering, news. The frontier — where a select few break away — is <b>pay-by-face</b>, <b>cashierless stores</b>, and <b>multi-angle replay</b>.</p>
+  <div class="grid g2">
+    <div class="c"><span class="k">World benchmark · 🇺🇸</span><h3>Intuit Dome — Clippers <span class="pill go">Super app</span></h3><p>The most advanced arena operating system. <b>GameFace ID</b> (face/palm) unifies ticketing, entry ("Zoom Thru", phone-free), and <b>pay-by-face</b> across <b>40+ cashierless stores</b> (computer vision). Home board with replay/stats, in-seat games, and <b>US$10 in credit</b> for completing your profile (a biometric-signup lure).</p><p class="star">★ Copy: <b>biometric identity as the single key</b> to enter+shop+pay.</p></div>
+    <div class="c"><span class="k">The pioneer · 🇺🇸</span><h3>Levi's Stadium — 49ers <span class="pill go">Super app</span></h3><p>The original "connected stadium." <b>Instant replay ~4s after each play, multiple angles</b>; order to your seat or express queue; <b>navigation via 2,000 beacons</b> that finds the shortest restroom/concession line.</p><p class="star">★ Copy: <b>multi-angle replay at your seat</b> + "shortest line".</p></div>
+    <div class="c"><span class="k">Arena wallet · 🇺🇸</span><h3>SoFi Stadium <span class="pill mid">Advanced</span></h3><p><b>SoFi Stadium Wallet (Tappit)</b> — a mobile wallet with the arena's own QR to pay for food/drinks/merch. Interactive map, 24/7 "Know Before You Go" chatbot, parking passes.</p><p class="star">★ Copy: an <b>arena-branded QR wallet</b>.</p></div>
+    <div class="c"><span class="k">Price as loyalty · 🇺🇸</span><h3>Mercedes-Benz Stadium <span class="pill mid">Advanced</span></h3><p>A standard app, but it surfaces the famous <b>"Fan-First Pricing"</b>: hot dogs/popcorn at US$2 with <b>free unlimited refills</b>. <b>Cashierless markets</b> (just-walk-out) and Waze/parking integration.</p><p class="star">★ Copy: <b>radically low, transparent pricing</b> as a return driver.</p></div>
+    <div class="c"><span class="k">AI + seat QR · 🇺🇸</span><h3>AT&amp;T Stadium — Cowboys <span class="pill mid">Advanced</span></h3><p>A <b>virtual assistant (AI)</b> for real-time questions; a <b>QR on the seatback</b> opens sweepstakes/upsell; <b>seat delivery</b> (Visa+AT&amp;T 5G); Game Center with a lock-screen widget; Uber/Lyft integrated.</p><p class="star">★ Copy: the <b>seat QR</b> as a commerce/sweepstakes point.</p></div>
+    <div class="c"><span class="k">Takeout + suite · 🇺🇸</span><h3>Allegiant Stadium — Raiders <span class="pill mid">Advanced</span></h3><p><b>"Gameday to Go"</b>: takeout-style food ordered in the app (up to 24h ahead), picked up from a mobile kitchen; seat delivery in club sections; expedited entry with CLEAR; <b>remote control of the suite TV</b> from the app.</p><p class="star">★ Copy: <b>takeout pre-ordering</b> to relieve the queue.</p></div>
+    <div class="c"><span class="k">Cashierless store · 🇺🇸</span><h3>MetLife Stadium — Giants/Jets <span class="pill mid">Advanced</span></h3><p>Mobile ordering (ASAP) with <b>~30 pickup points</b> across the concourse + <b>Amazon "Just Walk Out" stores</b> (grab and go, computer vision). Outsources the ordering engine and blankets the arena with pickup points.</p><p class="star">★ Copy: a <b>network of pickup points</b> + autonomous store.</p></div>
+    <div class="c"><span class="k">1-tap reorder · 🇺🇸</span><h3>Bucks — Fiserv Forum &nbsp;·&nbsp; MSG <span class="pill mid">Advanced</span></h3><p>Bucks: order from your seat with pickup at the section exit + a 1-tap <b>"Beer Button"</b> (reorder a single item). MSG: <b>mobile memberships</b> + arena benefits in the app. Both YinzCam/proprietary.</p><p class="star">★ Copy: a <b>1-tap reorder button</b> (frictionless upsell).</p></div>
+  </div>
+</div></section>
+
+<!-- 05 -->
+<section><div class="wrap">
+  <div class="movehead"><span class="num">05</span><h2>Asia · Middle East · Oceania</h2></div>
+  <p class="say">The differentiator here is <b>marrying the app to a payment/super-app ecosystem</b> (Rakuten, PayPay) — matchday becomes a node of a national wallet. And the biggest leap in friction reduction: Qatar's <b>Hayya</b> merged fan ID + stadium + <b>free public transport</b> into a single credential.</p>
+  <div class="grid g2">
+    <div class="c"><span class="k">National wallet · 🇯🇵</span><h3>Vissel Kobe — Rakuten <span class="pill mid">Advanced</span></h3><p>A 100% cashless stadium via <b>Rakuten Pay/Edy/Point Card</b> — spending at the match <b>earns points usable across the entire Rakuten ecosystem</b>. <b>AR</b> pilots (point your phone at the pitch and see formation/stats) over 5G.</p><p class="star">★ Copy: <b>arena spend = points in a bigger wallet</b>.</p></div>
+    <div class="c"><span class="k">Payment is the app · 🇯🇵</span><h3>PayPay Dome — Hawks <span class="pill mid">Advanced</span></h3><p><b>PayPay</b> as the default payment method throughout the stadium (renamed "PayPay Dome"); QR ticketing. Future direction: <b>pay-by-face</b> (SoftBank–NEC).</p><p class="star">★ Copy: a <b>naming + default wallet</b> partnership at the arena.</p></div>
+    <div class="c"><span class="k">Zero friction · 🇶🇦</span><h3>Hayya — 2022 World Cup <span class="pill go">Super app*</span></h3><p>A mandatory digital fan ID that <b>fused</b>: country entry permission + stadium access + <b>free public transport (metro/bus/taxi)</b> + indoor navigation + accommodation booking. One credential for everything.</p><p class="star">★ Copy: <b>free transport inside the credential</b> — frictionless matchday.</p></div>
+    <div class="c"><span class="k">Destination concierge · 🇦🇪</span><h3>Yas Island — Etihad Arena <span class="pill mid">Advanced</span></h3><p>A <b>whole-destination</b> app that is also the arena app: buy a ticket, QR activates on arrival, wayfinding, personalized recommendations for all of Yas Island. The arena is one module inside the park planner.</p><p class="star">★ Copy: the arena as a <b>module of a destination app</b>.</p></div>
+    <div class="c"><span class="k">Neighborhood loyalty · 🇸🇬</span><h3>The Kallang — Singapore <span class="pill mid">Advanced</span></h3><p>A <b>district</b> app (2026, Deloitte build): navigation, free Wi-Fi, and <b>"Kallang Kaki"</b> — loyalty with badges for activities, merch drops, and a <b>"a year of events"</b> prize. It even rewards gym/pool use — retention beyond the match.</p><p class="star">★ Copy: loyalty that <b>engages off-matchday</b>.</p></div>
+    <div class="c"><span class="k">Cashierless store · 🇦🇺</span><h3>Marvel Stadium — AFL <span class="pill mid">Advanced</span></h3><p>A real matchday app (maps, Fan Cam, info) + <b>"Amazon Just Walk Out" stores</b> (tap at the entrance, grab, leave). App-exclusive F&amp;B promotions.</p><p class="star">★ Copy: a <b>grab-and-go store</b> to kill the concession line.</p></div>
+  </div>
+  <div class="chips">
+    <span class="chip">🇸🇦 <b>Al-Hilal</b> (Kingdom Arena): digital ticketing + <b>experience-tiered ticketing</b> (golf cart, diamond lounge) — premiumization, not on-site tech.</span>
+  </div>
+</div></section>
+
+<!-- 06 -->
+<section><div class="wrap">
+  <div class="movehead"><span class="num">06</span><h2>Brazil — Seja Arena's turf</h2></div>
+  <p class="say">This is what matters. Two facts change everything: <b>(1)</b> <b>facial biometrics at the turnstile has become a universal standard</b> — the General Sports Law (14.597/2023) made facial recognition <b>mandatory in stadiums with &gt;20,000 seats since Jun/2025</b>. In other words: facial is <b>not</b> a differentiator, everyone has/will have it. <b>(2)</b> Only <b>one</b> Brazilian club has built a real super app: <b>Galo</b>. Everything else is membership + ticketing + facial. And <b>Mané Garrincha today is almost nothing</b> — just facial (UGO Pass). <b>That's exactly the project's gap.</b></p>
+
+  <div class="tblwrap"><table>
+    <thead><tr><th>Club / arena</th><th>App</th><th class="c-c">Level</th><th class="c-c">Facial</th><th>Highlight (what it already does)</th></tr></thead>
+    <tbody>
+      <tr><td><b>Atlético-MG</b> — Arena MRV</td><td>Super App do Galo</td><td class="c-c"><span class="pill go">Super app</span></td><td class="c-c y">✓</td><td>GaloID · F&amp;B pre-ordering · <b>indoor GPS</b> · parking · gamification · interacts with the light show</td></tr>
+      <tr><td><b>Corinthians</b> — Neo Química</td><td>Fiel Torcedor</td><td class="c-c"><span class="pill mid">Advanced</span></td><td class="c-c y">✓</td><td>Strong membership program (season seat, priority) — no rich in-arena app</td></tr>
+      <tr><td><b>Palmeiras</b> — Allianz Parque</td><td>Avanti + cashless</td><td class="c-c"><span class="pill mid">Advanced</span></td><td class="c-c y">✓</td><td><b>Mandatory cashless</b>; the <b>Avanti card is the ticket</b> (tap at the turnstile)</td></tr>
+      <tr><td><b>Flamengo · Fluminense</b> — Maracanã</td><td>access (Bepass)</td><td class="c-c"><span class="pill low">Basic</span></td><td class="c-c y">✓</td><td>Outsourced fan ID (Bepass) covering <b>two clubs in the same stadium</b> — a neutral multi-tenant model</td></tr>
+      <tr><td><b>São Paulo</b> — MorumBIS</td><td>access (Bepass)</td><td class="c-c"><span class="pill low">Basic</span></td><td class="c-c y">✓</td><td>Non-transferable ticket, "your face is the key" (anti-scalping)</td></tr>
+      <tr><td><b>Grêmio · Internacional</b></td><td>access · Mundo Colorado</td><td class="c-c"><span class="pill low">Basic</span></td><td class="c-c y">✓</td><td>Inter ahead with <b>Mundo Colorado</b> (single identity/loyalty)</td></tr>
+      <tr class="tot"><td><b>Arena BRB Mané Garrincha</b></td><td>UGO Pass (facial only)</td><td class="c-c"><span class="pill hot">Open field</span></td><td class="c-c y">✓</td><td>Facial only + third-party ticketing (Eventim). <b>No experience layer at all.</b> ← THE TARGET</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="grid g2" style="margin-top:20px">
+    <div class="c"><span class="k">The gold standard · 🇧🇷</span><h3>Super App do Galo <span class="pill go">Super app</span></h3><p>The only complete super app in Brazilian football (April/2023, with Arena MRV; built with Accenture support — see internal dossier). <b>GaloID</b> in a single login: ticketing, <b>order food before arriving</b>, parking, <b>indoor GPS navigation</b> (seat→concession→first-aid), time to leave the parking lot, streaming, gamification, and <b>interaction with the light show</b>.</p><p class="star">★ +700k downloads · ~180k MAU · it's <b>exactly the playbook</b> Seja Arena sells — only for the arena to own.</p></div>
+    <div class="c"><span class="k">The opportunity · 🇧🇷</span><h3>Mané Garrincha <span class="pill hot">Open field</span></h3><p>Today: <b>almost no app</b> — just facial access (UGO Pass) and ticketing via Eventim/FanTicket. The stadium already has the <b>identity layer</b> (facial), but <b>zero experience layer</b> — the exact space Galo fills. Being a <b>public, multi-use</b> arena (multiple clubs + shows), the ideal model is a <b>NEUTRAL arena super app</b> (Maracanã/Bepass multi-tenant style) + a Galo-style experience layer.</p><p class="star">★ The arena owns the IP and <b>resells</b> it to other arenas.</p></div>
+  </div>
+
+  <div class="call mandate">
+    <p class="tag">⚖️ The tailwind — the law</p>
+    <p>The <b>General Sports Law (14.597/2023)</b> made <b>facial recognition mandatory</b> in stadiums above 20,000 seats (in force since Jun/2025). Already using facial: Corinthians, Palmeiras, Flamengo/Fluminense, São Paulo, Atlético-MG, Grêmio, Internacional, Santos, Vasco, Botafogo, and others (~20 stadiums). Reported impact: <b>+4% attendance, +32% women, +26% children</b>. The digital door <b>is already open</b> — the fight is over who keeps what comes through it.</p>
+  </div>
+
+  <div class="chips">
+    <span class="chip">🌎 <b>LatAm:</b> River Plate (Monumental) uses <b>facial</b> at entry; the highlight is the tour. Azteca (Mexico) — 2026 World Cup ticketing will run through the <b>FIFA app</b>, not a stadium super app. Both are even more "basic" than Galo.</span>
+  </div>
+</div></section>
+
+<!-- 07 -->
+<section><div class="wrap">
+  <div class="movehead"><span class="num">07</span><h2>Who builds it — integrate vs. rebuild</h2></div>
+  <p class="say">Nobody builds all 10 families from scratch. The market already has an off-the-shelf vendor for each "rail" — the play is to <b>integrate the commodity</b> and <b>build only the layer that makes money and belongs to the arena</b>. Pieces by function:</p>
+  <div class="chips">
+    <span class="chip">Facial / Fan ID: <b>Bepass</b> (Fla, Flu, SPFC) · <b>UGO Pass</b> (Mané Garrincha) · Imply · Wicket (US)</span>
+    <span class="chip">Ticketing: <b>FutebolCard</b> · <b>Eventim</b> · Ingresse · Ticketmaster</span>
+    <span class="chip">Cashless / POS: <b>Zig</b> · GSH Live · Tappit · VenueNext/Shift4</span>
+    <span class="chip">White-label app: <b>YinzCam</b> · Venuetize · FanMaker · Zapt</span>
+    <span class="chip">Content (AI highlights): <b>WSC Sports</b></span>
+    <span class="chip">Indoor navigation: <b>Zapt</b> · Situm</span>
+    <span class="chip">Fan token / identity: <b>Socios / Chiliz</b></span>
+    <span class="chip">Membership / CRM: End to End (F2F) · OneFan · Code&amp;Go</span>
+  </div>
+  <div class="call internal">
+    <p class="tag">⚠️ Internal — where our gap is</p>
+    <p>The white-label builders (YinzCam, Venuetize, FanMaker, and in Brazil Sportheca/OneFan, Stations, Fanbase) are all <b>CLUB-centric</b> (membership/content). <b>None</b> deliver what Seja wants: an <b>ARENA-centric</b> platform — Wi-Fi/captive portal + seat-based F&amp;B + ad inventory — that the <b>arena owns and resells as IP</b>. We integrate the facial/ticketing/cashless (off the shelf) and build the ownable layer. Plan and money details in the <a href="https://raw-ai.vercel.app/seja-arena-interno.html">internal dossier</a>.</p>
+  </div>
+</div></section>
+
+<!-- 08 -->
+<section style="border-bottom:0"><div class="wrap">
+  <div class="movehead"><span class="num">08</span><h2>The read — what to copy and the 3 ambition levels</h2></div>
+  <p class="say">After looking at 40+ apps, the patterns that recur (and are worth stealing) and the ambition ruler to position the Mané Garrincha build.</p>
+
+  <div class="grid g3">
+    <div class="c"><span class="k">Level 1</span><h3>🎫 Basic</h3><p>Digital ticket + <b>facial</b> at the turnstile. It's the floor — in Brazil it's <b>mandatory by law</b>. It's where most Brazilian clubs (and Mané Garrincha today) stop.</p></div>
+    <div class="c"><span class="k">Level 2</span><h3>⚙️ Advanced</h3><p>Adds <b>mobile F&amp;B ordering + navigation + content/second screen + cashless</b>. Most of the world's big apps live here.</p></div>
+    <div class="c"><span class="k">Level 3</span><h3>🚀 Full super app</h3><p>Everything above <b>+ wallet/CRM + loyalty/gamification + single ID</b> in one identity. Intuit Dome, Levi's, Tottenham, Bernabéu — and <b>Galo</b>. It's Seja's target.</p></div>
+  </div>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="c"><span class="k">The champion "copyables"</span><h3>★ What recurs most and works</h3><p><b>A biometric ID that also pays</b> (pay-by-face, Intuit/Galo) · <b>cashierless stores</b> (Amazon Just Walk Out) · <b>seat ordering + 1-tap reorder</b> (Bucks Beer Button) · <b>single basket</b> (Atlético/PSG) · <b>indoor navigation</b> (Galo/Levi's/Tottenham) · <b>free transport in the credential</b> (Hayya) · <b>cheap emotional engagement</b> (crowd light show) · <b>credit for completing a profile</b> (signup lure) · <b>points + predictions</b> (Man City).</p></div>
+    <div class="c"><span class="k">The size of the job, for Seja</span><h3>📐 From anatomy to build</h3><p>The <b>MVP</b> = the <b>medium ownable</b> modules (wallet, loyalty, F&amp;B, ads, CRM) on top of the <b>integrated rails</b> (facial/ticketing/cashless already done). The <b>full super app</b> = the 10 families from §01. None of it is day 1 — it's sliced into waves, each one paying for itself.</p><p class="star">★ The <b>features</b> are here; the <b>plan and the money</b> are in the <a href="https://raw-ai.vercel.app/seja-arena-interno.html">internal dossier</a>.</p></div>
+  </div>
+
+  <div class="call win">
+    <p class="tag">✅ The line for the meeting</p>
+    <p>"This <b>isn't a new idea</b> — Galo already did it in Brazil, Intuit Dome and Bernabéu already did it abroad, and the law <b>already pushes</b> every stadium toward digital. The difference is that nobody has built an <b>arena-centric</b> platform that the arena <b>owns and resells</b>. That's what Seja Arena delivers — and Mané Garrincha, with only facial today, is the perfect <b>open field</b> to start."</p>
+  </div>
+</div></section>
+
+<footer>
+  <b>Seja Arena — Stadium Super Apps · Global Scan.</b> A behind-the-scenes document from Raw Business Solution — <b>confidential, internal use</b>. It complements the <a href="https://raw-ai.vercel.app/seja-arena-interno.html">internal plan &amp; market scenario</a> (the money and the phasing) and the <a href="https://apresentacoes.zystudio-contabo.duckdns.org/seja-arena/">presentation</a>.<br>
+  Feature survey from public sources (official club/arena sites + specialized press 2023–2026), compiled on 09/14/2026. Features are listed only when confirmed by a source; unconfirmed items are marked as partial (~). Download/usage metrics are rarely public and were omitted when not verifiable. Version 1.0 · 09/14/2026.
+</footer>
+</div>
+
 </div><!-- /#site -->
 
 <script>
@@ -371,8 +569,8 @@
     }
     function palette(){
       return isDark()
-        ? { bg:'#0c1016', node:'238, 242, 247', accent:'47, 191, 134' }
-        : { bg:'#f4f6f9', node:'20, 27, 38',    accent:'18, 146, 95'  };
+        ? { bg:'#0c1016', node:'238, 242, 247', accent:'245, 185, 66' }
+        : { bg:'#f4f6f9', node:'20, 27, 38',    accent:'201, 138, 16'  };
     }
     function initNodes(){
       nodes = [];
@@ -493,7 +691,7 @@
 
 <script>
   (function(){
-    var HASH="6cf29e6706db1867f304673c8f12e483d96639d2d298c56d725a0eac6fd98b4c";
+    var HASH="5f24e57b85565b92afb1ab59ba4b7632a559a83f53a098682c65b8c8e35f305a";
     var gate=document.getElementById('gate'), site=document.getElementById('site');
     function reveal(){ if(gate) gate.remove(); site.hidden=false; }
     try{ if(sessionStorage.getItem('seja_superapps_unlocked')==='1'){ reveal(); return; } }catch(e){}
@@ -511,3 +709,5 @@
     document.getElementById('gatePw').focus();
   })();
 </script>
+
+<script src="/seja-nav.js"></script>

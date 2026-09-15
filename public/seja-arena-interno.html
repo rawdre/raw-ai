@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-deflang="pt" data-theme="dark">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark light">
@@ -7,7 +7,7 @@
 <style>
   :root{
     --bg:#0c1016; --bg2:#0f141d; --card:#141c28; --card2:#19222f; --ink:#eef2f7; --muted:#93a2b6; --line:#26313f;
-    --acc:#2fbf86; --acc2:#57e0a6; --acc-soft:#2fbf861f;
+    --acc:#f5b942; --acc2:#ffcf6b; --acc-soft:#f5b9421f;
     --amber:#e6a63a; --amber-soft:#e6a63a1f; --coral:#e5654b; --coral-soft:#e5654b1f; --blue:#5b9cf6;
     --radius:15px;
     --sans:"Segoe UI Variable Display","Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
@@ -15,12 +15,12 @@
   }
   :root[data-theme="light"]{
     --bg:#f4f6f9; --bg2:#eceff4; --card:#ffffff; --card2:#f5f7fb; --ink:#141b26; --muted:#54637a; --line:#dde3ec;
-    --acc:#12925f; --acc2:#0f7d51; --acc-soft:#12925f14; --amber:#b07d10; --amber-soft:#b07d1014; --coral:#c8442c; --coral-soft:#c8442c14;
+    --acc:#c98a10; --acc2:#e0a52a; --acc-soft:#c98a1014; --amber:#b07d10; --amber-soft:#b07d1014; --coral:#c8442c; --coral-soft:#c8442c14;
   }
   @media (prefers-color-scheme:light){
     :root:not([data-theme="dark"]){
       --bg:#f4f6f9; --bg2:#eceff4; --card:#ffffff; --card2:#f5f7fb; --ink:#141b26; --muted:#54637a; --line:#dde3ec;
-      --acc:#12925f; --acc2:#0f7d51; --acc-soft:#12925f14; --amber:#b07d10; --amber-soft:#b07d1014; --coral:#c8442c; --coral-soft:#c8442c14;
+      --acc:#c98a10; --acc2:#e0a52a; --acc-soft:#c98a1014; --amber:#b07d10; --amber-soft:#b07d1014; --coral:#c8442c; --coral-soft:#c8442c14;
     }
   }
   *{box-sizing:border-box}
@@ -34,7 +34,7 @@
   .bar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 84%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   .bar .in{max-width:940px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:11px clamp(16px,4vw,36px)}
   .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:14px}
-  .brand .dot{width:24px;height:24px;border-radius:7px;background:linear-gradient(135deg,var(--acc),var(--acc2));display:grid;place-items:center;color:#04140d;font-weight:900;font-family:var(--mono);font-size:13px}
+  .brand .dot{width:24px;height:24px;border-radius:7px;background:linear-gradient(135deg,var(--acc),var(--acc2));display:grid;place-items:center;color:#1a1200;font-weight:900;font-family:var(--mono);font-size:13px}
   .conf{margin-left:auto;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);border:1px solid color-mix(in srgb,var(--amber) 40%,transparent);background:var(--amber-soft);padding:4px 10px;border-radius:999px}
 
   .hero{border-bottom:1px solid var(--line);background:
@@ -50,15 +50,15 @@
   .movehead{display:flex;align-items:baseline;gap:14px;margin:0 0 6px}
   .num{font-family:var(--mono);font-weight:800;font-size:13px;color:var(--acc);background:var(--acc-soft);border:1px solid color-mix(in srgb,var(--acc) 30%,transparent);border-radius:8px;padding:4px 9px;flex-shrink:0}
   h2{font-size:clamp(21px,3vw,31px);margin:0;font-weight:800;max-width:24ch}
-  .say{font-size:15px;color:var(--muted);max-width:70ch;margin:12px 0 0}
+  .say{font-size:16px;color:var(--muted);max-width:70ch;margin:12px 0 0}
   .say b{color:var(--ink)}
   .say.tight{margin-top:8px}
 
   .tblwrap{overflow-x:auto;margin-top:20px;border:1px solid var(--line);border-radius:13px}
   .chartscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-  table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:560px}
+  table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:560px}
   th,td{text-align:left;padding:11px 15px;border-bottom:1px solid var(--line);vertical-align:top}
-  th{background:var(--card2);font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  th{background:var(--card2);font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:700}
   tr:last-child td{border-bottom:0}
   td.num-c,th.num-c{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
   tr.tot td{background:var(--acc-soft);font-weight:800}
@@ -73,7 +73,7 @@
   @media (max-width:720px){.g2,.g3{grid-template-columns:1fr}}
   .c{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;min-width:0}
   .c h3{font-size:15px;margin:0 0 6px;display:flex;align-items:center;gap:8px}
-  .c p{margin:0;font-size:13px;color:var(--muted)}
+  .c p{margin:0;font-size:14px;color:var(--muted)}
   .c .k{font-family:var(--mono);font-size:11px;color:var(--acc);letter-spacing:.04em;text-transform:uppercase;display:block;margin-bottom:7px}
 
   .call{border-radius:14px;padding:18px 20px;margin-top:20px;border:1px solid var(--line);background:var(--card2)}
@@ -84,7 +84,7 @@
   .call p{margin:0;font-size:13.5px;color:var(--ink)} .call p+p{margin-top:8px} .call p.sub{color:var(--muted)}
 
   .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-  .chip{font-size:12px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;color:var(--muted)}
+  .chip{font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 13px;color:var(--muted)}
   .chip b{color:var(--ink)}
 
   .script{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:12px;padding:16px 18px;margin-top:14px;font-size:14px}
@@ -94,7 +94,7 @@
 
   .flow{display:grid;gap:10px;margin-top:18px}
   .frow{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
-  .frow .n{font-family:var(--mono);font-weight:800;color:#04140d;background:linear-gradient(135deg,var(--acc),var(--acc2));width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-size:12px;flex-shrink:0;margin-top:1px}
+  .frow .n{font-family:var(--mono);font-weight:800;color:#1a1200;background:linear-gradient(135deg,var(--acc),var(--acc2));width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-size:12px;flex-shrink:0;margin-top:1px}
   .frow b{font-size:14.5px} .frow p{margin:3px 0 0;font-size:13px;color:var(--muted)}
 
   .money{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
@@ -113,12 +113,12 @@
   #gate{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px;background:radial-gradient(60% 80% at 82% -8%, var(--acc-soft), transparent 60%),linear-gradient(180deg,color-mix(in srgb,var(--bg2) 78%,transparent),color-mix(in srgb,var(--bg) 78%,transparent));backdrop-filter:blur(3px)}
   .gatecard{width:100%;max-width:380px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px 28px;text-align:center;display:flex;flex-direction:column;gap:14px;box-shadow:0 30px 80px -40px #000}
   .glogo{display:flex;align-items:center;justify-content:center;gap:9px;font-weight:800;font-size:14px}
-  .glogo .dot{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--acc),var(--acc2));display:grid;place-items:center;color:#04140d;font-weight:900;font-family:var(--mono);font-size:13px}
+  .glogo .dot{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--acc),var(--acc2));display:grid;place-items:center;color:#1a1200;font-weight:900;font-family:var(--mono);font-size:13px}
   .gh{margin:2px 0 0;font-size:19px}
   .gp{margin:0;color:var(--muted);font-size:13px}
   #gatePw{width:100%;padding:13px 15px;border-radius:11px;border:1px solid var(--line);background:var(--bg2);color:var(--ink);font:inherit;font-size:15px;text-align:center}
   #gatePw:focus{outline:2px solid var(--acc);outline-offset:1px;border-color:var(--acc)}
-  .gatecard button{width:100%;padding:13px;border:0;border-radius:11px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#04140d;font:inherit;font-weight:800;font-size:15px;cursor:pointer}
+  .gatecard button{width:100%;padding:13px;border:0;border-radius:11px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#1a1200;font:inherit;font-weight:800;font-size:15px;cursor:pointer}
   .gerr{color:var(--coral);font-size:13px;margin:0}
 
   /* ===== Mobile readability (phones) ===== */
@@ -137,7 +137,7 @@
     .say{font-size:14.5px}
     /* Tables: keep them scrollable but tighter, and hint that they scroll sideways */
     .tblwrap{margin-top:16px;-webkit-overflow-scrolling:touch}
-    table{font-size:13px;min-width:460px}
+    table{font-size:14px;min-width:460px}
     th,td{padding:9px 11px}
     th{font-size:10px}
     .grid{gap:11px;margin-top:16px}
@@ -180,6 +180,7 @@
   <span class="conf">Confidencial · uso interno</span>
 </div></div>
 
+<div data-lang="pt">
 <div class="hero"><div class="wrap in">
   <span class="eyebrow">Dossiê de estratégia · Raw Business Solution</span>
   <h1>O cenário, a jogada e o dinheiro — em uma página.</h1>
@@ -373,9 +374,209 @@
 </div></section>
 
 <footer>
-  <b>Seja Arena — Plano Interno &amp; Cenário de Mercado.</b> Documento de bastidor da Raw Business Solution — <b>confidencial, não mostrar ao cliente</b>. A apresentação de venda é a página separada <a href="https://raw-ai.vercel.app/seja-arena.html">raw-ai.vercel.app/seja-arena.html</a>.<br>
+  <b>Seja Arena — Plano Interno &amp; Cenário de Mercado.</b> Documento de bastidor da Raw Business Solution — <b>confidencial, não mostrar ao cliente</b>. A apresentação em uso é <a href="https://apresentacoes.zystudio-contabo.duckdns.org/seja-arena/">apresentacoes.zystudio-contabo.duckdns.org/seja-arena</a> (o deck antigo em raw-ai está no menu).<br>
   Valores são estimativas de trabalho (câmbio ref. US$1 = R$5,1); custo/margem de entrega são ordens de grandeza a confirmar no Discovery. Dados de mercado com fontes públicas (PDAD/lei/imprensa) coletados em 09/2025 &mdash; ver memória do projeto. Fluxo de caixa &amp; calendário (§06) são estimativas de trabalho; volume de eventos é cenário ilustrativo. Versão 2.3 · 13/09/2026 (+ fundo constelação interativo; layout responsivo para mobile).
 </footer>
+</div>
+<div data-lang="en" hidden>
+<div class="hero"><div class="wrap in">
+  <span class="eyebrow">Strategy dossier · Raw Business Solution</span>
+  <h1>The landscape, the play and the money — on one page.</h1>
+  <p class="lede">This is the behind-the-scenes document: the map of the stadium super-app market in Brazil, where Seja Arena fits in, <b>how to ask for the money to start</b> and <b>how that money is used in the first 90 days</b>. Read top to bottom — it follows the order of the play. <b>Not for showing to the client</b> (the sales presentation is the other page).</p>
+</div></div>
+
+<!-- 01 -->
+<section><div class="wrap">
+  <div class="movehead"><span class="num">01</span><h2>The landscape: what already exists in Brazil</h2></div>
+  <p class="say">A stadium super app is neither a new idea nor empty ground. Some clubs are already running one, a law is <b>pushing every large stadium toward digital</b>, and vendors already exist for each piece. Understanding this is what makes you sound like an expert in the meeting.</p>
+
+  <div class="tblwrap"><table>
+    <thead><tr><th>Club / arena</th><th>App</th><th>Level</th><th>Who built it</th></tr></thead>
+    <tbody>
+      <tr><td><b>Atlético-MG</b> — Arena MRV</td><td>Super App do Galo</td><td><span class="pill go">Real super app</span></td><td>Accenture</td></tr>
+      <tr><td><b>Athletico-PR</b> — Ligga Arena</td><td>Super App Furacão</td><td><span class="pill go">Real super app</span></td><td>In-house (from scratch)</td></tr>
+      <tr><td><b>Flamengo</b></td><td>Fla-APP</td><td><span class="pill mid">Super-app scope</span></td><td>not confirmed</td></tr>
+      <tr><td><b>Vasco</b></td><td>Vasco APP</td><td><span class="pill mid">Super-app scope</span></td><td>Fanbase / MWM</td></tr>
+      <tr><td><b>Cruzeiro</b></td><td>Nação Azul</td><td><span class="pill mid">Super-app scope</span></td><td>Cogny / Salesforce</td></tr>
+      <tr><td><b>Palmeiras · Corinthians · Grêmio · Botafogo · Fortaleza · Bahia</b></td><td>official apps</td><td><span class="pill low">Membership / content</span></td><td>various</td></tr>
+      <tr><td><b>São Paulo · Fluminense · Internacional</b></td><td>official apps</td><td><span class="pill low">Basic</span></td><td>various</td></tr>
+    </tbody>
+  </table></div>
+  <p class="say tight">Gold reference: the <b>Super App do Galo</b> (Accenture, at Arena MRV) — tickets, pre-ordered F&amp;B, parking, indoor GPS navigation, streaming, gamification and 100% facial access in a single login. It's exactly the playbook Seja Arena sells, only for the arena to own it.</p>
+
+  <div class="call mandate">
+    <p class="tag">⚖️ The tailwind — the law</p>
+    <p>The <b>Lei Geral do Esporte (14.597/2023)</b> made <b>facial recognition mandatory</b> in stadiums with over 20,000 seats, in force since mid-2025. In other words: every large stadium is <b>required</b> to digitize the turnstile, and the fan <b>already</b> registers and enters via phone. The ANPD is enforcing it (LGPD). The digital door is already open — the fight is over who keeps what comes after it.</p>
+  </div>
+
+  <p class="say" style="margin-top:22px"><b>The vendor ecosystem</b> (pieces we integrate, not rebuild):</p>
+  <div class="chips">
+    <span class="chip">Facial: <b>Bepass</b> (~70% of Série A) · Imply</span>
+    <span class="chip">Ticketing: <b>FutebolCard</b> · Imply · Ingresse</span>
+    <span class="chip">Cashless/POS: <b>Zig</b> · netPDV</span>
+    <span class="chip">Fan token: <b>Socios/Chiliz</b></span>
+    <span class="chip">Membership CRM: OneFan · Code&amp;Go · Vindi</span>
+  </div>
+
+  <div class="call internal">
+    <p class="tag">⚠️ Internal — the competitor that already exists</p>
+    <p><b>White-label super-app builders</b> already exist in Brazil: <b>Sportheca/OneFan, Stations, Fanbase</b> (together, ~30% of Série A/B). You are <b>not</b> selling into a vacuum. But they are all <b>CLUB-centric</b> (membership/content). None deliver what Seja wants: an <b>ARENA-centric</b> platform — Wi-Fi/captive portal + F&amp;B by seat + ad inventory — that the <b>arena owns and resells as IP</b>. That's our opening.</p>
+  </div>
+</div></section>
+
+<!-- 02 -->
+<section><div class="wrap">
+  <div class="movehead"><span class="num">02</span><h2>Our position: integrate, don't rebuild</h2></div>
+  <p class="say">The reading that lowers cost, timeline and risk: Seja Arena is an <b>integration + engagement + wallet/CRM layer</b> on top of the already-mandatory rails (facial, ticketing, cashless). We <b>build</b> the part that makes money and is ownable; we <b>integrate</b> the rest.</p>
+  <div class="grid g2">
+    <div class="c"><span class="k">What we build (the value)</span><h3>🏗️ The ownable layer</h3><p>Super app with the arena's brand, ad inventory, marketplace, membership/loyalty program, "second screen" engagement and CRM/CDP — the data and the revenue stay with the arena.</p></div>
+    <div class="c"><span class="k">What we integrate (the commodity)</span><h3>🔌 The ready-made rails</h3><p>Facial (Bepass/Imply), ticketing (FutebolCard/Imply), cashless/POS (Zig). They already exist, are mandatory or consolidated — rebuilding would burn money and time.</p></div>
+    <div class="c"><span class="k">Our advantage</span><h3>★ Why us</h3><p>Focus on the ARENA (not the club) + the engagement edge "the phone becomes part of the game" + LGPD/biometrics leadership + the arena owns the IP and resells it to other arenas.</p></div>
+    <div class="c"><span class="k">The hard part, solved</span><h3>🛡️ LGPD as a strength</h3><p>Biometrics is sensitive data and the ANPD is watching. Governance (consent, DPIA, an alternative to facial, DPO) built in from day one becomes a trust argument, not a risk.</p></div>
+  </div>
+</div></section>
+
+<!-- 03 -->
+<section><div class="wrap">
+  <div class="movehead"><span class="num">03</span><h2>How to ask for the money to start</h2></div>
+  <p class="say">The key: you <b>don't</b> ask them to fund a multi-million build in the dark. You <b>sell Phase 0</b> — a fixed-scope Discovery &amp; Blueprint that, in 90 days, delivers a clickable prototype and a fixed price for the MVP. It's small, safe and concrete — and it solves their urgency (Phase 0 is precisely the paid time to design it right).</p>
+
+  <div class="grid g3">
+    <div class="c"><span class="k">The ask</span><h3>R$430–670k</h3><p>Phase 0 — Discovery &amp; Blueprint, fixed scope, 90 days.</p></div>
+    <div class="c"><span class="k">How to charge</span><h3>40–50% deposit</h3><p>On signing, to start immediately. The rest by milestones. Never more than one payment ahead of delivery.</p></div>
+    <div class="c"><span class="k">The gate (protection)</span><h3>Proof before the build</h3><p>Before committing resources: signed authorization from <b>Arena BSB</b> + proof of funds.</p></div>
+  </div>
+
+  <div class="script">
+    <p class="who">▸ Script for the meeting (what to say)</p>
+    <p><q>I'm not asking you to fund a multi-million project in the dark. The first step is a <b>fixed-scope Phase 0</b>: in 90 days you'll have in your hands a clickable prototype of Seja Arena and a <b>fixed price</b> for the MVP. You make the biggest decision with data, not on hope.</q></p>
+    <p><q>Phase 0 is R$430 to R$670k, with a <b>40% deposit on signing</b> so we put the 90 days into motion immediately. And each subsequent phase only starts after the previous one pays for itself — you never sign a giant blank check.</q></p>
+    <p><q>To start without rework, I need to align two things with you: the <b>Arena BSB authorization</b> (holder of the concession) and the <b>budget confirmation</b>. With that locked, we start right away.</q></p>
+  </div>
+  <div class="call internal">
+    <p class="tag">⚠️ Internal — why the gate matters</p>
+    <p>Seja Telecom is a small EPP (R$300k capital), with no track record and <b>no confirmed rights over the arena</b> (the concession belongs to Arena BSB; connectivity is V.tal; ticketing is Eventim). Asking for the authorization + proof of funds isn't distrust — it's what protects you from working for free on a project that may not exist. <b>Deposit in the account before any delivery.</b></p>
+  </div>
+</div></section>
+
+<!-- 04 -->
+<section><div class="wrap">
+  <div class="movehead"><span class="num">04</span><h2>How the money is used at the start</h2></div>
+  <p class="say">Where the R$430–670k of Phase 0 goes — and what each workstream delivers in 90 days. This is the table you show the client to justify the price.</p>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Workstream</th><th>What it delivers in 90 days</th><th class="num-c">Investment (BRL)</th></tr></thead>
+    <tbody>
+      <tr><td>Discovery &amp; architecture</td><td>Multi-tenant architecture, data model, seat/QR model, load plan</td><td class="num-c">R$90–130k</td></tr>
+      <tr><td>UX/UI + prototype</td><td>Clickable, branded demo of the entire fan journey</td><td class="num-c">R$70–110k</td></tr>
+      <tr><td>Integrations blueprint</td><td>Payments (Pix/card), POS, Wi-Fi portal, ticketing, facial access</td><td class="num-c">R$60–100k</td></tr>
+      <tr><td>Privacy &amp; compliance</td><td>LGPD framework, consent, tax plan (NFC-e)</td><td class="num-c">R$40–70k</td></tr>
+      <tr><td>MVP technical foundations</td><td>Cloud, CI/CD, core services, skeleton of the 1st module</td><td class="num-c">R$130–200k</td></tr>
+      <tr><td>Management &amp; governance</td><td>Weekly cadence, roadmap, fixed MVP budget</td><td class="num-c">R$40–60k</td></tr>
+      <tr class="tot"><td>Total — 90 days</td><td>Working prototype + buildable fixed-price plan</td><td class="num-c">R$430–670k</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call internal">
+    <p class="tag">⚠️ Internal — the math that stays with you (don't show the client)</p>
+    <p>You <b>don't pay out of pocket</b> for the build. All you need to <em>start</em> is the ability to deliver Phase 0 — and the deposit already covers that:</p>
+  </div>
+  <div class="money">
+    <div class="m"><p class="lbl">Your delivery cost — Phase 0</p><div class="val neutral">R$150–250k</div><small>Lean team: architect + UX + PM + part-time dev × 90 days (estimate).</small></div>
+    <div class="m"><p class="lbl">Deposit on signing (40–50%)</p><div class="val">R$170–335k</div><small>On its own, it already covers (or nearly) the delivery cost. You're in the black from day 1.</small></div>
+    <div class="m"><p class="lbl">Phase 0 margin</p><div class="val">R$180–420k</div><small>Funds the business and your time — even before the build starts.</small></div>
+  </div>
+  <p class="say tight"><b>To get to the meeting</b>, the spend is near zero: the presentation, the video and the concept prototype already exist. A more polished clickable teaser is optional (~R$10–20k with a designer, or do it yourself). <b>The capital for the multi-million build always comes from the client, phase by phase</b> — MVP R$1,0–1,9M (6–8 months), full platform R$4,5–10,4M (14–20 months), each stage funded by the previous one.</p>
+</div></section>
+
+<!-- 05 -->
+<section><div class="wrap">
+  <div class="movehead"><span class="num">05</span><h2>Next steps — the sequence</h2></div>
+  <div class="flow">
+    <div class="frow"><span class="n">1</span><div><b>Schedule the working meeting</b><p>It's the CTA of the sales page. Walk into the room with the arena and the integrations in mind.</p></div></div>
+    <div class="frow"><span class="n">2</span><div><b>Align arena + budget (the gate)</b><p>Diplomatically: Arena BSB authorization + budget confirmation, "so we put the 90 days into motion without rework".</p></div></div>
+    <div class="frow"><span class="n">3</span><div><b>Sell Phase 0 with a deposit on signing</b><p>Fixed scope, 40–50% deposit. This gives you a safe entry and converts their urgency into paid runway.</p></div></div>
+    <div class="frow"><span class="n">4</span><div><b>Align the integration partners</b><p>Conversations with Bepass, FutebolCard/Imply and Zig — so the MVP budget is credible and cheap, and "integrate instead of rebuild" is real.</p></div></div>
+    <div class="frow"><span class="n">5</span><div><b>Assemble the lean Phase 0 team</b><p>Define who joins on day 1 (architect, UX, PM, part-time dev) to start as soon as the deposit lands.</p></div></div>
+  </div>
+  <div class="grid g2" style="margin-top:18px">
+    <div class="c"><span class="k">Contract — protect yourself</span><h3>📄 Terms</h3><p>Deposit upfront · milestone-based billing · assignment of the bespoke layer on payment · <b>license</b> of the reusable framework (exclusivity at a premium) · escrow + portability.</p></div>
+    <div class="c"><span class="k">Your urgency, solved</span><h3>⏱️ Time</h3><p>Don't design the whole platform under pressure. <b>Sell the Discovery</b> — Phase 0 exists precisely to use 90 <em>paid</em> days designing it right and locking the MVP price.</p></div>
+  </div>
+</div></section>
+
+<!-- 06 -->
+<section style="border-bottom:0"><div class="wrap">
+  <div class="movehead"><span class="num">06</span><h2>The calendar and the cash flow — next 18 months</h2></div>
+  <p class="say">The approval play: <b>slice it into waves</b>, each one <b>the size of the first or lighter</b>, each one shipping something live and <b>paying for itself</b>. No one approves a multi-million check all at once — but they approve a <b>sequence of small decisions</b>, each one proven by the previous. After go-live, the app becomes <b>recurring revenue</b>: monthly maintenance + a new store for every event. And you can always <b>bolt the next projects on top</b>, without re-proposing everything.</p>
+
+  <div class="chips">
+    <span class="chip"><b>Month 1–3</b> · Phase 0</span>
+    <span class="chip"><b>Month 4–7</b> · MVP core</span>
+    <span class="chip"><b>Month 8–12</b> · Full app + go-live</span>
+    <span class="chip"><b>Month 13–18+</b> · Recurring operation</span>
+  </div>
+
+  <div class="tblwrap"><table>
+    <thead><tr><th>Wave</th><th>Period</th><th>What goes live</th><th class="num-c">Investment</th><th class="num-c">Cumulative</th></tr></thead>
+    <tbody>
+      <tr><td><b>Wave 1</b> — Phase 0 · Discovery &amp; Blueprint</td><td>Month 1–3</td><td>Clickable prototype + fixed MVP price</td><td class="num-c">R$670k</td><td class="num-c">R$670k</td></tr>
+      <tr><td><b>Wave 2</b> — MVP · core &nbsp;<span class="pill go">lighter</span></td><td>Month 4–7</td><td>Wi-Fi portal + ticketing + wallet + 1st revenue module, in pilot</td><td class="num-c">R$500k</td><td class="num-c">R$1,17M</td></tr>
+      <tr><td><b>Wave 3</b> — MVP · full app + go-live</td><td>Month 8–12</td><td>Marketplace, ad inventory, loyalty/CRM — super app published</td><td class="num-c">R$600k</td><td class="num-c">R$1,77M</td></tr>
+      <tr><td><b>Recurring</b> — operation</td><td>Month 13–18+</td><td>Monthly maintenance + store per event (detail below)</td><td class="num-c">R$45k/month<br>+ R$12k/event</td><td class="num-c">—</td></tr>
+    </tbody>
+  </table></div>
+  <p class="say tight">Notice the format: <b>no single wave is bigger than the first</b> (R$670k → R$500k → R$600k). <b>Wave 2 is deliberately the lightest</b> — the second decision sounds <em>smaller</em> than the first, so the bill goes through. Each wave only starts once the previous one has delivered and paid for itself.</p>
+
+  <p class="say" style="margin-top:22px"><b>After go-live — the revenue that doesn't stop:</b></p>
+  <div class="money">
+    <div class="m"><p class="lbl">Monthly maintenance</p><div class="val">R$45k/month</div><small>Monitoring, hosting, updates, support and SLA. Annualizes to <b>R$540k/year</b> — starts at go-live.</small></div>
+    <div class="m"><p class="lbl">Store per event</p><div class="val">R$12k/event</div><small>Each match or show gets its own <b>store + merch catalog</b> in the app. Revenue scales with the arena's calendar.</small></div>
+    <div class="m"><p class="lbl">Annualized recurring (year 2)</p><div class="val neutral">~R$1,1M/year</div><small>R$540k of maintenance + events (illustrative scenario ~48/year × R$12k = R$576k). Grows with the calendar.</small></div>
+  </div>
+
+  <p class="say" style="margin-top:24px"><b>A view in charts — how the cash behaves:</b></p>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="c">
+      <span class="k">Cash-in per month</span>
+      <h3 style="margin-bottom:2px">💵 The rhythm of the 18 months</h3>
+      <p style="margin:0 0 10px">Heavy build up front, steady recurring at the end — the green tail is the revenue that doesn't stop.</p>
+      <div class="chartscroll"><svg viewBox="0 0 780 252" width="100%" style="display:block;height:auto;font-family:var(--mono)" role="img" aria-label="Cash-in per month, 18 months"><line x1="46" y1="214.0" x2="770" y2="214.0" style="stroke:var(--line)" stroke-width="1"/><text x="40" y="217.0" text-anchor="end" style="fill:var(--muted)" font-size="9.5">0</text><line x1="46" y1="174.0" x2="770" y2="174.0" style="stroke:var(--line)" stroke-width="1"/><text x="40" y="177.0" text-anchor="end" style="fill:var(--muted)" font-size="9.5">50</text><line x1="46" y1="134.0" x2="770" y2="134.0" style="stroke:var(--line)" stroke-width="1"/><text x="40" y="137.0" text-anchor="end" style="fill:var(--muted)" font-size="9.5">100</text><line x1="46" y1="94.0" x2="770" y2="94.0" style="stroke:var(--line)" stroke-width="1"/><text x="40" y="97.0" text-anchor="end" style="fill:var(--muted)" font-size="9.5">150</text><line x1="46" y1="54.0" x2="770" y2="54.0" style="stroke:var(--line)" stroke-width="1"/><text x="40" y="57.0" text-anchor="end" style="fill:var(--muted)" font-size="9.5">200</text><line x1="46" y1="14.0" x2="770" y2="14.0" style="stroke:var(--line)" stroke-width="1"/><text x="40" y="17.0" text-anchor="end" style="fill:var(--muted)" font-size="9.5">250</text><text x="40" y="12" text-anchor="end" style="fill:var(--muted)" font-size="8.5">R$ k</text><rect x="54.1" y="35.3" width="24" height="178.7" rx="4" style="fill:var(--amber)"><title>Month 1 - Wave 1 - R$223k</title></rect><rect x="94.3" y="35.3" width="24" height="178.7" rx="4" style="fill:var(--amber)"><title>Month 2 - Wave 1 - R$223k</title></rect><rect x="134.6" y="35.3" width="24" height="178.7" rx="4" style="fill:var(--amber)"><title>Month 3 - Wave 1 - R$223k</title></rect><rect x="174.8" y="114.0" width="24" height="100.0" rx="4" style="fill:var(--amber)"><title>Month 4 - Wave 2 - R$125k</title></rect><rect x="215.0" y="114.0" width="24" height="100.0" rx="4" style="fill:var(--amber)"><title>Month 5 - Wave 2 - R$125k</title></rect><rect x="255.2" y="114.0" width="24" height="100.0" rx="4" style="fill:var(--amber)"><title>Month 6 - Wave 2 - R$125k</title></rect><rect x="295.4" y="114.0" width="24" height="100.0" rx="4" style="fill:var(--amber)"><title>Month 7 - Wave 2 - R$125k</title></rect><rect x="335.7" y="118.0" width="24" height="96.0" rx="4" style="fill:var(--amber)"><title>Month 8 - Wave 3 - R$120k</title></rect><rect x="375.9" y="118.0" width="24" height="96.0" rx="4" style="fill:var(--amber)"><title>Month 9 - Wave 3 - R$120k</title></rect><rect x="416.1" y="118.0" width="24" height="96.0" rx="4" style="fill:var(--amber)"><title>Month 10 - Wave 3 - R$120k</title></rect><rect x="456.3" y="118.0" width="24" height="96.0" rx="4" style="fill:var(--amber)"><title>Month 11 - Wave 3 - R$120k</title></rect><rect x="496.6" y="118.0" width="24" height="96.0" rx="4" style="fill:var(--amber)"><title>Month 12 - Wave 3 - R$120k</title></rect><rect x="536.8" y="139.6" width="24" height="74.4" rx="4" style="fill:var(--acc)"><title>Month 13 - Recurring - R$93k</title></rect><rect x="577.0" y="139.6" width="24" height="74.4" rx="4" style="fill:var(--acc)"><title>Month 14 - Recurring - R$93k</title></rect><rect x="617.2" y="139.6" width="24" height="74.4" rx="4" style="fill:var(--acc)"><title>Month 15 - Recurring - R$93k</title></rect><rect x="657.4" y="139.6" width="24" height="74.4" rx="4" style="fill:var(--acc)"><title>Month 16 - Recurring - R$93k</title></rect><rect x="697.7" y="139.6" width="24" height="74.4" rx="4" style="fill:var(--acc)"><title>Month 17 - Recurring - R$93k</title></rect><rect x="737.9" y="139.6" width="24" height="74.4" rx="4" style="fill:var(--acc)"><title>Month 18 - Recurring - R$93k</title></rect><text x="66.1" y="232" text-anchor="middle" style="fill:var(--muted)" font-size="9.5">1</text><text x="146.6" y="232" text-anchor="middle" style="fill:var(--muted)" font-size="9.5">3</text><text x="267.2" y="232" text-anchor="middle" style="fill:var(--muted)" font-size="9.5">6</text><text x="387.9" y="232" text-anchor="middle" style="fill:var(--muted)" font-size="9.5">9</text><text x="508.6" y="232" text-anchor="middle" style="fill:var(--muted)" font-size="9.5">12</text><text x="629.2" y="232" text-anchor="middle" style="fill:var(--muted)" font-size="9.5">15</text><text x="749.9" y="232" text-anchor="middle" style="fill:var(--muted)" font-size="9.5">18</text><text x="408" y="246" text-anchor="middle" style="fill:var(--muted)" font-size="9">month</text></svg></div>
+      <div class="chips" style="margin-top:12px">
+        <span class="chip"><span style="display:inline-block;width:9px;height:9px;border-radius:3px;background:var(--amber);margin-right:5px"></span>Waves (build)</span>
+        <span class="chip"><span style="display:inline-block;width:9px;height:9px;border-radius:3px;background:var(--acc);margin-right:5px"></span>Recurring (maint. + events)</span>
+      </div>
+    </div>
+    <div class="c">
+      <span class="k">Cumulative cash</span>
+      <h3 style="margin-bottom:2px">📈 How much comes in total</h3>
+      <p style="margin:0 0 10px">The line is the base case; the green band shows the best and worst case — what changes is the wave-approval speed and the event volume.</p>
+      <div class="chartscroll"><svg viewBox="0 0 780 230" width="100%" style="display:block;height:auto;font-family:var(--mono)" role="img" aria-label="Cumulative cash over 18 months, with best- and worst-case band"><line x1="52" y1="196.0" x2="770" y2="196.0" style="stroke:var(--line)" stroke-width="1"/><text x="46" y="199.0" text-anchor="end" style="fill:var(--muted)" font-size="9.5">0</text><line x1="52" y1="159.6" x2="770" y2="159.6" style="stroke:var(--line)" stroke-width="1"/><text x="46" y="162.6" text-anchor="end" style="fill:var(--muted)" font-size="9.5">600</text><line x1="52" y1="123.2" x2="770" y2="123.2" style="stroke:var(--line)" stroke-width="1"/><text x="46" y="126.2" text-anchor="end" style="fill:var(--muted)" font-size="9.5">1200</text><line x1="52" y1="86.8" x2="770" y2="86.8" style="stroke:var(--line)" stroke-width="1"/><text x="46" y="89.8" text-anchor="end" style="fill:var(--muted)" font-size="9.5">1800</text><line x1="52" y1="50.4" x2="770" y2="50.4" style="stroke:var(--line)" stroke-width="1"/><text x="46" y="53.4" text-anchor="end" style="fill:var(--muted)" font-size="9.5">2400</text><line x1="52" y1="14.0" x2="770" y2="14.0" style="stroke:var(--line)" stroke-width="1"/><text x="46" y="17.0" text-anchor="end" style="fill:var(--muted)" font-size="9.5">3000</text><text x="46" y="12" text-anchor="end" style="fill:var(--muted)" font-size="8.5">R$ k</text><line x1="516.6" y1="14" x2="516.6" y2="196" style="stroke:var(--amber)" stroke-width="1" stroke-dasharray="3 3" opacity="0.6"/><text x="520.6" y="24" style="fill:var(--amber)" font-size="9">go-live</text><path d="M 52.0,181.4 94.2,166.9 136.5,152.3 178.7,143.8 220.9,135.3 263.2,126.8 305.4,118.3 347.6,110.1 389.9,101.8 432.1,93.6 474.4,85.3 516.6,77.1 558.8,69.3 601.1,61.4 643.3,53.6 685.5,45.8 727.8,38.0 770.0,30.1 L 770.0,73.8 L 727.8,78.0 L 685.5,82.2 L 643.3,86.4 L 601.1,90.6 L 558.8,94.7 L 516.6,98.9 L 474.4,105.6 L 432.1,112.3 L 389.9,119.0 L 347.6,125.6 L 305.4,132.3 L 263.2,139.1 L 220.9,145.9 L 178.7,152.8 L 136.5,159.6 L 94.2,171.7 L 52.0,183.9 Z" style="fill:var(--acc)" opacity="0.12"><title>Best-worst case range</title></path><path d="M 52.0,181.4 94.2,166.9 136.5,152.3 178.7,143.8 220.9,135.3 263.2,126.8 305.4,118.3 347.6,110.1 389.9,101.8 432.1,93.6 474.4,85.3 516.6,77.1 558.8,69.3 601.1,61.4 643.3,53.6 685.5,45.8 727.8,38.0 770.0,30.1" style="stroke:var(--acc)" stroke-width="1" fill="none" opacity="0.45" stroke-dasharray="4 3"/><path d="M 52.0,183.9 94.2,171.7 136.5,159.6 178.7,152.8 220.9,145.9 263.2,139.1 305.4,132.3 347.6,125.6 389.9,119.0 432.1,112.3 474.4,105.6 516.6,98.9 558.8,94.7 601.1,90.6 643.3,86.4 685.5,82.2 727.8,78.0 770.0,73.8" style="stroke:var(--acc)" stroke-width="1" fill="none" opacity="0.45" stroke-dasharray="4 3"/><path d="M 52.0,182.5 94.2,168.9 136.5,155.4 178.7,147.8 220.9,140.2 263.2,132.6 305.4,125.0 347.6,117.7 389.9,110.5 432.1,103.2 474.4,95.9 516.6,88.6 558.8,83.0 601.1,77.3 643.3,71.7 685.5,66.1 727.8,60.4 770.0,54.8" style="stroke:var(--acc)" stroke-width="2.4" fill="none" stroke-linejoin="round"/><circle cx="136.5" cy="155.4" r="4" style="fill:var(--acc);stroke:var(--card)" stroke-width="2"><title>Month 3 - base R$670k</title></circle><text x="136.5" y="146.4" text-anchor="middle" style="fill:var(--ink)" font-size="10" font-weight="700">R$670k</text><circle cx="516.6" cy="88.6" r="4" style="fill:var(--acc);stroke:var(--card)" stroke-width="2"><title>Month 12 - base R$1770k</title></circle><text x="516.6" y="79.6" text-anchor="middle" style="fill:var(--ink)" font-size="10" font-weight="700">R$1,77M</text><circle cx="770.0" cy="54.8" r="4" style="fill:var(--acc);stroke:var(--card)" stroke-width="2"><title>Month 18 - base R$2328k</title></circle><text x="764.0" y="45.8" text-anchor="end" style="fill:var(--ink)" font-size="10" font-weight="700">~R$2,33M</text><text x="764.0" y="26.1" text-anchor="end" style="fill:var(--muted)" font-size="9">~R$2,73M</text><text x="764.0" y="84.8" text-anchor="end" style="fill:var(--muted)" font-size="9">~R$2,01M</text><text x="52.0" y="214" text-anchor="middle" style="fill:var(--muted)" font-size="9.5">1</text><text x="136.5" y="214" text-anchor="middle" style="fill:var(--muted)" font-size="9.5">3</text><text x="263.2" y="214" text-anchor="middle" style="fill:var(--muted)" font-size="9.5">6</text><text x="389.9" y="214" text-anchor="middle" style="fill:var(--muted)" font-size="9.5">9</text><text x="516.6" y="214" text-anchor="middle" style="fill:var(--muted)" font-size="9.5">12</text><text x="643.3" y="214" text-anchor="middle" style="fill:var(--muted)" font-size="9.5">15</text><text x="770.0" y="214" text-anchor="middle" style="fill:var(--muted)" font-size="9.5">18</text><text x="411" y="227" text-anchor="middle" style="fill:var(--muted)" font-size="9">month</text></svg></div>
+      <div class="chips" style="margin-top:12px"><span class="chip"><span style="display:inline-block;width:14px;height:0;border-top:2.4px solid var(--acc);margin-right:5px;vertical-align:middle"></span>Base case</span><span class="chip"><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--acc);opacity:.35;margin-right:5px"></span>Best–worst range</span></div><p style="margin:10px 0 0;font-size:12px;color:var(--muted)">Base over 18 months: <b style="color:var(--ink)">~R$2,33M</b> · range <b style="color:var(--ink)">~R$2,01M – ~R$2,73M</b>. After that, ~R$1,1M/year of recurring (base), growing with the calendar.</p>
+    </div>
+  </div>
+
+  <div class="call mandate">
+    <p class="tag">⚖️ The 18-month math</p>
+    <p><b>Build (Waves 1–3): ~R$1,77M</b> · <b>Recurring in the first half-year of operation (month 13–18): ~R$0,56M</b> → <b>total contracted ~R$2,3M over 18 months</b>, plus a recurring stream of <b>~R$1,1M/year</b> from then on. Each new event and each new module is additional revenue on top — without re-proposing the entire project.</p>
+  </div>
+
+  <div class="call internal">
+    <p class="tag">⚠️ Internal — why slice it this way</p>
+    <p>It's <b>land-and-expand</b>: approve small, expand with proof. Wave 1 (Phase 0) delivers the <b>fixed price</b> — so Waves 2 and 3 aren't "an estimate in the dark", they're locked numbers. The recurring revenue (maintenance + per-event stores) starts <b>before the build has finished paying for itself</b>, turning the project from a "cost" into an "operation that generates cash". Never ask for the full number at once; ask for the next wave.</p>
+  </div>
+
+  <div class="call internal">
+    <p class="tag">⚠️ Internal — the honest read of the numbers</p>
+    <p>Waves 2–3 and the recurring revenue are <b>estimates</b> — the firm MVP price only locks in Phase 0. The event volume is an <b>illustrative scenario</b> (~4/month, 48/year), not a promise: the revenue <em>per event</em> is real, the total depends on the arena's calendar. Ref. FX US$1 = R$5,1. Adjust in Discovery.</p>
+  </div>
+</div></section>
+
+<footer>
+  <b>Seja Arena — Internal Plan &amp; Market Landscape.</b> Behind-the-scenes document by Raw Business Solution — <b>confidential, do not show the client</b>. The presentation in use is <a href="https://apresentacoes.zystudio-contabo.duckdns.org/seja-arena/">apresentacoes.zystudio-contabo.duckdns.org/seja-arena</a> (the old raw-ai deck is in the menu).<br>
+  Figures are working estimates (ref. FX US$1 = R$5,1); delivery cost/margin are orders of magnitude to confirm in Discovery. Market data from public sources (PDAD/law/press) collected in 09/2025 &mdash; see project memory. Cash flow &amp; calendar (§06) are working estimates; event volume is an illustrative scenario. Version 2.3 · 13/09/2026 (+ interactive constellation background; responsive mobile layout).
+</footer>
+</div>
+
 </div><!-- /#site -->
 
 <script>
@@ -402,8 +603,8 @@
     // Palette aligned to this page's design tokens (see :root in the <style> block)
     function palette(){
       return isDark()
-        ? { bg:'#0c1016', node:'238, 242, 247', accent:'47, 191, 134' }   /* --bg / --ink / --acc */
-        : { bg:'#f4f6f9', node:'20, 27, 38',    accent:'18, 146, 95'  };
+        ? { bg:'#0c1016', node:'238, 242, 247', accent:'245, 185, 66' }   /* --bg / --ink / --acc */
+        : { bg:'#f4f6f9', node:'20, 27, 38',    accent:'201, 138, 16'  };
     }
 
     function initNodes(){
@@ -550,7 +751,7 @@
 
 <script>
   (function(){
-    var HASH="6cf29e6706db1867f304673c8f12e483d96639d2d298c56d725a0eac6fd98b4c";
+    var HASH="5f24e57b85565b92afb1ab59ba4b7632a559a83f53a098682c65b8c8e35f305a";
     var gate=document.getElementById('gate'), site=document.getElementById('site');
     function reveal(){ if(gate) gate.remove(); site.hidden=false; }
     try{ if(sessionStorage.getItem('seja_int_unlocked')==='1'){ reveal(); return; } }catch(e){}
@@ -568,3 +769,5 @@
     document.getElementById('gatePw').focus();
   })();
 </script>
+
+<script src="/seja-nav.js"></script>
