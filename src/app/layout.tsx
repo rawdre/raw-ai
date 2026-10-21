@@ -14,15 +14,16 @@ const body = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Raw AI — Funcionário IA que nunca dorme",
+  title: "Raw AI — Sites, Marketing e Robôs de IA",
   description:
-    "Agentes de IA que respondem seus leads 24/7, fazem follow-up como seu melhor vendedor e gerenciam seu pipeline. Diagnóstico de IA grátis para o seu negócio.",
+    "Sites cinematográficos, estratégia de marketing com criativos feitos por IA e robôs que respondem leads, fazem follow-up e vendem 24/7. Diagnóstico grátis.",
   metadataBase: new URL("https://raw-ai.vercel.app"),
   openGraph: {
-    title: "Raw AI — Funcionário IA que nunca dorme",
+    title: "Raw AI — Sites, Marketing e Robôs de IA",
     description:
-      "Agentes de IA que trabalham 24/7 pelo seu negócio: respondem leads, fazem follow-up e cuidam do pipeline.",
+      "Eu construo a máquina que faz seu negócio crescer: sites, marketing e robôs de IA trabalhando 24/7.",
     type: "website",
+    images: [{ url: "/hf/hero-wide.jpg", width: 1920, height: 1071 }],
   },
 };
 

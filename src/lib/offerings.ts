@@ -92,6 +92,16 @@ export const aiTiers: Tier[] = [
   },
 ];
 
+// ── Marketing (strategy + AI creative) — priced per project, no public price yet ──
+export const marketingServices = [
+  "Strategy & positioning",
+  "Paid ads (Meta + Google)",
+  "AI-generated photo & video creative (Higgsfield)",
+  "Funnels & landing pages",
+  "Content & social calendar",
+  "Lead-focused reporting",
+];
+
 /** Pricing context Jarvis uses to answer "how much?" honestly. */
 export function pricingContext(): string {
   const line = (t: Tier) => `  - ${t.name.en} — ${t.price.en}: ${t.tagline.en}`;
@@ -100,5 +110,7 @@ export function pricingContext(): string {
     ...websiteTiers.map(line),
     "AI EMPLOYEES (bots / automation):",
     ...aiTiers.map(line),
+    "MARKETING (strategy + AI creative) — custom quote after the free audit, no public price:",
+    ...marketingServices.map((s) => `  - ${s}`),
   ].join("\n");
 }

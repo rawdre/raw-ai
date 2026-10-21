@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Layout, Check } from "lucide-react";
@@ -23,15 +24,15 @@ export function WebsiteBuilding() {
           <div className="relative grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
             <div>
               <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/12 px-3 py-1 text-xs font-semibold text-[var(--cyan-bright)]">
-                <Layout size={13} /> {pick(lang, { pt: "Outro serviço", en: "Also on offer" })}
+                <Layout size={13} /> {pick(lang, { pt: "Motor 01 · Sites", en: "Engine 01 · Websites" })}
               </div>
               <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-                {pick(lang, { pt: "Eu também construo sites", en: "I also build websites" })}
+                {pick(lang, { pt: "Sites que parecem cinema e vendem como vendedor.", en: "Websites that look like cinema and sell like a closer." })}
               </h2>
               <p className="mt-3 max-w-lg text-pretty text-muted">
                 {pick(lang, {
-                  pt: "Sites premium e cinematográficos — separado dos agentes de IA. Do buffet à imobiliária, do estúdio de tênis ao HVAC, esses aqui são reais e estão no ar.",
-                  en: "Premium, cinematic websites — separate from the AI agents. Catering to real estate, tennis studio to HVAC, these are real and live.",
+                  pt: "Filmes e imagens gerados com IA, animações que prendem e um caminho direto pro WhatsApp. Do buffet à imobiliária, do tênis ao HVAC — todos reais e no ar. Este site aqui é a prova.",
+                  en: "AI-generated films and imagery, motion that grabs, and a straight path to WhatsApp. Catering to real estate, tennis to HVAC — all real and live. This very site is the proof.",
                 })}
               </p>
               <div className="mt-6 grid gap-2 sm:grid-cols-3">
@@ -53,6 +54,11 @@ export function WebsiteBuilding() {
               </Link>
             </div>
 
+            <div className="space-y-6">
+            <div className="hud relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10">
+              <Image src="/hf/websites.jpg" alt="" fill sizes="(max-width: 1024px) 100vw, 45vw" className="object-cover" />
+              <div className="scanlines absolute inset-0 opacity-60" />
+            </div>
             <ul className="space-y-2.5">
               {(pick(lang, {
                 pt: ["Design que impressiona no primeiro segundo", "No ar em dias, não meses", "SEO e performance de verdade", "Bilíngue quando precisa", "Feito por quem entende de vendas"],
@@ -66,6 +72,7 @@ export function WebsiteBuilding() {
                 </li>
               ))}
             </ul>
+            </div>
           </div>
         </motion.div>
       </div>

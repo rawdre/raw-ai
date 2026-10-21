@@ -6,23 +6,23 @@ import { useLang, pick } from "@/lib/lang";
 const steps = [
   {
     n: "01",
-    pt: { t: "Diagnóstico de IA grátis", d: "Me conta seu maior gargalo. Eu mostro exatamente como a IA resolve — de graça, sem compromisso." },
-    en: { t: "Free AI audit", d: "Tell me your biggest bottleneck. I show you exactly how AI fixes it — free, no strings." },
+    pt: { t: "Diagnóstico grátis", d: "Me conta seu maior gargalo: site, marketing ou atendimento. Eu mostro o que resolve — de graça." },
+    en: { t: "Free audit", d: "Tell me your biggest bottleneck: site, marketing or follow-up. I show you the fix — free." },
   },
   {
     n: "02",
-    pt: { t: "Estratégia personalizada", d: "Desenho um sistema de IA sob medida pro SEU negócio. Nada de receita de bolo." },
-    en: { t: "Custom strategy", d: "I design an AI system tailored to YOUR business. No cookie-cutter templates." },
+    pt: { t: "Estratégia sob medida", d: "Desenho o sistema — site, campanhas e robôs — pro SEU negócio. Nada de receita de bolo." },
+    en: { t: "Custom strategy", d: "I design the system — site, campaigns and robots — for YOUR business. No cookie-cutter." },
   },
   {
     n: "03",
-    pt: { t: "Construção & deploy", d: "Construo seus agentes, integro com suas ferramentas (CRM, email, telefone) e lanço — geralmente em dias." },
-    en: { t: "Build & deploy", d: "I build your agents, integrate your tools (CRM, email, phone) and ship — usually in days." },
+    pt: { t: "Construção & lançamento", d: "Construo, gero os criativos com IA, integro CRM, WhatsApp e email, e coloco no ar — em dias." },
+    en: { t: "Build & launch", d: "I build it, generate the AI creative, wire CRM, WhatsApp and email, and ship — in days." },
   },
   {
     n: "04",
-    pt: { t: "Otimizar & escalar", d: "Monitoro a performance, ajusto os agentes e escalo o que funciona. Seu negócio cresce no piloto automático." },
-    en: { t: "Optimize & scale", d: "I monitor performance, tune the agents and scale what works. Your business grows on autopilot." },
+    pt: { t: "Otimizar & escalar", d: "Acompanho os números, ajusto anúncios e robôs, e escalo o que funciona." },
+    en: { t: "Optimize & scale", d: "I watch the numbers, tune ads and robots, and scale what works." },
   },
 ];
 
@@ -37,8 +37,8 @@ export function HowItWorks() {
           </div>
           <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
             {pick(lang, {
-              pt: "Do zero ao poder da IA em 4 passos",
-              en: "From zero to AI power in 4 steps",
+              pt: "Do zero à máquina rodando em 4 passos",
+              en: "From zero to a running machine in 4 steps",
             })}
           </h2>
           <p className="mt-3 text-muted">

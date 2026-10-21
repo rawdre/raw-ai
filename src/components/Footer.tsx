@@ -17,14 +17,14 @@ export function Footer() {
         <div className="glass overflow-hidden rounded-3xl p-8 text-center sm:p-12">
           <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
             {pick(lang, {
-              pt: "Pronto pra ter um funcionário de IA?",
-              en: "Ready for an AI employee?",
+              pt: "Pronto pra ligar a máquina?",
+              en: "Ready to switch on the machine?",
             })}
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-muted">
             {pick(lang, {
-              pt: "Me manda uma mensagem. Eu mostro exatamente onde a IA vai te fazer ganhar (ou parar de perder) dinheiro — de graça.",
-              en: "Send me a message. I'll show you exactly where AI makes you money (or stops the leaks) — free.",
+              pt: "Site, marketing ou robô — me manda uma mensagem e eu mostro onde seu negócio vai ganhar (ou parar de perder) dinheiro. De graça.",
+              en: "Website, marketing or robot — send me a message and I'll show you where your business makes (or stops losing) money. Free.",
             })}
           </p>
           <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
