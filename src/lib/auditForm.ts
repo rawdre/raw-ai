@@ -1,6 +1,6 @@
 // Free-audit intake form — every question needed to diagnose a business across
 // the 7 audit areas (site, marketing, response time, lead leakage, CRM/follow-up,
-// automation, revenue impact). Submissions go to André's inbox via FormSubmit.
+// automation, revenue impact). Submissions go to André's inbox via /api/audit.
 
 export type T = { pt: string; en: string };
 export type Option = { value: string; label: T };
@@ -18,7 +18,7 @@ export type Field = {
 export type Step = { id: string; title: T; hint: T; fields: Field[] };
 
 export const AUDIT_INBOX = "rawandre@gmail.com";
-export const AUDIT_ENDPOINT = `https://formsubmit.co/ajax/${AUDIT_INBOX}`;
+export const AUDIT_ENDPOINT = "/api/audit";
 
 const o = (pt: string, en: string = pt): Option => ({ value: pt, label: { pt, en } });
 const YES_NO_SOMETIMES = [o("Sim", "Yes"), o("Não", "No"), o("Às vezes", "Sometimes")];

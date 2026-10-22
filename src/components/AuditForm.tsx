@@ -60,25 +60,6 @@ function FieldInput({ f, value, lang, onChange }: { f: Field; value: string | st
   return <input id={f.id} type={f.kind} className={inputCls} placeholder={ph} value={str} onChange={(e) => onChange(e.target.value)} />;
 }
 
-/** Flatten answers into readable "Question: answer" rows for the email (PT labels). */
-function toPayload(answers: Answers): FormData {
-  const fd = new FormData();
-  const biz = String(answers.bizName || "Negócio");
-  fd.append("_subject", `🚀 AI Audit Request — Diagnóstico grátis — ${biz}`);
-  fd.append("_template", "table");
-  fd.append("_captcha", "false");
-  fd.append("_replyto", String(answers.email || ""));
-  fd.append("name", String(answers.name || ""));
-  fd.append("email", String(answers.email || ""));
-  for (const step of STEPS) {
-    for (const f of step.fields) {
-      const v = answers[f.id];
-      fd.append(`${step.title.pt} · ${f.label.pt}`, Array.isArray(v) ? v.join(", ") || "-" : v?.trim() || "-");
-    }
-  }
-  return fd;
-}
-
 export function AuditForm() {
   const { lang } = useLang();
   const [step, setStep] = useState(0);
@@ -96,12 +77,15 @@ export function AuditForm() {
   const scrollTop = () => document.getElementById("diagnostico")?.scrollIntoView({ behavior: "smooth", block: "start" });
 
   async function submit() {
-    if (honey) return; // bot
     setStatus("sending");
     try {
-      const res = await fetch(AUDIT_ENDPOINT, { method: "POST", headers: { Accept: "application/json" }, body: toPayload(answers) });
+      const res = await fetch(AUDIT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ answers, honey }),
+      });
       const data = await res.json().catch(() => ({}));
-      setStatus(res.ok && String(data.success) === "true" ? "sent" : "error");
+      setStatus(res.ok && data.ok === true ? "sent" : "error");
     } catch {
       setStatus("error");
     }
