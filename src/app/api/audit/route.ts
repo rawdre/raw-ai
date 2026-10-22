@@ -55,8 +55,9 @@ function renderEmail(a: Answers): { html: string; text: string } {
 }
 
 export async function POST(req: Request) {
-  const user = process.env.GMAIL_USER || AUDIT_INBOX;
-  const pass = process.env.GMAIL_APP_PASSWORD || "";
+  // Strip all whitespace — Google displays app passwords as "abcd efgh ijkl mnop".
+  const user = (process.env.GMAIL_USER || AUDIT_INBOX).replace(/s+/g, "");
+  const pass = (process.env.GMAIL_APP_PASSWORD || "").replace(/s+/g, "");
   if (!pass) {
     console.error("[audit] GMAIL_APP_PASSWORD not configured");
     return NextResponse.json({ ok: false, error: "not_configured" }, { status: 503 });
