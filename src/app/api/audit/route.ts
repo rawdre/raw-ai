@@ -91,7 +91,10 @@ export async function POST(req: Request) {
     });
   } catch (e) {
     console.error("[audit] send failed", e instanceof Error ? e.message : e);
-    return NextResponse.json({ ok: false, error: "send_failed" }, { status: 502 });
+    // Expose only the SMTP error code (e.g. EAUTH/535) — never the message — so setup issues are diagnosable.
+    const err = e as { code?: string; responseCode?: number };
+    const code = [err.code, err.responseCode].filter(Boolean).join("/") || "unknown";
+    return NextResponse.json({ ok: false, error: "send_failed", code }, { status: 502 });
   }
   return NextResponse.json({ ok: true });
 }
