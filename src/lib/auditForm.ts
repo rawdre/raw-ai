@@ -1,6 +1,7 @@
 // Free-audit intake form — every question needed to diagnose a business across
 // the 7 audit areas (site, marketing, response time, lead leakage, CRM/follow-up,
-// automation, revenue impact). Submissions go to André's inbox via /api/audit.
+// automation, revenue impact). On submit the lead's WhatsApp opens with every
+// answer pre-typed to André's number — they tap Send, he gets it in WhatsApp.
 
 export type T = { pt: string; en: string };
 export type Option = { value: string; label: T };
@@ -17,8 +18,7 @@ export type Field = {
 
 export type Step = { id: string; title: T; hint: T; fields: Field[] };
 
-export const AUDIT_INBOX = "rawandre@gmail.com";
-export const AUDIT_ENDPOINT = "/api/audit";
+export const WHATSAPP_NUMBER = "5561998229223";
 
 const o = (pt: string, en: string = pt): Option => ({ value: pt, label: { pt, en } });
 const YES_NO_SOMETIMES = [o("Sim", "Yes"), o("Não", "No"), o("Às vezes", "Sometimes")];
@@ -142,4 +142,24 @@ export function fieldError(f: Field, v: string | string[] | undefined): "require
   if (f.kind === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(s)) return "email";
   if (f.kind === "tel" && s.replace(/\D/g, "").length < 8) return "phone";
   return null;
+}
+
+/** The WhatsApp message André receives — PT labels, only answered fields, grouped by step. */
+export function buildWhatsAppMessage(a: Answers): string {
+  const lines = [`🚀 *Diagnóstico grátis — ${String(a.bizName || "").trim() || "novo negócio"}*`];
+  for (const step of STEPS) {
+    const rows = step.fields
+      .filter((f) => isFilled(a[f.id]))
+      .map((f) => {
+        const v = a[f.id];
+        const label = f.label.pt.replace(/\s*\([^)]*\)/, ""); // drop "(marque todos)"-style hints
+        return `• ${label}: ${Array.isArray(v) ? v.join(", ") : String(v).trim()}`;
+      });
+    if (rows.length) lines.push("", `*${step.title.pt}*`, ...rows);
+  }
+  return lines.join("\n");
+}
+
+export function whatsAppUrl(a: Answers): string {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildWhatsAppMessage(a))}`;
 }

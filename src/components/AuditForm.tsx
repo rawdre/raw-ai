@@ -2,12 +2,9 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Check, Loader2, Send } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Send } from "lucide-react";
 import { useLang, pick, type Lang } from "@/lib/lang";
-import { AUDIT_ENDPOINT, STEPS, fieldError, type Answers, type Field } from "@/lib/auditForm";
-
-const WA_NUMBER = "5561998229223";
-type Status = "idle" | "sending" | "sent" | "error";
+import { STEPS, fieldError, whatsAppUrl, type Answers, type Field } from "@/lib/auditForm";
 
 const ERRORS = {
   required: { pt: "Campo obrigatório", en: "Required" },
@@ -65,8 +62,7 @@ export function AuditForm() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
   const [touched, setTouched] = useState(false);
-  const [status, setStatus] = useState<Status>("idle");
-  const [honey, setHoney] = useState("");
+  const [sent, setSent] = useState(false);
 
   const current = STEPS[step];
   const last = step === STEPS.length - 1;
@@ -76,19 +72,12 @@ export function AuditForm() {
 
   const scrollTop = () => document.getElementById("diagnostico")?.scrollIntoView({ behavior: "smooth", block: "start" });
 
-  async function submit() {
-    setStatus("sending");
-    try {
-      const res = await fetch(AUDIT_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ answers, honey }),
-      });
-      const data = await res.json().catch(() => ({}));
-      setStatus(res.ok && data.ok === true ? "sent" : "error");
-    } catch {
-      setStatus("error");
-    }
+  // Open WhatsApp synchronously inside the click so popup blockers allow it.
+  function submit() {
+    const url = whatsAppUrl(answers);
+    const win = window.open(url, "_blank", "noopener,noreferrer");
+    if (!win) window.location.href = url;
+    setSent(true);
     scrollTop();
   }
 
@@ -96,33 +85,28 @@ export function AuditForm() {
     setTouched(true);
     if (!stepValid) return;
     setTouched(false);
-    if (last) void submit();
+    if (last) submit();
     else { setStep((s) => s + 1); scrollTop(); }
   }
 
-  const waText = encodeURIComponent(
-    `Oi André! Acabei de preencher o diagnóstico grátis no site.\nNegócio: ${answers.bizName || "-"}\nNome: ${answers.name || "-"}`,
-  );
-
-  if (status === "sent" || status === "error") {
-    const ok = status === "sent";
+  if (sent) {
     return (
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="py-6 text-center">
         <div className="mx-auto mb-5 grid h-16 w-16 place-items-center rounded-full" style={{ background: "var(--grad)" }}>
           <Check size={30} className="text-[#04121a]" />
         </div>
         <h3 className="text-2xl font-bold">
-          {ok ? pick(lang, { pt: "Recebi! Seu diagnóstico começou.", en: "Got it! Your audit has started." })
-              : pick(lang, { pt: "Quase lá — me manda no WhatsApp", en: "Almost there — send it on WhatsApp" })}
+          {pick(lang, { pt: "Último passo: toque em Enviar no WhatsApp", en: "Last step: tap Send in WhatsApp" })}
         </h3>
         <p className="mx-auto mt-3 max-w-md text-sm text-muted">
-          {ok
-            ? pick(lang, { pt: "Vou analisar seu negócio e te chamo no WhatsApp com o resultado. Quer adiantar? Me dá um oi.", en: "I'll analyze your business and reach out on WhatsApp with the results. Want to speed it up? Say hi." })
-            : pick(lang, { pt: "O envio automático falhou. Clica abaixo pra me avisar e eu sigo daqui.", en: "Automatic sending failed. Tap below to let me know and I'll take it from there." })}
+          {pick(lang, {
+            pt: "Seu WhatsApp abriu com todas as respostas prontas pra mim. É só enviar — eu analiso seu negócio e te respondo por lá.",
+            en: "Your WhatsApp opened with all your answers ready for me. Just hit send — I'll analyze your business and reply there.",
+          })}
         </p>
-        <a href={`https://wa.me/${WA_NUMBER}?text=${waText}`} target="_blank" rel="noopener noreferrer"
+        <a href={whatsAppUrl(answers)} target="_blank" rel="noopener noreferrer"
            className="mt-6 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-[#04121a]" style={{ backgroundImage: "var(--grad)" }}>
-          {pick(lang, { pt: "Falar no WhatsApp", en: "Chat on WhatsApp" })}
+          {pick(lang, { pt: "Abrir o WhatsApp de novo", en: "Open WhatsApp again" })}
         </a>
       </motion.div>
     );
@@ -169,9 +153,6 @@ export function AuditForm() {
         </motion.div>
       </AnimatePresence>
 
-      {/* honeypot — hidden from humans */}
-      <input type="text" tabIndex={-1} autoComplete="off" value={honey} onChange={(e) => setHoney(e.target.value)} className="hidden" aria-hidden="true" name="_honey" />
-
       <div className="mt-8 flex items-center justify-between gap-3">
         {step > 0 ? (
           <button type="button" onClick={() => { setStep((s) => s - 1); setTouched(false); }}
@@ -179,11 +160,10 @@ export function AuditForm() {
             <ArrowLeft size={15} /> {pick(lang, { pt: "Voltar", en: "Back" })}
           </button>
         ) : <span />}
-        <button type="button" onClick={next} disabled={status === "sending"}
-                className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-[#04121a] transition-transform hover:-translate-y-0.5 disabled:opacity-60"
+        <button type="button" onClick={next}
+                className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-[#04121a] transition-transform hover:-translate-y-0.5"
                 style={{ backgroundImage: "var(--grad)" }}>
-          {status === "sending" ? <><Loader2 size={15} className="animate-spin" /> {pick(lang, { pt: "Enviando…", en: "Sending…" })}</>
-            : last ? <><Send size={15} /> {pick(lang, { pt: "Enviar diagnóstico", en: "Send my audit" })}</>
+          {last ? <><Send size={15} /> {pick(lang, { pt: "Enviar pelo WhatsApp", en: "Send via WhatsApp" })}</>
             : <>{pick(lang, { pt: "Continuar", en: "Continue" })} <ArrowRight size={15} /></>}
         </button>
       </div>
