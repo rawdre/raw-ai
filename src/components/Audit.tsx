@@ -4,10 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Check, Sparkles } from "lucide-react";
 import { useLang, pick } from "@/lib/lang";
-
-const WHATSAPP =
-  "https://wa.me/5561998229223?text=" +
-  encodeURIComponent("Oi André! Quero o diagnóstico de IA grátis pro meu negócio.");
+import { AuditForm } from "@/components/AuditForm";
 
 const includes = [
   { pt: "Raio-X do seu site (velocidade, SEO, conversão)", en: "Website X-ray (speed, SEO, conversion)" },
@@ -50,9 +47,7 @@ export function Audit() {
                 })}
               </p>
               <a
-                href={WHATSAPP}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#diagnostico"
                 className="mt-7 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-[#04121a] transition-transform hover:-translate-y-0.5"
                 style={{ backgroundImage: "var(--grad)" }}
               >
@@ -69,6 +64,20 @@ export function Audit() {
                 </li>
               ))}
             </ul>
+          </div>
+        </motion.div>
+
+        <motion.div
+          id="diagnostico"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="hud relative mt-6 scroll-mt-24 overflow-hidden rounded-3xl border border-[color:rgba(62,224,255,0.18)] bg-[rgba(10,14,24,0.72)] p-6 backdrop-blur-xl sm:p-10"
+        >
+          <div className="scan-beam absolute inset-x-0 top-0" />
+          <div className="relative">
+            <AuditForm />
           </div>
         </motion.div>
       </div>

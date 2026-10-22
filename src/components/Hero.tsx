@@ -6,7 +6,6 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { useLang, pick } from "@/lib/lang";
 import { useMediaQuery, usePrefersReducedMotion } from "@/lib/useReducedMotion";
 import { ScrambleText } from "./ScrambleText";
-import { WHATSAPP_AUDIT } from "@/lib/contact";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 const rise = {
@@ -104,7 +103,7 @@ export function Hero() {
           </motion.p>
 
           <motion.div custom={4} variants={rise} initial="hidden" animate="show" className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <a href={WHATSAPP_AUDIT} target="_blank" rel="noopener noreferrer"
+            <a href="#diagnostico"
               className="group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-[#04121a] shadow-[0_12px_34px_-10px_rgba(52,245,160,0.7)] transition-transform hover:-translate-y-0.5"
               style={{ backgroundImage: "var(--grad)" }}
             >
