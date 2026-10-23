@@ -1,4 +1,15 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Seja Arena — Plataforma de Monetização Digital do Torcedor">
+<meta property="og:description" content="Cada assento um ponto de venda. Cada torcedor, receita.">
+<meta property="og:image" content="https://raw-ai.vercel.app/seja-arena/images/poster-v3.1.jpg">
 <title>Seja Arena — Plataforma de Monetização Digital do Torcedor</title>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
 <style>
   :root{
     --bg:#0a0d13; --bg2:#0f1420; --card:#141b28; --card2:#18202f; --ink:#eef2f8; --muted:#9aa7bc; --line:#232d3f;
@@ -8,92 +19,143 @@
     --sans:"Segoe UI Variable Display","Segoe UI",system-ui,-apple-system,sans-serif;
     --mono:ui-monospace,"Cascadia Code","SF Mono",Menlo,Consolas,monospace;
   }
-  :root[data-theme="light"]{
-    --bg:#f6f7f9; --bg2:#eef1f5; --card:#ffffff; --card2:#f4f6fa; --ink:#131a24; --muted:#5c6675; --line:#e3e7ee;
-    --gold:#c98a10; --gold2:#e0a52a; --gold-ink:#a06c00; --gold-soft:#c98a1014;
-    --green:#1f9a63; --green-soft:#1f9a6314; --blue:#2f6bc8;
-  }
-  @media (prefers-color-scheme:light){
-    :root:not([data-theme="dark"]){
-      --bg:#f6f7f9; --bg2:#eef1f5; --card:#ffffff; --card2:#f4f6fa; --ink:#131a24; --muted:#5c6675; --line:#e3e7ee;
-      --gold:#c98a10; --gold2:#e0a52a; --gold-ink:#a06c00; --gold-soft:#c98a1014; --green:#1f9a63; --green-soft:#1f9a6314; --blue:#2f6bc8;
-    }
-  }
   *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
   h1,h2,h3{letter-spacing:-.02em}
+  img{max-width:100%;display:block}
 
-  /* top bar */
   .bar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-  .bar .in{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:11px clamp(16px,4vw,40px)}
-  .brandmark{display:flex;align-items:center;gap:10px;font-weight:800;font-size:15px;letter-spacing:.01em}
-  .brandmark .dot{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--gold),var(--gold2));display:grid;place-items:center;color:#1a1200;font-weight:900;font-family:var(--mono);font-size:15px}
-  .brandmark span{color:var(--gold-ink)}
-  .toggle{margin-left:auto;display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--card)}
-  .toggle button{appearance:none;border:0;background:transparent;color:var(--muted);font:inherit;font-weight:700;font-size:13px;padding:7px 15px;cursor:pointer;transition:.15s}
-  .toggle button[aria-pressed="true"]{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1200}
-  .toggle button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  .bar .in{max-width:1120px;margin:0 auto;display:flex;align-items:baseline;gap:28px;padding:16px clamp(16px,4vw,40px)}
+  .brandmark{display:flex;align-items:baseline;gap:8px;font-family:var(--mono);font-weight:700;font-size:14px;letter-spacing:.03em;text-decoration:none;color:var(--ink)}
+  .brandmark b{color:var(--gold-ink);font-weight:700}
+  .brandmark .tagline{font-family:var(--sans);font-weight:400;font-size:12px;color:var(--muted);letter-spacing:0;padding-left:8px;border-left:1px solid var(--line)}
+  .navcta{margin-left:auto;display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1200;font-weight:800;font-size:13.5px;padding:9px 18px;border-radius:999px;text-decoration:none;white-space:nowrap}
+  .navlink{color:var(--muted);font-size:13.5px;font-weight:600;text-decoration:none;white-space:nowrap;border-bottom:1px solid transparent;padding-bottom:2px;transition:.15s}
+  .navlink:hover{color:var(--ink);border-color:var(--muted)}
+  @media (max-width:600px){
+    .bar .in{flex-wrap:wrap;gap:8px 16px;padding:14px 16px}
+    .brandmark .tagline{display:none}
+    .navcta{margin-left:0;padding:8px 14px;font-size:12px;order:3;width:100%;justify-content:center}
+  }
+
+  section{padding:clamp(46px,7vw,86px) 0;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+  .lbl{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-ink);font-weight:800;margin:0 0 12px}
+  h2{font-size:clamp(24px,3.6vw,38px);margin:0 0 14px;font-weight:800;max-width:22ch;text-wrap:balance}
+  .say{font-size:clamp(15px,1.8vw,17px);color:var(--muted);max-width:66ch;margin:0 0 8px}
+
+  /* .reveal elements start visible; GSAP ScrollTrigger (bottom of file) takes over
+     the from/to animation via inline styles — no CSS opacity:0 here, so content
+     still shows correctly if the GSAP CDN ever fails to load. */
+
+  /* ── themed background fx (per section, decorative, pointer-events:none) ── */
+  .fx{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+  section > .wrap{position:relative;z-index:1}
+
+
+  /* scanline — slow horizontal sweep, used on regulatory/biometric-themed sections */
+  .fx-scanline::before{content:'';position:absolute;left:0;right:0;height:120px;top:-120px;
+    background:linear-gradient(180deg, transparent, color-mix(in srgb,var(--gold) 14%,transparent), transparent);
+    animation:scanmove 7s linear infinite}
+  @keyframes scanmove{0%{top:-120px}100%{top:100%}}
+
+  /* pulse-grid — breathing grid opacity, used on data/investment-heavy sections */
+  .fx-pulsegrid::before{content:'';position:absolute;inset:0;
+    background-image:linear-gradient(color-mix(in srgb,var(--gold) 16%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--gold) 16%,transparent) 1px,transparent 1px);
+    background-size:52px 52px;animation:gridbreathe 5s ease-in-out infinite}
+  @keyframes gridbreathe{0%,100%{opacity:.18}50%{opacity:.4}}
+
+  /* flowline — animated dashed connector, used on journey/roadmap sections */
+  .fx-flowline::after{content:'';position:absolute;left:5%;right:5%;top:50%;height:2px;
+    background:repeating-linear-gradient(90deg,var(--gold) 0 10px,transparent 10px 22px);
+    opacity:.28;animation:flowmove 1.4s linear infinite}
+  @keyframes flowmove{0%{background-position:0 0}100%{background-position:32px 0}}
+
+  /* photo section background treatment */
+  .photobg{position:absolute;inset:0;z-index:0}
+  .photobg img{width:100%;height:100%;object-fit:cover}
+  .photobg::after{content:"";position:absolute;inset:0;background:
+      linear-gradient(180deg, var(--bg) 0%, color-mix(in srgb,var(--bg) 78%,transparent) 22%, color-mix(in srgb,var(--bg) 55%,transparent) 55%, var(--bg) 100%);
+  }
+  section.hasphoto > .wrap{position:relative;z-index:1}
 
   /* hero */
-  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
-  .hero .lights{position:absolute;inset:0;background:
-      radial-gradient(60% 80% at 82% -10%, color-mix(in srgb,var(--gold) 26%,transparent), transparent 60%),
-      radial-gradient(50% 70% at 12% 0%, color-mix(in srgb,var(--blue) 20%,transparent), transparent 55%),
-      linear-gradient(180deg,var(--bg2),var(--bg));z-index:0}
-  .hero .grid-fade{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:44px 44px;opacity:.25;mask-image:linear-gradient(180deg,transparent,#000 30%,transparent);z-index:0}
-  .hero .in{position:relative;z-index:1;padding:clamp(56px,10vw,110px) 0 clamp(44px,7vw,80px)}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-ink);font-weight:800;border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);border-radius:999px;padding:6px 14px;margin:0 0 22px;background:var(--gold-soft)}
-  h1{font-size:clamp(34px,6.4vw,68px);line-height:1.02;margin:0 0 20px;font-weight:900;max-width:16ch;text-wrap:balance}
+  .hero{padding:0;border-bottom:1px solid var(--line);min-height:min(760px,92vh);display:flex;align-items:flex-end}
+  .hero .photobg::after{background:
+      linear-gradient(180deg, color-mix(in srgb,var(--bg) 15%,transparent) 0%, color-mix(in srgb,var(--bg) 45%,transparent) 45%, var(--bg) 96%),
+      linear-gradient(90deg, color-mix(in srgb,var(--bg) 55%,transparent) 0%, transparent 55%);
+  }
+  .hero .in{position:relative;z-index:1;padding:clamp(90px,14vw,150px) 0 clamp(48px,7vw,72px)}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-ink);font-weight:800;border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);border-radius:999px;padding:6px 14px;margin:0 0 22px;background:color-mix(in srgb,var(--bg) 40%,var(--gold-soft))}
+  h1{font-size:clamp(36px,6.4vw,68px);line-height:1.03;margin:0 0 20px;font-weight:900;max-width:16ch;text-wrap:balance}
   h1 .g{background:linear-gradient(120deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .sub{font-size:clamp(16px,2.2vw,21px);color:var(--muted);max-width:60ch;margin:0 0 30px}
+  .sub{font-size:clamp(16px,2.2vw,21px);color:var(--muted);max-width:58ch;margin:0 0 30px}
   .heroStats{display:flex;flex-wrap:wrap;gap:12px}
-  .hs{background:color-mix(in srgb,var(--card) 70%,transparent);border:1px solid var(--line);border-radius:12px;padding:12px 18px;backdrop-filter:blur(6px)}
+  .hs{background:color-mix(in srgb,var(--card) 55%,transparent);border:1px solid var(--line);border-radius:12px;padding:12px 18px;backdrop-filter:blur(8px)}
   .hs b{display:block;font-size:clamp(19px,2.6vw,24px);font-weight:900;font-variant-numeric:tabular-nums;background:linear-gradient(120deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
   .hs small{color:var(--muted);font-size:12.5px}
+  @media (max-width:640px){
+    .heroStats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .hs{padding:10px 12px}
+    .hs b{font-size:16px}
+    .hs small{font-size:11px}
+  }
 
-  section{padding:clamp(46px,7vw,82px) 0;border-bottom:1px solid var(--line)}
-  .lbl{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-ink);font-weight:800;margin:0 0 12px}
-  h2{font-size:clamp(24px,3.6vw,38px);margin:0 0 14px;font-weight:800;max-width:20ch;text-wrap:balance}
-  .say{font-size:clamp(15px,1.8vw,17px);color:var(--muted);max-width:64ch;margin:0 0 8px}
-
-  .diff{background:radial-gradient(85% 120% at 50% 0%, var(--gold-soft), transparent 68%), var(--bg2);border-top:1px solid color-mix(in srgb,var(--gold) 38%,var(--line));border-bottom:1px solid color-mix(in srgb,var(--gold) 38%,var(--line))}
-  .showcase{background:radial-gradient(72% 115% at 50% -6%, var(--gold-soft), transparent 60%);border-bottom:1px solid color-mix(in srgb,var(--gold) 30%,var(--line))}
-  .showcase .lbl{text-align:center}
-  .showcase h2{margin-left:auto;margin-right:auto;max-width:26ch;text-align:center}
+  /* video showcase */
+  .showcase{text-align:center}
+  .showcase h2{margin-left:auto;margin-right:auto;max-width:28ch}
   .showcase .say{text-align:center;margin-left:auto;margin-right:auto}
-  .videowrap{margin:30px auto 0;max-width:940px;border-radius:20px;overflow:hidden;border:1px solid color-mix(in srgb,var(--gold) 50%,var(--line));box-shadow:0 0 0 1px color-mix(in srgb,var(--gold) 18%,transparent),0 44px 120px -44px color-mix(in srgb,var(--gold) 45%,#000);background:#000}
+  .videowrap{position:relative;margin:30px auto 0;max-width:960px;border-radius:20px;overflow:hidden;border:1px solid color-mix(in srgb,var(--gold) 50%,var(--line));box-shadow:0 0 0 1px color-mix(in srgb,var(--gold) 18%,transparent),0 44px 120px -44px color-mix(in srgb,var(--gold) 45%,#000);background:#000}
   .videowrap video{display:block;width:100%;height:auto}
+  .apphl{display:flex;align-items:center;gap:56px}
+  .apphl-text{flex:1;min-width:0}
+  .apphl-phone{flex:none;width:min(280px,72vw)}
+  .apphl-phone img{width:100%;display:block;border-radius:32px;
+    box-shadow:0 50px 100px -35px rgba(0,0,0,.75),0 0 0 1px color-mix(in srgb,var(--gold) 30%,transparent)}
+  @media (max-width:820px){.apphl{flex-direction:column;text-align:center}.apphl-text .ctabtn{margin:0 auto}}
+  .wipbadge{position:absolute;top:16px;right:16px;z-index:2;display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(6px);border:1px solid color-mix(in srgb,var(--gold) 45%,var(--line));color:var(--gold-ink);font-size:11.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+  .wipbadge .p{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 1.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
   .bento{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}
-  .b{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;transition:transform .15s,border-color .15s}
+  .b{background:color-mix(in srgb,var(--card) 92%,transparent);border:1px solid var(--line);border-radius:var(--radius);padding:20px;transition:transform .15s,border-color .15s;backdrop-filter:blur(4px)}
   .b:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--gold) 50%,var(--line))}
-  .b .ic{font-size:22px;margin-bottom:10px}
+  .b .ic{margin-bottom:12px}
+  .icosvg{width:23px;height:23px;stroke:var(--muted);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;display:block;transition:stroke .15s}
+  .b:hover .icosvg{stroke:var(--gold-ink)}
   .b h3{font-size:15.5px;margin:0 0 6px}
   .b p{margin:0;font-size:13px;color:var(--muted)}
   .b.wide{grid-column:span 2}
+  .apppromo{display:flex;align-items:center;gap:18px;margin-top:22px;padding:20px 24px;border-radius:18px;
+    background:linear-gradient(90deg, color-mix(in srgb,var(--gold) 14%,var(--card)), var(--card));
+    border:1px solid color-mix(in srgb,var(--gold) 40%,var(--line));text-decoration:none;color:var(--ink);transition:.15s}
+  .apppromo:hover{border-color:var(--gold);transform:translateY(-2px)}
+  .apppromo-ic{font-size:28px;flex:none}
+  .apppromo b{color:var(--gold-ink)}
+  .apppromo span:nth-child(2){flex:1;font-size:14px;color:var(--muted);line-height:1.4}
+  .apppromo-go{flex:none;font-weight:800;font-size:13.5px;color:#1a1200;background:linear-gradient(135deg,var(--gold),var(--gold2));padding:10px 18px;border-radius:999px;white-space:nowrap}
+  @media (max-width:640px){.apppromo{flex-wrap:wrap}}
   @media (max-width:860px){.bento{grid-template-columns:repeat(2,1fr)}.b.wide{grid-column:span 2}}
   @media (max-width:520px){.bento{grid-template-columns:1fr}.b.wide{grid-column:span 1}}
 
-  /* journey */
   .flow{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;counter-reset:s}
-  .step{flex:1 1 150px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;position:relative;counter-increment:s}
+  .step{flex:1 1 150px;background:color-mix(in srgb,var(--card) 92%,transparent);border:1px solid var(--line);border-radius:12px;padding:16px;position:relative;counter-increment:s}
   .step::before{content:counter(s);font-family:var(--mono);font-weight:900;color:var(--gold-ink);font-size:13px;background:var(--gold-soft);border:1px solid color-mix(in srgb,var(--gold) 30%,transparent);width:26px;height:26px;border-radius:7px;display:grid;place-items:center;margin-bottom:10px}
   .step b{display:block;font-size:14px;margin-bottom:3px}
   .step small{color:var(--muted);font-size:12.5px}
 
-  /* roadmap */
   .road{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px}
   @media (max-width:860px){.road{grid-template-columns:1fr 1fr}}
   @media (max-width:520px){.road{grid-template-columns:1fr}}
-  .ph{border:1px solid var(--line);border-radius:var(--radius);padding:20px;background:var(--card);position:relative;overflow:hidden}
-  .ph.now{border-color:color-mix(in srgb,var(--gold) 55%,var(--line));background:linear-gradient(180deg,var(--gold-soft),var(--card))}
+  .ph{border:1px solid var(--line);border-radius:var(--radius);padding:20px;background:color-mix(in srgb,var(--card) 92%,transparent);position:relative;overflow:hidden}
+  .ph.now{border-color:color-mix(in srgb,var(--gold) 55%,var(--line));background:linear-gradient(180deg,var(--gold-soft),color-mix(in srgb,var(--card) 92%,transparent))}
   .ph .tag{font-family:var(--mono);font-size:12px;color:var(--gold-ink);font-weight:700}
   .ph h3{font-size:16px;margin:6px 0 4px}
   .ph .when{font-size:12.5px;color:var(--muted);margin-bottom:10px;font-weight:600}
   .ph ul{margin:0;padding-left:16px}.ph li{font-size:12.5px;color:var(--muted);margin:3px 0}
   .ph .badge{position:absolute;top:14px;right:14px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#1a1200;background:linear-gradient(135deg,var(--gold),var(--gold2));padding:3px 8px;border-radius:999px}
 
-  /* budget */
   .budget{background:var(--card2);border:1px solid var(--line);border-radius:20px;padding:clamp(20px,3vw,34px);margin-top:28px}
   .headline{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px 24px;margin-bottom:8px}
   .headline .big{font-size:clamp(30px,5vw,52px);font-weight:900;line-height:1;background:linear-gradient(120deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums}
@@ -113,19 +175,30 @@
 
   .own{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
   @media (max-width:760px){.own{grid-template-columns:1fr}}
-  .own .o{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+  .own .o{background:color-mix(in srgb,var(--card) 92%,transparent);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
   .own .o b{display:block;font-size:15px;margin-bottom:6px;color:var(--gold-ink)}
   .own .o p{margin:0;font-size:13px;color:var(--muted)}
 
-  .cta{text-align:center;padding:clamp(50px,8vw,90px) 0;border-bottom:0}
-  .cta h2{margin:0 auto 14px}
+  .cta{text-align:center;padding:clamp(56px,9vw,100px) 0;border-bottom:0}
+  .cta h2{margin:0 auto 14px;max-width:20ch}
   .cta .say{margin:0 auto 26px}
-  .ctabtn{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1200;font-weight:800;font-size:16px;padding:15px 34px;border-radius:999px;letter-spacing:.01em}
+  .ctabtn{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1200;font-weight:800;font-size:16px;padding:15px 34px;border-radius:999px;letter-spacing:.01em;text-decoration:none}
   .contact{margin-top:16px;font-size:13px;color:var(--muted)}
 
-  footer{max-width:1080px;margin:0 auto;padding:26px clamp(16px,4vw,40px) 60px;color:var(--muted);font-size:12px}
+  footer{max-width:1120px;margin:0 auto;padding:26px clamp(16px,4vw,40px) 60px;color:var(--muted);font-size:12px;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
+
+  /* sitewide ambient shader (WebGL) — behind every section, screen-blended so it only ever adds light */
+  .zyfx-overlay{position:fixed;inset:0;z-index:0;pointer-events:none;mix-blend-mode:screen;opacity:.55}
+  .zyfx-overlay canvas{display:block;width:100%;height:100%}
+  /* hero connection network — nodes drifting and linking, mouse joins the web */
+  .hero-fx{position:absolute;inset:0;z-index:0;pointer-events:none;mix-blend-mode:screen;opacity:.6}
+  .hero-fx canvas{display:block;width:100%;height:100%}
+
+  /* password gate — same branded look/hash as the official raw-ai.vercel.app page */
   [hidden]{display:none!important}
-  #gate{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px;background:radial-gradient(60% 80% at 82% -8%, color-mix(in srgb,var(--gold) 22%,transparent), transparent 60%),radial-gradient(50% 70% at 12% 0%, color-mix(in srgb,var(--blue) 16%,transparent), transparent 55%),var(--bg)}
+  #gate{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px;
+    background:radial-gradient(60% 80% at 82% -8%, color-mix(in srgb,var(--gold) 22%,transparent), transparent 60%),
+      radial-gradient(50% 70% at 12% 0%, color-mix(in srgb,var(--blue) 16%,transparent), transparent 55%), var(--bg)}
   .gatecard{width:100%;max-width:380px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px 28px;text-align:center;display:flex;flex-direction:column;gap:14px;box-shadow:0 30px 80px -40px #000}
   .glogo{display:flex;align-items:center;justify-content:center;gap:9px;font-weight:800;font-size:15px;margin-bottom:2px}
   .glogo .dot{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--gold),var(--gold2));display:grid;place-items:center;color:#1a1200;font-weight:900;font-family:var(--mono);font-size:15px}
@@ -136,379 +209,476 @@
   #gatePw:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
   .gatecard button{width:100%;padding:13px;border:0;border-radius:11px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1200;font:inherit;font-weight:800;font-size:15px;cursor:pointer}
   .gerr{color:#e5533d;font-size:13px;margin:0}
-  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
-  @media print{.bar{position:static}.toggle{display:none}[data-lang]{display:block!important}.b:hover,.ph{transform:none}}
 </style>
+</head>
+<body>
+
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+<defs>
+  <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M2 8.5c5.5-5 14.5-5 20 0"/><path d="M5.5 12.5c3.6-3 9.4-3 13 0"/><path d="M9 16.5c1.8-1.5 4.2-1.5 6 0"/><circle cx="12" cy="20" r="1.1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-food" viewBox="0 0 24 24"><path d="M6 2v7"/><path d="M9 2v7"/><path d="M6 9a3 3 0 0 1-3-3V2"/><path d="M9 9v13"/><path d="M17 2c-1.6 1-2.6 3-2.6 5.5S15.4 12 17 12"/><path d="M17 2v20"/></symbol>
+  <symbol id="i-seat" viewBox="0 0 24 24"><path d="M4 8V5a1 1 0 0 1 1-1h3"/><path d="M16 4h3a1 1 0 0 1 1 1v3"/><path d="M20 16v3a1 1 0 0 1-1 1h-3"/><path d="M8 20H5a1 1 0 0 1-1-1v-3"/><rect x="9" y="9" width="6" height="6" rx="1"/></symbol>
+  <symbol id="i-ad" viewBox="0 0 24 24"><path d="M3 11l18-5v12L3 13v-2Z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></symbol>
+  <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4Z"/><path d="M13 6v2M13 11v2M13 16v2"/></symbol>
+  <symbol id="i-parking" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 16V8h4a3 3 0 0 1 0 6H9"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 8V6a6 6 0 0 1 12 0v2"/><path d="M4 8h16l-1.2 12.2a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8Z"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 20a2 2 0 0 0 4 0"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10"/><path d="M12 20V4"/><path d="M20 20v-7"/></symbol>
+  <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7 2 13a3 3 0 0 0 6 0Z"/><path d="M19 7l-3 6a3 3 0 0 0 6 0Z"/><path d="M8 21h8"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.3 3-6 7-6s7 2.7 7 6"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.2c2.7.4 4.5 2.5 4.5 5.8"/></symbol>
+  <symbol id="i-landmark" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V9M9 21V9M15 21V9M19 21V9"/><path d="M2 9l10-5 10 5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.7-7 9-4-1.3-7-4.5-7-9V6Z"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10l6-3v10l-6-3Z"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 6h6v6"/></symbol>
+  <symbol id="i-poll" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8.5 12.5l2.5 2.5 5-5"/></symbol>
+  <symbol id="i-ar" viewBox="0 0 24 24"><path d="M12 3 2 9l10 6 10-6Z"/><path d="M2 15l10 6 10-6"/></symbol>
+  <symbol id="i-tv" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+  <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 4h8v6a4 4 0 0 1-8 0Z"/><path d="M8 5H5a3 3 0 0 0 3 5"/><path d="M16 5h3a3 3 0 0 1-3 5"/><path d="M12 14v3"/><path d="M8 21h8"/><path d="M10 17h4v4h-4Z"/></symbol>
+</defs>
+</svg>
 
 <div id="gate">
   <form id="gateForm" class="gatecard">
     <div class="glogo"><span class="dot">S</span>SEJA <span>ARENA</span></div>
-    <h2 class="gh">Private presentation</h2>
-    <p class="gp">Enter the access password to continue<br>Digite a senha de acesso para continuar</p>
-    <input id="gatePw" type="password" autocomplete="off" spellcheck="false" placeholder="Password · Senha" aria-label="Password">
-    <button type="submit">Enter →</button>
-    <p id="gateErr" class="gerr" hidden>Incorrect password · Senha incorreta</p>
+    <h2 class="gh">Apresentação privada</h2>
+    <p class="gp">Digite a senha de acesso para continuar</p>
+    <input id="gatePw" type="password" autocomplete="off" spellcheck="false" placeholder="Senha" aria-label="Senha">
+    <button type="submit">Entrar →</button>
+    <p id="gateErr" class="gerr" hidden>Senha incorreta</p>
   </form>
 </div>
 
 <div id="site" hidden>
+
+<!-- Ambient WebGL shader — cinematic dust + slow light beams + mouse glow, gold-toned.
+     Sits behind every section; sections without a photo let it show through. -->
+<div class="zyfx-overlay" aria-hidden="true"><canvas id="zyFxCanvas"></canvas></div>
+
 <div class="bar"><div class="in">
-  <div class="brandmark"><span class="dot">S</span>SEJA <span>ARENA</span></div>
-  <div class="toggle" role="group" aria-label="Language / Idioma">
-    <button id="btn-en" aria-pressed="true" onclick="setLang('en')">EN</button>
-    <button id="btn-pt" aria-pressed="false" onclick="setLang('pt')">PT</button>
-  </div>
+  <a class="brandmark" href="#top">SEJA <b>ARENA</b><span class="tagline">Plataforma do torcedor</span></a>
+  <a class="navlink" href="/seja-arena/app-simulacao.html">Ver o app →</a>
+  <a class="navcta" href="#cta">Agendar reunião →</a>
 </div></div>
 
-<!-- ==================== ENGLISH ==================== -->
-<div data-lang="en">
-  <div class="hero"><div class="lights"></div><div class="grid-fade"></div>
-    <div class="wrap in">
-      <span class="eyebrow">◆ Digital Fan Monetization Platform</span>
-      <h1>Turn every seat into a <span class="g">point of sale</span>. Every fan into revenue.</h1>
-      <p class="sub">Seja Arena is your own branded platform that turns every fan's phone into part of the game — connecting Wi-Fi, ordering, advertising, tickets and data into one experience, and one new revenue engine you fully own. Here's the platform, the differentiator, the plan, and exactly what the first 90 days cost.</p>
-      <div class="heroStats">
-        <div class="hs"><b>1 platform</b><small>20+ integrated modules</small></div>
-        <div class="hs"><b>Seat delivery</b><small>order from the seat, in seconds</small></div>
-        <div class="hs"><b>100% yours</b><small>white-label · your brand · your data</small></div>
-        <div class="hs"><b>Multi-arena</b><small>built to expand across venues</small></div>
-      </div>
+<!-- HERO -->
+<section class="hero hasphoto reveal in" id="top">
+  <div class="photobg"><img src="/seja-arena/images/82d57407-ccaf-491e-b18a-bbc3da50069f.webp" alt=""></div>
+  <div class="hero-fx" aria-hidden="true"><canvas id="heroNet"></canvas></div>
+  <div class="wrap in">
+    <span class="eyebrow">◆ Plataforma de Monetização Digital do Torcedor</span>
+    <h1>Transforme cada assento em um <span class="g">ponto de venda</span>. Cada torcedor em receita.</h1>
+    <p class="sub">Wi-Fi, pedidos, publicidade, ingressos e dados numa só experiência — com a sua marca, e um motor de receita totalmente seu.</p>
+    <div class="heroStats">
+      <div class="hs"><b>1 plataforma</b><small>20+ módulos</small></div>
+      <div class="hs"><b>No assento</b><small>chega em segundos</small></div>
+      <div class="hs"><b>100% sua</b><small>white-label</small></div>
+      <div class="hs"><b>Multi-arena</b><small>pronta pra crescer</small></div>
     </div>
   </div>
+</section>
 
-  <section class="showcase"><div class="wrap">
-    <p class="lbl">▶ The proposal in motion</p>
-    <h2>See Seja Arena come to life.</h2>
-    <p class="say">Press play. This is the experience your fans feel the moment they walk in — and the reason they never put their phone down.</p>
-    <div class="videowrap"><video controls playsinline preload="none" poster="/proposta-seja-arena-poster.jpg" src="/proposta-seja-arena.mp4">Your browser does not support the video.</video></div>
-  </div></section>
+<!-- VIDEO SHOWCASE -->
+<section class="showcase reveal"><div class="wrap">
+  <p class="lbl">▶ A proposta em movimento</p>
+  <h2>Veja a Seja Arena ganhar vida.</h2>
+  <p class="say">Aperte o play. Esta é a experiência que o seu torcedor sente no instante em que entra — e o motivo de ele não largar o celular.</p>
+  <div class="videowrap">
+    <video controls playsinline preload="metadata" poster="/seja-arena/images/poster-v3.1.jpg" src="/seja-arena/proposta-seja-arena.mp4">Seu navegador não suporta vídeo.</video>
+  </div>
+</div></section>
 
-  <section><div class="wrap">
-    <p class="lbl">The opportunity</p>
-    <h2>Every match, thousands of fans and zero digital relationship. That's money leaving the building.</h2>
-    <p class="say">Today the fan buys a ticket and disappears. Seja Arena captures that relationship at the moment they connect to the Wi-Fi — and keeps it. From that first tap, you own the channel: you sell to them at their seat, show sponsors a captive audience, and learn what every fan wants. The stadium stops being just an event venue and becomes a year-round digital business.</p>
-  </div></section>
+<!-- OPORTUNIDADE -->
+<section class="hasphoto reveal fx-scanline"><div class="photobg"><img src="/seja-arena/images/bg-v3-04-publicidade-pdv.webp" loading="lazy" decoding="async" alt=""></div><div class="wrap">
+  <p class="lbl">Prova de mercado · Por que agora</p>
+  <h2>As arenas do Brasil já estão indo para o digital — por lei. A Seja Arena transforma isso em receita sua.</h2>
+  <p class="say">Desde 2025, a <b>Lei Geral do Esporte</b> torna a biometria facial <b>obrigatória</b> em estádios de 20 mil+ lugares. A porta digital já está aberta — a questão é quem controla o que acontece depois.</p>
+  <div class="bento">
+    <div class="b"><div class="ic"><svg class="icosvg"><use href="#i-scale"></use></svg></div><h3>Digital agora é lei</h3><p>Acesso facial é obrigatório em estádios de 20 mil+ lugares (Lei Geral do Esporte, em vigor desde 2025). Toda grande arena precisa digitalizar a catraca — a mudança difícil já aconteceu.</p></div>
+    <div class="b"><div class="ic"><svg class="icosvg"><use href="#i-users"></use></svg></div><h3>O torcedor já está dentro</h3><p>A biometria já cobre estádios que reúnem cerca de 70% dos torcedores da Série A, com 18 milhões+ de acessos faciais. O público digital cativo já existe hoje.</p></div>
+    <div class="b"><div class="ic"><svg class="icosvg"><use href="#i-landmark"></use></svg></div><h3>O modelo está provado</h3><p>O "Super App do Galo" do Atlético-MG (feito com a Accenture) já roda ingressos, A&amp;B por pedido antecipado, navegação interna, streaming e gamificação na arena. A Seja Arena é esse playbook — só que seu.</p></div>
+    <div class="b"><div class="ic"><svg class="icosvg"><use href="#i-shield"></use></svg></div><h3>A parte difícil é com a gente</h3><p>Os reguladores (ANPD) estão de olho na biometria. A Seja Arena embute governança de LGPD — consentimento, avaliação de impacto e alternativa ao facial — desde o dia um.</p></div>
+  </div>
+</div></section>
 
-  <section><div class="wrap">
-    <p class="lbl">Market proof · Why now</p>
-    <h2>Brazil's arenas are already going digital — by law. Seja Arena turns that into your revenue.</h2>
-    <p class="say">This isn't a bet on the future. Since mid-2025, the <b>Lei Geral do Esporte</b> makes biometric facial access <b>mandatory</b> for every stadium over 20,000 seats — so fans are <b>already</b> registering, identifying themselves and entering through their phones. The digital front door is open; the only question is who owns what happens next. Seja Arena plugs into the access and ticketing rails that already exist, and owns the part that makes money: ordering, ads, membership, engagement and data.</p>
-    <div class="bento">
-      <div class="b"><div class="ic">⚖️</div><h3>Digital is now the law</h3><p>Facial access is mandatory for 20k+ stadiums (Lei Geral do Esporte, in force since 2025). Every major arena must digitize its gate — the hard change already happened.</p></div>
-      <div class="b"><div class="ic">👥</div><h3>The fan is already in</h3><p>Biometric access already covers stadiums holding roughly 70% of Série A fans, with 18M+ facial entries. The captive digital audience exists today.</p></div>
-      <div class="b"><div class="ic">🏟️</div><h3>The model is proven</h3><p>Atlético-MG's "Super App do Galo" (built with Accenture) already runs ticketing, order-ahead F&amp;B, wayfinding, streaming and gamification at its arena. Seja Arena is that playbook — owned by you.</p></div>
-      <div class="b"><div class="ic">🛡️</div><h3>We handle the hard part</h3><p>Regulators (ANPD) are watching biometrics closely. Seja Arena builds LGPD governance — consent, impact assessment, a non-facial fallback — in from day one, so compliance becomes a strength, not a risk.</p></div>
-    </div>
-  </div></section>
+<!-- PLATAFORMA -->
+<section class="hasphoto reveal"><div class="photobg"><img src="/seja-arena/images/hf-plataforma.webp" alt="" loading="lazy" decoding="async"></div><div class="wrap">
+  <p class="lbl">A plataforma</p>
+  <h2>Um super-app do torcedor, integrado a toda a operação.</h2>
+  <div class="bento">
+    <div class="b wide"><div class="ic"><svg class="icosvg"><use href="#i-wifi"></use></svg></div><h3>Wi-Fi + Portal Cativo</h3><p>O torcedor ganha Wi-Fi grátis; você ganha a porta de entrada — portal com sua marca, vídeo do patrocinador, cadastro e consentimento, tudo capturado corretamente.</p></div>
+    <div class="b"><div class="ic"><svg class="icosvg"><use href="#i-food"></use></svg></div><h3>Pedido no assento</h3><p>Comida e bebida pelo celular, entregues no assento exato — ou prontos para retirada.</p></div>
+    <div class="b"><div class="ic"><svg class="icosvg"><use href="#i-seat"></use></svg></div><h3>QR por cadeira</h3><p>Setor, bloco, fileira e assento identificados automaticamente por um código único em cada cadeira.</p></div>
+    <div class="b"><div class="ic"><svg class="icosvg"><use href="#i-ad"></use></svg></div><h3>Publicidade &amp; patrocínio</h3><p>Banners, vídeos e campanhas patrocinadas com gestor de inventário de verdade — uma nova linha de receita.</p></div>
+    <div class="b"><div class="ic"><svg class="icosvg"><use href="#i-card"></use></svg></div><h3>Pagamento digital</h3><p>Pix e cartões, acompanhamento do pedido de ponta a ponta, pronto para split entre vários fornecedores.</p></div>
+    <div class="b"><div class="ic"><svg class="icosvg"><use href="#i-ticket"></use></svg></div><h3>Ingressos &amp; acesso</h3><p>Bilheteria e entrada por reconhecimento facial, integrados e em conformidade com a lei.</p></div>
+    <div class="b"><div class="ic"><svg class="icosvg"><use href="#i-parking"></use></svg></div><h3>Estacionamento</h3><p>Compre, encontre e pague o estacionamento no mesmo app.</p></div>
+    <div class="b"><div class="ic"><svg class="icosvg"><use href="#i-bag"></use></svg></div><h3>Marketplace &amp; cupons</h3><p>Loja oficial, produtos, promoções e cupons que geram recompra.</p></div>
+    <div class="b"><div class="ic"><svg class="icosvg"><use href="#i-bell"></use></svg></div><h3>Notificações &amp; CRM</h3><p>Fale direto com cada torcedor, segmente e traga-o de volta no próximo jogo.</p></div>
+    <div class="b wide"><div class="ic"><svg class="icosvg"><use href="#i-chart"></use></svg></div><h3>Analytics, dashboards &amp; APIs abertas</h3><p>Métricas ao vivo de audiência, consumo e publicidade — mais APIs para plugar tudo que você adicionar depois.</p></div>
+  </div>
+</div></section>
 
-  <section><div class="wrap">
-    <p class="lbl">The platform</p>
-    <h2>One fan super-app, wired into the whole operation.</h2>
-    <div class="bento">
-      <div class="b wide"><div class="ic">📶</div><h3>Wi-Fi + Captive Portal</h3><p>Fans get free Wi-Fi; you get the front door — branded portal, sponsor video, sign-up and consent, all captured cleanly.</p></div>
-      <div class="b"><div class="ic">🍔</div><h3>Order to your seat</h3><p>Food &amp; drink ordered from the phone, delivered to the exact seat — or ready for pickup.</p></div>
-      <div class="b"><div class="ic">🪑</div><h3>QR per seat</h3><p>Sector, block, row and seat identified automatically by a unique code on every chair.</p></div>
-      <div class="b"><div class="ic">📣</div><h3>Ads &amp; sponsorship</h3><p>Banners, video and sponsored campaigns with a real ad-inventory manager — a brand-new revenue line.</p></div>
-      <div class="b"><div class="ic">💳</div><h3>Digital payment</h3><p>Pix and cards, order tracking end-to-end, split-ready for multiple vendors.</p></div>
-      <div class="b"><div class="ic">🎟️</div><h3>Tickets &amp; access</h3><p>Ticketing and facial-recognition entry, integrated and law-compliant.</p></div>
-      <div class="b"><div class="ic">🅿️</div><h3>Parking</h3><p>Buy, find and pay for parking inside the same app.</p></div>
-      <div class="b"><div class="ic">🛍️</div><h3>Marketplace &amp; coupons</h3><p>Official store, merch, promos and coupons that drive repeat spend.</p></div>
-      <div class="b"><div class="ic">🔔</div><h3>Notifications &amp; CRM</h3><p>Reach every fan directly, segment them, and bring them back next match.</p></div>
-      <div class="b wide"><div class="ic">📊</div><h3>Analytics, dashboards &amp; open APIs</h3><p>Live audience, consumption and advertising metrics — plus APIs to plug in anything you add later.</p></div>
-    </div>
-  </div></section>
+<!-- APP DESTAQUE -->
+<section class="reveal"><div class="wrap apphl">
+  <div class="apphl-text">
+    <p class="lbl">▶ Não é mockup</p>
+    <h2>Um protótipo de verdade, com a sua marca.</h2>
+    <p class="say">Wi-Fi, assento, pedido, pagamento, ingresso, ao vivo e fidelidade — cada módulo da proposta já rodando dentro de um app real, pronto pra tocar e navegar.</p>
+    <a href="/seja-arena/app-simulacao.html" class="ctabtn" style="text-decoration:none;display:inline-block;">Abrir protótipo interativo →</a>
+  </div>
+  <div class="apphl-phone">
+    <img src="/seja-arena/images/app-phone-destaque.webp" loading="lazy" decoding="async" alt="Protótipo do app Seja Arena">
+  </div>
+</div></section>
 
-  <section class="diff"><div class="wrap">
-    <p class="lbl">★ The differentiator</p>
-    <h2>The phone stops being a distraction — and becomes part of the game.</h2>
-    <p class="say">Over 80% of fans are on their phone during the match. Seja Arena turns that screen into the second screen of the show — replays, stats, AR and live games — and every tap is a data point, an ad impression, and a reason to order again.</p>
-    <div class="bento">
-      <div class="b"><div class="ic">🎥</div><h3>Multi-angle instant replays</h3><p>See the goal again from every camera, right at the seat — the moment fans reach for their phone, they're inside your app.</p></div>
-      <div class="b"><div class="ic">📈</div><h3>Live stats &amp; lineups</h3><p>Real-time data, player tracking and heat maps as the match unfolds.</p></div>
-      <div class="b"><div class="ic">🗳️</div><h3>Polls, trivia &amp; predictions</h3><p>MVP votes, "who scores next," halftime games — with points and badges for playing.</p></div>
-      <div class="b"><div class="ic">🔮</div><h3>AR at the seat</h3><p>Point the phone at the pitch for player stats, ball speed and sponsor-branded AR moments.</p></div>
-      <div class="b"><div class="ic">📺</div><h3>Onto the big screen</h3><p>Fan messages, photos and AR filters that appear on the jumbotron — sponsor-activated.</p></div>
-      <div class="b"><div class="ic">🏆</div><h3>Gamification &amp; loyalty</h3><p>Challenges, leaderboards and points that convert into F&amp;B discounts, merch and status.</p></div>
-      <div class="b"><div class="ic">📣</div><h3>Player &amp; club moments</h3><p>Video shoutouts to a section, behind-the-scenes and exclusive content only the app has.</p></div>
-      <div class="b"><div class="ic">🎯</div><h3>AR quests &amp; sponsor hunts</h3><p>Scan codes around the arena to unlock coupons and rewards — funded by sponsors.</p></div>
-    </div>
-    <p class="say" style="margin-top:20px;font-size:13px"><b>Why it wins:</b> engagement is what keeps the app open — and an open app sells more food, shows more ads, and proves more value to sponsors. The experience is the differentiator; the revenue is the result.</p>
-  </div></section>
+<!-- DIFERENCIAL -->
+<section class="hasphoto reveal fx-scanline"><div class="photobg"><img src="/seja-arena/images/bg-v3-03-pedido-pagamento.webp" loading="lazy" decoding="async" alt=""></div><div class="wrap">
+  <p class="lbl">★ O diferencial</p>
+  <h2>O celular deixa de ser distração — e vira parte do jogo.</h2>
+  <p class="say">Mais de 80% dos torcedores ficam no celular durante o jogo. A Seja Arena transforma essa tela na segunda tela do espetáculo.</p>
+  <div class="bento">
+    <div class="b"><div class="ic"><svg class="icosvg"><use href="#i-video"></use></svg></div><h3>Replays em vários ângulos</h3><p>Reveja o gol de todas as câmeras, ali no assento.</p></div>
+    <div class="b"><div class="ic"><svg class="icosvg"><use href="#i-trend"></use></svg></div><h3>Estatísticas ao vivo</h3><p>Dados em tempo real, rastreamento de jogadores e mapas de calor.</p></div>
+    <div class="b"><div class="ic"><svg class="icosvg"><use href="#i-poll"></use></svg></div><h3>Enquetes &amp; palpites</h3><p>Votação de craque, "quem marca o próximo" — com pontos e medalhas.</p></div>
+    <div class="b"><div class="ic"><svg class="icosvg"><use href="#i-ar"></use></svg></div><h3>RA no assento</h3><p>Estatísticas do jogador e ativações de patrocinadores em realidade aumentada.</p></div>
+    <div class="b"><div class="ic"><svg class="icosvg"><use href="#i-tv"></use></svg></div><h3>No telão</h3><p>Mensagens e fotos dos torcedores no telão — ativados por patrocínio.</p></div>
+    <div class="b"><div class="ic"><svg class="icosvg"><use href="#i-trophy"></use></svg></div><h3>Gamificação &amp; fidelidade</h3><p>Desafios e pontos que viram descontos em A&amp;B, produtos e status.</p></div>
+  </div>
+</div></section>
 
-  <section><div class="wrap">
-    <p class="lbl">The fan journey</p>
-    <h2>From "connect to Wi-Fi" to "delivered to my seat" — in one flow.</h2>
-    <div class="flow">
-      <div class="step"><b>Connects to Wi-Fi</b><small>Branded portal + sponsor video</small></div>
-      <div class="step"><b>Signs up &amp; consents</b><small>Registration + privacy, done right</small></div>
-      <div class="step"><b>Opens Seja Arena</b><small>Seat detected via QR</small></div>
-      <div class="step"><b>Orders &amp; pays</b><small>Pix / card, tracks the order</small></div>
-      <div class="step"><b>Delivered to seat</b><small>Or picks up — never misses a play</small></div>
-    </div>
-  </div></section>
+<!-- JORNADA -->
+<section class="hasphoto reveal fx-flowline"><div class="photobg"><img src="/seja-arena/images/bg-v3-02-entrega-assento.webp" loading="lazy" decoding="async" alt=""></div><div class="wrap">
+  <p class="lbl">A jornada do torcedor</p>
+  <h2>De "conectar ao Wi-Fi" a "entregue no meu assento" — em um só fluxo.</h2>
+  <div class="flow">
+    <div class="step"><b>Conecta ao Wi-Fi</b><small>Portal com marca + vídeo do patrocinador</small></div>
+    <div class="step"><b>Cadastra &amp; consente</b><small>Cadastro + privacidade, do jeito certo</small></div>
+    <div class="step"><b>Abre a Seja Arena</b><small>Assento detectado via QR</small></div>
+    <div class="step"><b>Pede &amp; paga</b><small>Pix / cartão, acompanha o pedido</small></div>
+    <div class="step"><b>Entregue no assento</b><small>Ou retira — sem perder o lance</small></div>
+  </div>
+</div></section>
 
-  <section><div class="wrap">
-    <p class="lbl">How we build it</p>
-    <h2>A phased path — revenue early, full platform over time, expansion after.</h2>
-    <p class="say">You never sign a giant blank cheque. We start small and smart: a Discovery &amp; Blueprint phase that produces a working demo and a fixed price for the build. Each phase pays for itself before the next begins.</p>
-    <div class="road">
-      <div class="ph now"><span class="badge">Start here</span><p class="tag">Phase 0</p><h3>Discovery &amp; Blueprint</h3><p class="when">Months 1–3</p><ul><li>Full product + tech blueprint</li><li>Clickable branded prototype</li><li>Integration &amp; compliance design</li><li>Fixed price for the MVP</li></ul></div>
-      <div class="ph"><p class="tag">Phase 1</p><h3>MVP — live</h3><p class="when">Months 3–8</p><ul><li>Wi-Fi + portal + sign-up</li><li>Seat QR + F&amp;B to seat</li><li>Pix/card + order tracking</li><li>First POS integration</li></ul></div>
-      <div class="ph"><p class="tag">Phase 2</p><h3>Full platform</h3><p class="when">Months 8–20</p><ul><li>Ads engine + inventory</li><li>Tickets, parking, marketplace</li><li>CRM + analytics + APIs</li><li>Full white-label</li></ul></div>
-      <div class="ph"><p class="tag">Phase 3</p><h3>Expansion</h3><p class="when">Beyond</p><ul><li>Roll out to new arenas</li><li>Multi-tenant at scale</li><li>New events &amp; venues</li></ul></div>
-    </div>
-  </div></section>
+<!-- FASES -->
+<section class="hasphoto reveal fx-flowline"><div class="photobg"><img src="/seja-arena/images/bg-v3-05-estacionamento-acesso.webp" loading="lazy" decoding="async" alt=""></div><div class="wrap">
+  <p class="lbl">Como construímos</p>
+  <h2>Um caminho em fases — receita cedo, plataforma completa ao longo do tempo, expansão depois.</h2>
+  <p class="say">Sem cheque em branco. Começamos com uma fase de Discovery que já entrega demo funcional e preço fixo pro resto.</p>
+  <div class="road">
+    <div class="ph now"><span class="badge">Comece aqui</span><p class="tag">Fase 0</p><h3>Discovery &amp; Blueprint</h3><p class="when">Meses 1–3</p><ul><li>Blueprint completo de produto + técnico</li><li>Protótipo clicável com sua marca</li><li>Desenho de integrações &amp; conformidade</li><li>Preço fixo do MVP</li></ul></div>
+    <div class="ph"><p class="tag">Fase 1</p><h3>MVP — no ar</h3><p class="when">Meses 3–8</p><ul><li>Wi-Fi + portal + cadastro</li><li>QR de assento + A&amp;B no assento</li><li>Pix/cartão + acompanhamento</li><li>Primeira integração de PDV</li></ul></div>
+    <div class="ph"><p class="tag">Fase 2</p><h3>Plataforma completa</h3><p class="when">Meses 8–20</p><ul><li>Motor de anúncios + inventário</li><li>Ingressos, estacionamento, marketplace</li><li>CRM + analytics + APIs</li><li>White-label completo</li></ul></div>
+    <div class="ph"><p class="tag">Fase 3</p><h3>Expansão</h3><p class="when">Além</p><ul><li>Leve a novas arenas</li><li>Multi-tenant em escala</li><li>Novos eventos &amp; locais</li></ul></div>
+  </div>
+</div></section>
 
-  <section><div class="wrap">
-    <p class="lbl">★ The first 90 days — plan &amp; investment</p>
-    <h2>What we do in three months, and exactly what it costs.</h2>
-    <p class="say">The first phase turns the vision into something you can see, test and price with confidence. By day 90 you hold a working prototype and a fixed quote for the rest — so the biggest decision is made with data, not hope.</p>
-    <div class="budget">
-      <div class="headline">
-        <span class="big">R$430k – R$670k</span>
-        <span class="usd">≈ US$84k – US$131k</span>
-        <span class="cap">Fixed-scope Discovery, Blueprint &amp; technical foundations — the full first-90-day investment.</span>
-      </div>
-      <div class="tblwrap"><table>
-        <thead><tr><th>Workstream</th><th>Delivered in 90 days</th><th class="num">Investment (BRL)</th></tr></thead>
-        <tbody>
-          <tr><td>Discovery &amp; solution architecture</td><td>Multi-tenant architecture, data model, seat/QR model, load planning</td><td class="num">R$90–130k</td></tr>
-          <tr><td>UX/UI + interactive prototype</td><td>Branded, clickable demo of the full fan journey</td><td class="num">R$70–110k</td></tr>
-          <tr><td>Integration blueprint</td><td>Payments (Pix/card), POS, Wi-Fi portal, ticketing, facial access</td><td class="num">R$60–100k</td></tr>
-          <tr><td>Privacy &amp; compliance design</td><td>LGPD framework, consent model, fiscal (NFC-e) plan</td><td class="num">R$40–70k</td></tr>
-          <tr><td>MVP technical foundations</td><td>Cloud environments, CI/CD, core services, first module skeleton</td><td class="num">R$130–200k</td></tr>
-          <tr><td>Project management &amp; governance</td><td>Weekly cadence, roadmap, fixed MVP quote</td><td class="num">R$40–60k</td></tr>
-          <tr class="total"><td>Total — first 90 days</td><td>A working prototype + a buildable, fixed-price plan</td><td class="num">R$430–670k</td></tr>
-        </tbody>
-      </table></div>
-      <h3 style="margin:22px 0 4px;font-size:15px">What you hold on day 90</h3>
-      <div class="deliver">
-        <div><span class="ck">✓</span><span>A complete product &amp; technical blueprint — the buildable spec.</span></div>
-        <div><span class="ck">✓</span><span>An interactive, branded prototype to show sponsors and partners.</span></div>
-        <div><span class="ck">✓</span><span>Validated integrations: payments, POS, Wi-Fi, tickets, facial, fiscal.</span></div>
-        <div><span class="ck">✓</span><span>An LGPD &amp; compliance framework, designed in from day one.</span></div>
-        <div><span class="ck">✓</span><span>Live technical foundations + the first working module.</span></div>
-        <div><span class="ck">✓</span><span>A fixed, milestone-based price for the full MVP (months 3–8).</span></div>
-      </div>
-    </div>
-    <p class="say" style="margin-top:22px;font-size:13px">Full picture, for planning: MVP live in <b>6–8 months</b> (from <b>R$1.0M</b>); complete platform in <b>14–20 months</b>. Phased so each step is funded by the value it creates. All figures in this document are working estimates and confirmed as fixed scope at the start of each phase.</p>
-  </div></section>
-
-  <section><div class="wrap">
-    <p class="lbl">What you own</p>
-    <h2>Your platform. Your brand. Your data. Built to be yours.</h2>
-    <div class="own">
-      <div class="o"><b>The brand &amp; the app</b><p>Fully white-label — it goes to market as Seja Arena, never as a vendor's product.</p></div>
-      <div class="o"><b>The audience &amp; the data</b><p>The fan relationship, the CRM, the ad inventory and the insights are yours, under LGPD.</p></div>
-      <div class="o"><b>Continuity &amp; independence</b><p>Documented APIs, data portability and source-code escrow — so you're never locked to anyone.</p></div>
-    </div>
-  </div></section>
-
-  <section><div class="wrap">
-    <p class="lbl">Built for Brazil</p>
-    <h2>The hard compliance is handled — by design, not as an afterthought.</h2>
-    <p class="say"><b>LGPD</b> consent and privacy engineered into the core · <b>facial-recognition access</b> aligned with the Lei Geral do Esporte · <b>NFC-e</b> electronic fiscal receipts for every food &amp; beverage sale, per state. Payments run on <b>Pix and the major acquirers</b>, ready for high-volume match days.</p>
-  </div></section>
-
-  <section class="cta"><div class="wrap">
-    <h2>Let's build the demo — and price the whole thing.</h2>
-    <p class="say">Book a working session. We'll walk the platform, align on your arena and integrations, and put the first 90 days in motion so you have a live prototype in your hands.</p>
-    <span class="ctabtn">Book a working session →</span>
-    <p class="contact">A proposal prepared by Raw Business Solution.</p>
-  </div></section>
-</div>
-
-<!-- ==================== PORTUGUÊS ==================== -->
-<div data-lang="pt" hidden>
-  <div class="hero"><div class="lights"></div><div class="grid-fade"></div>
-    <div class="wrap in">
-      <span class="eyebrow">◆ Plataforma de Monetização Digital do Torcedor</span>
-      <h1>Transforme cada assento em um <span class="g">ponto de venda</span>. Cada torcedor em receita.</h1>
-      <p class="sub">A Seja Arena é a sua plataforma, com a sua marca, que transforma o celular de cada torcedor em parte do jogo — conectando Wi-Fi, pedidos, publicidade, ingressos e dados em uma só experiência, e um novo motor de receita totalmente seu. Aqui estão a plataforma, o diferencial, o plano e exatamente quanto custam os primeiros 90 dias.</p>
-      <div class="heroStats">
-        <div class="hs"><b>1 plataforma</b><small>20+ módulos integrados</small></div>
-        <div class="hs"><b>Entrega no assento</b><small>peça da cadeira, em segundos</small></div>
-        <div class="hs"><b>100% sua</b><small>white-label · sua marca · seus dados</small></div>
-        <div class="hs"><b>Multi-arena</b><small>feita para expandir entre estádios</small></div>
-      </div>
+<!-- INVESTIMENTO (sem valores — retirado a pedido do Ygo em 11/09/2026, ver histórico
+     no DEPLOY.md; a estrutura/entregáveis continuam, só os números somem) -->
+<section class="hasphoto reveal fx-pulsegrid"><div class="photobg"><img src="/seja-arena/images/hf-implantacao.webp" alt="" loading="lazy" decoding="async"></div><div class="wrap">
+  <p class="lbl">★ Os primeiros 90 dias</p>
+  <h2>O que fazemos em três meses.</h2>
+  <p class="say">No dia 90 você tem em mãos um protótipo funcional e um escopo fechado para o restante — então a maior decisão é tomada com dados, não com esperança.</p>
+  <div class="budget">
+    <div class="tblwrap"><table>
+      <thead><tr><th>Frente de trabalho</th><th>Entregue em 90 dias</th></tr></thead>
+      <tbody>
+        <tr><td>Discovery &amp; arquitetura da solução</td><td>Arquitetura multi-tenant, modelo de dados, modelo de assento/QR, planejamento de carga</td></tr>
+        <tr><td>UX/UI + protótipo interativo</td><td>Demo clicável, com sua marca, de toda a jornada do torcedor</td></tr>
+        <tr><td>Blueprint de integrações</td><td>Pagamentos (Pix/cartão), PDV, portal Wi-Fi, ingressos, acesso facial</td></tr>
+        <tr><td>Desenho de privacidade &amp; conformidade</td><td>Framework LGPD, modelo de consentimento, plano fiscal (NFC-e)</td></tr>
+        <tr><td>Fundações técnicas do MVP</td><td>Ambientes de nuvem, CI/CD, serviços core, esqueleto do primeiro módulo</td></tr>
+        <tr><td>Gestão de projeto &amp; governança</td><td>Cadência semanal, roadmap, escopo fechado do MVP</td></tr>
+      </tbody>
+    </table></div>
+    <h3 style="margin:22px 0 4px;font-size:15px">O que você tem em mãos no dia 90</h3>
+    <div class="deliver">
+      <div><span class="ck">✓</span><span>Um blueprint completo de produto &amp; técnico.</span></div>
+      <div><span class="ck">✓</span><span>Um protótipo interativo, com sua marca.</span></div>
+      <div><span class="ck">✓</span><span>Integrações validadas: pagamentos, PDV, Wi-Fi, ingressos, facial, fiscal.</span></div>
+      <div><span class="ck">✓</span><span>Um framework de LGPD &amp; conformidade, desenhado desde o dia um.</span></div>
+      <div><span class="ck">✓</span><span>Fundações técnicas no ar + o primeiro módulo funcional.</span></div>
+      <div><span class="ck">✓</span><span>Um escopo fechado, por marcos, para o MVP completo (meses 3–8).</span></div>
     </div>
   </div>
+  <p class="say" style="margin-top:22px;font-size:13px">Visão completa, para planejamento: MVP no ar em <b>6–8 meses</b>; plataforma completa em <b>14–20 meses</b>. Investimento discutido e confirmado em reunião, por fase.</p>
+</div></section>
 
-  <section class="showcase"><div class="wrap">
-    <p class="lbl">▶ A proposta em movimento</p>
-    <h2>Veja a Seja Arena ganhar vida.</h2>
-    <p class="say">Aperte o play. Esta é a experiência que o seu torcedor sente no instante em que entra — e o motivo de ele não largar o celular.</p>
-    <div class="videowrap"><video controls playsinline preload="none" poster="/proposta-seja-arena-poster.jpg" src="/proposta-seja-arena.mp4">Seu navegador não suporta o vídeo.</video></div>
-  </div></section>
+<!-- O QUE É SEU -->
+<section class="hasphoto reveal"><div class="photobg"><img src="/seja-arena/images/bg-v3-06-merchandising-loja.webp" loading="lazy" decoding="async" alt=""></div><div class="wrap">
+  <p class="lbl">O que é seu</p>
+  <h2>Sua plataforma. Sua marca. Seus dados. Feita para ser sua.</h2>
+  <div class="own">
+    <div class="o"><b>A marca &amp; o app</b><p>Totalmente white-label — vai ao mercado como Seja Arena, nunca como o produto de um fornecedor.</p></div>
+    <div class="o"><b>O público &amp; os dados</b><p>A relação com o torcedor, o CRM, o inventário de anúncios e os insights são seus, sob a LGPD.</p></div>
+    <div class="o"><b>Continuidade &amp; independência</b><p>APIs documentadas, portabilidade de dados e escrow do código-fonte — você nunca fica preso a ninguém.</p></div>
+  </div>
+</div></section>
 
-  <section><div class="wrap">
-    <p class="lbl">A oportunidade</p>
-    <h2>Cada jogo, milhares de torcedores e nenhuma relação digital. Isso é dinheiro saindo pela porta.</h2>
-    <p class="say">Hoje o torcedor compra o ingresso e desaparece. A Seja Arena captura essa relação no momento em que ele se conecta ao Wi-Fi — e a mantém. A partir desse primeiro toque, o canal é seu: você vende para ele no assento, entrega aos patrocinadores um público cativo e aprende o que cada torcedor quer. O estádio deixa de ser só um local de evento e vira um negócio digital o ano inteiro.</p>
-  </div></section>
+<!-- CONFORMIDADE -->
+<section class="hasphoto reveal fx-pulsegrid"><div class="photobg"><img src="/seja-arena/images/hf-conformidade.webp" alt="" loading="lazy" decoding="async"></div><div class="wrap">
+  <p class="lbl">Feita para o Brasil</p>
+  <h2>A conformidade difícil está resolvida — por design, não como remendo.</h2>
+  <p class="say"><b>LGPD</b> com consentimento e privacidade no núcleo · <b>acesso por reconhecimento facial</b> alinhado à Lei Geral do Esporte · <b>NFC-e</b> (nota fiscal eletrônica) para cada venda de alimentos &amp; bebidas, por estado. Pagamentos no <b>Pix e nas principais adquirentes</b>, prontos para dias de jogo de alto volume.</p>
+</div></section>
 
-  <section><div class="wrap">
-    <p class="lbl">Prova de mercado · Por que agora</p>
-    <h2>As arenas do Brasil já estão indo para o digital — por lei. A Seja Arena transforma isso em receita sua.</h2>
-    <p class="say">Isto não é uma aposta no futuro. Desde meados de 2025, a <b>Lei Geral do Esporte</b> torna o acesso por biometria facial <b>obrigatório</b> em todo estádio acima de 20 mil lugares — então o torcedor <b>já</b> se cadastra, se identifica e entra pelo celular. A porta de entrada digital já está aberta; a única questão é quem controla o que acontece depois. A Seja Arena se conecta aos trilhos de acesso e bilheteria que já existem e fica com a parte que dá dinheiro: pedidos, publicidade, sócio, engajamento e dados.</p>
-    <div class="bento">
-      <div class="b"><div class="ic">⚖️</div><h3>Digital agora é lei</h3><p>Acesso facial é obrigatório em estádios de 20 mil+ lugares (Lei Geral do Esporte, em vigor desde 2025). Toda grande arena precisa digitalizar a catraca — a mudança difícil já aconteceu.</p></div>
-      <div class="b"><div class="ic">👥</div><h3>O torcedor já está dentro</h3><p>A biometria já cobre estádios que reúnem cerca de 70% dos torcedores da Série A, com 18 milhões+ de acessos faciais. O público digital cativo já existe hoje.</p></div>
-      <div class="b"><div class="ic">🏟️</div><h3>O modelo está provado</h3><p>O "Super App do Galo" do Atlético-MG (feito com a Accenture) já roda ingressos, A&amp;B por pedido antecipado, navegação interna, streaming e gamificação na arena. A Seja Arena é esse playbook — só que seu.</p></div>
-      <div class="b"><div class="ic">🛡️</div><h3>A parte difícil é com a gente</h3><p>Os reguladores (ANPD) estão de olho na biometria. A Seja Arena embute governança de LGPD — consentimento, avaliação de impacto e alternativa ao facial — desde o dia um, então a conformidade vira força, não risco.</p></div>
-    </div>
-  </div></section>
+<!-- CTA -->
+<section class="cta hasphoto reveal" id="cta"><div class="photobg"><img src="/seja-arena/images/bg-v3-01-arena-abertura.webp" loading="lazy" decoding="async" alt=""></div><div class="wrap">
+  <h2>Vamos construir a demo — e precificar o projeto inteiro.</h2>
+  <p class="say">Agende uma reunião de trabalho. Vamos percorrer a plataforma, alinhar sua arena e as integrações, e colocar os primeiros 90 dias em movimento para você ter um protótipo funcional em mãos.</p>
+  <a class="ctabtn" href="mailto:contato@rawbusinesssolution.com?subject=Seja%20Arena%20—%20reuni%C3%A3o%20de%20trabalho">Agendar uma reunião →</a>
+  <p class="contact">Proposta preparada pela Raw Business Solution.</p>
+</div></section>
 
-  <section><div class="wrap">
-    <p class="lbl">A plataforma</p>
-    <h2>Um super-app do torcedor, integrado a toda a operação.</h2>
-    <div class="bento">
-      <div class="b wide"><div class="ic">📶</div><h3>Wi-Fi + Portal Cativo</h3><p>O torcedor ganha Wi-Fi grátis; você ganha a porta de entrada — portal com sua marca, vídeo do patrocinador, cadastro e consentimento, tudo capturado corretamente.</p></div>
-      <div class="b"><div class="ic">🍔</div><h3>Pedido no assento</h3><p>Comida e bebida pelo celular, entregues no assento exato — ou prontos para retirada.</p></div>
-      <div class="b"><div class="ic">🪑</div><h3>QR por cadeira</h3><p>Setor, bloco, fileira e assento identificados automaticamente por um código único em cada cadeira.</p></div>
-      <div class="b"><div class="ic">📣</div><h3>Publicidade &amp; patrocínio</h3><p>Banners, vídeos e campanhas patrocinadas com gestor de inventário de verdade — uma nova linha de receita.</p></div>
-      <div class="b"><div class="ic">💳</div><h3>Pagamento digital</h3><p>Pix e cartões, acompanhamento do pedido de ponta a ponta, pronto para split entre vários fornecedores.</p></div>
-      <div class="b"><div class="ic">🎟️</div><h3>Ingressos &amp; acesso</h3><p>Bilheteria e entrada por reconhecimento facial, integrados e em conformidade com a lei.</p></div>
-      <div class="b"><div class="ic">🅿️</div><h3>Estacionamento</h3><p>Compre, encontre e pague o estacionamento no mesmo app.</p></div>
-      <div class="b"><div class="ic">🛍️</div><h3>Marketplace &amp; cupons</h3><p>Loja oficial, produtos, promoções e cupons que geram recompra.</p></div>
-      <div class="b"><div class="ic">🔔</div><h3>Notificações &amp; CRM</h3><p>Fale direto com cada torcedor, segmente e traga-o de volta no próximo jogo.</p></div>
-      <div class="b wide"><div class="ic">📊</div><h3>Analytics, dashboards &amp; APIs abertas</h3><p>Métricas ao vivo de audiência, consumo e publicidade — mais APIs para plugar tudo que você adicionar depois.</p></div>
-    </div>
-  </div></section>
-
-  <section class="diff"><div class="wrap">
-    <p class="lbl">★ O diferencial</p>
-    <h2>O celular deixa de ser distração — e vira parte do jogo.</h2>
-    <p class="say">Mais de 80% dos torcedores estão no celular durante a partida. A Seja Arena transforma essa tela na segunda tela do espetáculo — replays, estatísticas, RA e jogos ao vivo — e cada toque é um dado, um impacto publicitário e um motivo para pedir de novo.</p>
-    <div class="bento">
-      <div class="b"><div class="ic">🎥</div><h3>Replays em vários ângulos</h3><p>Reveja o gol de todas as câmeras, ali no assento — no instante em que o torcedor pega o celular, ele está dentro do seu app.</p></div>
-      <div class="b"><div class="ic">📈</div><h3>Estatísticas &amp; escalações ao vivo</h3><p>Dados em tempo real, rastreamento de jogadores e mapas de calor durante o jogo.</p></div>
-      <div class="b"><div class="ic">🗳️</div><h3>Enquetes, quiz &amp; palpites</h3><p>Votação de craque, "quem marca o próximo", jogos no intervalo — com pontos e medalhas.</p></div>
-      <div class="b"><div class="ic">🔮</div><h3>RA no assento</h3><p>Aponte o celular para o campo e veja estatísticas do jogador, velocidade da bola e ativações de patrocinadores em RA.</p></div>
-      <div class="b"><div class="ic">📺</div><h3>No telão</h3><p>Mensagens, fotos e filtros de RA dos torcedores que aparecem no telão — ativados por patrocínio.</p></div>
-      <div class="b"><div class="ic">🏆</div><h3>Gamificação &amp; fidelidade</h3><p>Desafios, rankings e pontos que viram descontos em A&amp;B, produtos e status.</p></div>
-      <div class="b"><div class="ic">📣</div><h3>Momentos do clube &amp; jogadores</h3><p>Recados em vídeo para um setor, bastidores e conteúdo exclusivo que só o app tem.</p></div>
-      <div class="b"><div class="ic">🎯</div><h3>Missões de RA &amp; caça patrocinada</h3><p>Escaneie códigos pela arena para desbloquear cupons e recompensas — pagos por patrocinadores.</p></div>
-    </div>
-    <p class="say" style="margin-top:20px;font-size:13px"><b>Por que isso ganha:</b> o engajamento é o que mantém o app aberto — e um app aberto vende mais comida, mostra mais anúncios e prova mais valor aos patrocinadores. A experiência é o diferencial; a receita é a consequência.</p>
-  </div></section>
-
-  <section><div class="wrap">
-    <p class="lbl">A jornada do torcedor</p>
-    <h2>De "conectar ao Wi-Fi" a "entregue no meu assento" — em um só fluxo.</h2>
-    <div class="flow">
-      <div class="step"><b>Conecta ao Wi-Fi</b><small>Portal com marca + vídeo do patrocinador</small></div>
-      <div class="step"><b>Cadastra &amp; consente</b><small>Cadastro + privacidade, do jeito certo</small></div>
-      <div class="step"><b>Abre a Seja Arena</b><small>Assento detectado via QR</small></div>
-      <div class="step"><b>Pede &amp; paga</b><small>Pix / cartão, acompanha o pedido</small></div>
-      <div class="step"><b>Entregue no assento</b><small>Ou retira — sem perder o lance</small></div>
-    </div>
-  </div></section>
-
-  <section><div class="wrap">
-    <p class="lbl">Como construímos</p>
-    <h2>Um caminho em fases — receita cedo, plataforma completa ao longo do tempo, expansão depois.</h2>
-    <p class="say">Você nunca assina um cheque em branco gigante. Começamos pequeno e inteligente: uma fase de Discovery &amp; Blueprint que entrega uma demo funcional e um preço fixo para o build. Cada fase se paga antes de a próxima começar.</p>
-    <div class="road">
-      <div class="ph now"><span class="badge">Comece aqui</span><p class="tag">Fase 0</p><h3>Discovery &amp; Blueprint</h3><p class="when">Meses 1–3</p><ul><li>Blueprint completo de produto + técnico</li><li>Protótipo clicável com sua marca</li><li>Desenho de integrações &amp; conformidade</li><li>Preço fixo do MVP</li></ul></div>
-      <div class="ph"><p class="tag">Fase 1</p><h3>MVP — no ar</h3><p class="when">Meses 3–8</p><ul><li>Wi-Fi + portal + cadastro</li><li>QR de assento + A&amp;B no assento</li><li>Pix/cartão + acompanhamento</li><li>Primeira integração de PDV</li></ul></div>
-      <div class="ph"><p class="tag">Fase 2</p><h3>Plataforma completa</h3><p class="when">Meses 8–20</p><ul><li>Motor de anúncios + inventário</li><li>Ingressos, estacionamento, marketplace</li><li>CRM + analytics + APIs</li><li>White-label completo</li></ul></div>
-      <div class="ph"><p class="tag">Fase 3</p><h3>Expansão</h3><p class="when">Além</p><ul><li>Leve a novas arenas</li><li>Multi-tenant em escala</li><li>Novos eventos &amp; locais</li></ul></div>
-    </div>
-  </div></section>
-
-  <section><div class="wrap">
-    <p class="lbl">★ Os primeiros 90 dias — plano &amp; investimento</p>
-    <h2>O que fazemos em três meses, e exatamente quanto custa.</h2>
-    <p class="say">A primeira fase transforma a visão em algo que você pode ver, testar e precificar com segurança. No dia 90 você tem em mãos um protótipo funcional e um orçamento fixo para o restante — então a maior decisão é tomada com dados, não com esperança.</p>
-    <div class="budget">
-      <div class="headline">
-        <span class="big">R$430k – R$670k</span>
-        <span class="usd">≈ US$84k – US$131k</span>
-        <span class="cap">Discovery, Blueprint &amp; fundações técnicas com escopo fixo — o investimento total dos primeiros 90 dias.</span>
-      </div>
-      <div class="tblwrap"><table>
-        <thead><tr><th>Frente de trabalho</th><th>Entregue em 90 dias</th><th class="num">Investimento (BRL)</th></tr></thead>
-        <tbody>
-          <tr><td>Discovery &amp; arquitetura da solução</td><td>Arquitetura multi-tenant, modelo de dados, modelo de assento/QR, planejamento de carga</td><td class="num">R$90–130k</td></tr>
-          <tr><td>UX/UI + protótipo interativo</td><td>Demo clicável, com sua marca, de toda a jornada do torcedor</td><td class="num">R$70–110k</td></tr>
-          <tr><td>Blueprint de integrações</td><td>Pagamentos (Pix/cartão), PDV, portal Wi-Fi, ingressos, acesso facial</td><td class="num">R$60–100k</td></tr>
-          <tr><td>Desenho de privacidade &amp; conformidade</td><td>Framework LGPD, modelo de consentimento, plano fiscal (NFC-e)</td><td class="num">R$40–70k</td></tr>
-          <tr><td>Fundações técnicas do MVP</td><td>Ambientes de nuvem, CI/CD, serviços core, esqueleto do primeiro módulo</td><td class="num">R$130–200k</td></tr>
-          <tr><td>Gestão de projeto &amp; governança</td><td>Cadência semanal, roadmap, orçamento fixo do MVP</td><td class="num">R$40–60k</td></tr>
-          <tr class="total"><td>Total — primeiros 90 dias</td><td>Um protótipo funcional + um plano construível de preço fixo</td><td class="num">R$430–670k</td></tr>
-        </tbody>
-      </table></div>
-      <h3 style="margin:22px 0 4px;font-size:15px">O que você tem em mãos no dia 90</h3>
-      <div class="deliver">
-        <div><span class="ck">✓</span><span>Um blueprint completo de produto &amp; técnico — a especificação construível.</span></div>
-        <div><span class="ck">✓</span><span>Um protótipo interativo, com sua marca, para mostrar a patrocinadores e parceiros.</span></div>
-        <div><span class="ck">✓</span><span>Integrações validadas: pagamentos, PDV, Wi-Fi, ingressos, facial, fiscal.</span></div>
-        <div><span class="ck">✓</span><span>Um framework de LGPD &amp; conformidade, desenhado desde o dia um.</span></div>
-        <div><span class="ck">✓</span><span>Fundações técnicas no ar + o primeiro módulo funcional.</span></div>
-        <div><span class="ck">✓</span><span>Um preço fixo, por marcos, para o MVP completo (meses 3–8).</span></div>
-      </div>
-    </div>
-    <p class="say" style="margin-top:22px;font-size:13px">Visão completa, para planejamento: MVP no ar em <b>6–8 meses</b> (a partir de <b>R$1,0M</b>); plataforma completa em <b>14–20 meses</b>. Em fases, para que cada etapa seja financiada pelo valor que gera. Todos os valores deste documento são estimativas de trabalho, confirmadas como escopo fixo no início de cada fase.</p>
-  </div></section>
-
-  <section><div class="wrap">
-    <p class="lbl">O que é seu</p>
-    <h2>Sua plataforma. Sua marca. Seus dados. Feita para ser sua.</h2>
-    <div class="own">
-      <div class="o"><b>A marca &amp; o app</b><p>Totalmente white-label — vai ao mercado como Seja Arena, nunca como o produto de um fornecedor.</p></div>
-      <div class="o"><b>O público &amp; os dados</b><p>A relação com o torcedor, o CRM, o inventário de anúncios e os insights são seus, sob a LGPD.</p></div>
-      <div class="o"><b>Continuidade &amp; independência</b><p>APIs documentadas, portabilidade de dados e escrow do código-fonte — você nunca fica preso a ninguém.</p></div>
-    </div>
-  </div></section>
-
-  <section><div class="wrap">
-    <p class="lbl">Feita para o Brasil</p>
-    <h2>A conformidade difícil está resolvida — por design, não como remendo.</h2>
-    <p class="say"><b>LGPD</b> com consentimento e privacidade no núcleo · <b>acesso por reconhecimento facial</b> alinhado à Lei Geral do Esporte · <b>NFC-e</b> (nota fiscal eletrônica) para cada venda de alimentos &amp; bebidas, por estado. Pagamentos no <b>Pix e nas principais adquirentes</b>, prontos para dias de jogo de alto volume.</p>
-  </div></section>
-
-  <section class="cta"><div class="wrap">
-    <h2>Vamos construir a demo — e precificar o projeto inteiro.</h2>
-    <p class="say">Agende uma reunião de trabalho. Vamos percorrer a plataforma, alinhar sua arena e as integrações, e colocar os primeiros 90 dias em movimento para você ter um protótipo funcional em mãos.</p>
-    <span class="ctabtn">Agendar uma reunião →</span>
-    <p class="contact">Proposta preparada pela Raw Business Solution.</p>
-  </div></section>
-</div>
-
-<footer data-lang="en">Working estimates for discussion; scope and price are confirmed as fixed at the start of each phase. FX reference US$1 = R$5.1.</footer>
-<footer data-lang="pt" hidden>Estimativas de trabalho para discussão; escopo e preço são confirmados como fixos no início de cada fase. Câmbio de referência US$1 = R$5,1.</footer>
-</div><!-- /#site -->
+<footer>
+  <span>Estimativas de trabalho para discussão; escopo e investimento são confirmados em reunião, por fase.</span>
+  <span>© 2026 Raw Business Solution</span>
+</footer>
 
 <script>
-  (function(){
-    var HASH="b2282bd7b5d30095f35d37a6f85e72d542c8ffc86a9c0a260cf6a0c39db6d83f";
-    var gate=document.getElementById('gate'), site=document.getElementById('site');
-    function reveal(){ if(gate) gate.remove(); site.hidden=false; }
-    try{ if(sessionStorage.getItem('seja_unlocked')==='1'){ reveal(); return; } }catch(e){}
-    async function sha(s){ var b=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)); return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0');}).join(''); }
-    var f=document.getElementById('gateForm');
-    f.addEventListener('submit', async function(e){
-      e.preventDefault();
-      var pw=document.getElementById('gatePw').value, err=document.getElementById('gateErr');
-      try{
-        var h=await sha(pw);
-        if(h===HASH){ try{sessionStorage.setItem('seja_unlocked','1');}catch(e){} reveal(); }
-        else { err.hidden=false; document.getElementById('gatePw').value=''; document.getElementById('gatePw').focus(); }
-      }catch(_){ err.hidden=false; }
+  if (window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // section reveal — fade + slide up as each section enters view
+    gsap.utils.toArray('.reveal').forEach(function(section){
+      if (section.classList.contains('in')) return; // hero is already visible on load
+      gsap.fromTo(section, { opacity: 0, y: 34 }, {
+        opacity: 1, y: 0, duration: .9, ease: 'power2.out',
+        scrollTrigger: { trigger: section, start: 'top 85%' }
+      });
     });
-    document.getElementById('gatePw').focus();
-  })();
-</script>
 
-<script>
-  function setLang(l){
-    document.querySelectorAll('[data-lang]').forEach(el=>{el.hidden = el.getAttribute('data-lang')!==l;});
-    document.getElementById('btn-en').setAttribute('aria-pressed', String(l==='en'));
-    document.getElementById('btn-pt').setAttribute('aria-pressed', String(l==='pt'));
-    document.documentElement.lang = l;
+    // stagger the bento cards / steps / phases inside each section as it reveals
+    gsap.utils.toArray('.bento, .flow, .road, .own, .deliver').forEach(function(group){
+      var items = group.children;
+      gsap.fromTo(items, { opacity: 0, y: 22 }, {
+        opacity: 1, y: 0, duration: .6, ease: 'power2.out', stagger: .08,
+        scrollTrigger: { trigger: group, start: 'top 88%' }
+      });
+    });
+
+    // parallax drift on every section photo — depth without hijacking scroll
+    gsap.utils.toArray('.photobg img').forEach(function(img){
+      gsap.to(img, {
+        yPercent: 12, ease: 'none',
+        scrollTrigger: { trigger: img.closest('section'), start: 'top bottom', end: 'bottom top', scrub: .6 }
+      });
+    });
+
+    // budget number counts up when it first appears (section currently commented out — guard against its absence)
+    var big = document.querySelector('.headline .big');
+    if (big) {
+      ScrollTrigger.create({
+        trigger: big, start: 'top 90%', once: true,
+        onEnter: function(){ gsap.fromTo(big, { opacity:0, scale:.85 }, { opacity:1, scale:1, duration:.6, ease:'back.out(1.6)' }); }
+      });
+    }
+  } else {
+    // fallback if GSAP fails to load from CDN
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
   }
 </script>
 
-<script>document.documentElement.setAttribute('data-deflang','en');</script>
-<script src="/seja-nav.js"></script>
+<!-- Ambient shader — cinematic dust in two parallax layers, two slow diagonal light
+     beams, and a soft glow that follows the mouse. Gold-toned. No WebGL → canvas stays
+     empty and nothing else breaks. -->
+<script>
+(function () {
+  var canvas = document.getElementById('zyFxCanvas');
+  if (!canvas) return;
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  function syncSize() {
+    var w = Math.round((canvas.clientWidth || innerWidth) * dpr);
+    var h = Math.round((canvas.clientHeight || innerHeight) * dpr);
+    if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+  }
+  if (typeof ResizeObserver !== 'undefined') { new ResizeObserver(syncSize).observe(canvas); }
+  syncSize();
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  var vs = 'attribute vec2 a_position; varying vec2 v_texCoord; void main(){ v_texCoord = a_position*0.5+0.5; gl_Position = vec4(a_position,0.0,1.0); }';
+  var fs = 'precision highp float; uniform float u_time; uniform vec2 u_resolution; uniform vec2 u_mouse; varying vec2 v_texCoord;' +
+    'vec3 permute(vec3 x){ return mod(((x*34.0)+1.0)*x, 289.0); }' +
+    'float snoise(vec2 v){ const vec4 C=vec4(0.211324865405187,0.366025403784439,-0.577350269189626,0.024390243902439);' +
+    'vec2 i=floor(v+dot(v,C.yy)); vec2 x0=v-i+dot(i,C.xx); vec2 i1; i1=(x0.x>x0.y)?vec2(1.0,0.0):vec2(0.0,1.0);' +
+    'vec4 x12=x0.xyxy+C.xxzz; x12.xy-=i1; i=mod(i,289.0);' +
+    'vec3 p=permute(permute(i.y+vec3(0.0,i1.y,1.0))+i.x+vec3(0.0,i1.x,1.0));' +
+    'vec3 m=max(0.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.0); m=m*m; m=m*m;' +
+    'vec3 x=2.0*fract(p*C.www)-1.0; vec3 h=abs(x)-0.5; vec3 a0=x-floor(x+0.5);' +
+    'vec3 g; g.x=a0.x*x0.x+h.x*x0.y; g.yz=a0.yz*x12.xz+h.yz*x12.yw; return 130.0*dot(m,g); }' +
+    'void main(){ vec2 uv=v_texCoord; vec2 mouse=u_mouse/u_resolution; vec3 color=vec3(0.0);' +
+    'vec3 primary=vec3(0.961,0.725,0.259); vec3 neon=vec3(1.0,0.812,0.420);' +
+    'float aspect=u_resolution.x/max(u_resolution.y,1.0);' +
+    'float dust1=snoise(uv*vec2(60.0*aspect,60.0)+vec2(0.0,-u_time*0.05));' +
+    'color += neon*smoothstep(0.90,0.995,dust1)*0.28;' +
+    'float dust2=snoise(uv*vec2(28.0*aspect,28.0)+vec2(u_time*0.02,-u_time*0.03)+13.7);' +
+    'color += primary*smoothstep(0.92,0.995,dust2)*0.20;' +
+    'for (int k=0; k<2; k++){ float fk=float(k);' +
+    'float c=fract(u_time*0.022+fk*0.5);' +
+    'float pos=mix(-0.3,1.3,c);' +
+    'float d=abs((uv.x-pos)+ (uv.y-0.5)*0.55);' +
+    'float beam=smoothstep(0.16,0.0,d)*smoothstep(0.0,0.12,c)*smoothstep(1.0,0.82,c);' +
+    'color += primary*beam*0.10; }' +
+    'float mDist=distance(uv*vec2(aspect,1.0),mouse*vec2(aspect,1.0));' +
+    'color += primary*(1.0-smoothstep(0.0,0.42,mDist))*0.07;' +
+    'gl_FragColor=vec4(color,1.0); }';
+  function cs(type, src) { var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; }
+  var prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  var buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  var pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  var uTime = gl.getUniformLocation(prog, 'u_time');
+  var uRes = gl.getUniformLocation(prog, 'u_resolution');
+  var uMouse = gl.getUniformLocation(prog, 'u_mouse');
+  var mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', function (event) {
+    var rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      mouse.x = ((event.clientX - rect.left) / rect.width) * canvas.width;
+      mouse.y = (1.0 - (event.clientY - rect.top) / rect.height) * canvas.height;
+    }
+  });
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+
+<!-- Hero connection network — floating nodes linking by proximity, mouse joins the web,
+     two pulsing rings from two "emitter" points (the platform's growth). Gold-toned. -->
+<script>
+(function () {
+  var canvas = document.getElementById('heroNet');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  if (!ctx) return;
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var W = 0, H = 0;
+  function syncSize() {
+    var w = Math.round((canvas.clientWidth || innerWidth) * dpr);
+    var h = Math.round((canvas.clientHeight || innerHeight) * dpr);
+    if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+    W = canvas.width; H = canvas.height;
+  }
+  if (typeof ResizeObserver !== 'undefined') { new ResizeObserver(syncSize).observe(canvas); }
+  syncSize();
+  var N = Math.max(36, Math.min(70, Math.round((window.innerWidth || 1200) / 20)));
+  var pts = [];
+  for (var i = 0; i < N; i++) {
+    pts.push({
+      x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.22 * dpr,
+      vy: (Math.random() - 0.5) * 0.22 * dpr,
+      r: (Math.random() * 1.3 + 0.9) * dpr
+    });
+  }
+  var mouse = { x: -99999, y: -99999 };
+  canvas.parentElement.addEventListener('mousemove', function (e) {
+    var r = canvas.getBoundingClientRect();
+    mouse.x = (e.clientX - r.left) * dpr;
+    mouse.y = (e.clientY - r.top) * dpr;
+  });
+  var LINK = 140 * dpr, MLINK = 220 * dpr;
+  var emitters = [{ fx: 0.22, fy: 0.42, period: 3400, phase: 0 }, { fx: 0.82, fy: 0.28, period: 4200, phase: 1400 }];
+  function drawExpansion(now) {
+    for (var e = 0; e < emitters.length; e++) {
+      var em = emitters[e];
+      var cx = em.fx * W, cy = em.fy * H;
+      var maxR = Math.min(W, H) * 0.5;
+      for (var ring = 0; ring < 3; ring++) {
+        var t = ((now + em.phase + ring * (em.period / 3)) % em.period) / em.period;
+        var r = t * maxR;
+        var alpha = (1 - t) * 0.30;
+        if (alpha <= 0.01) continue;
+        ctx.strokeStyle = 'rgba(245,185,66,' + alpha.toFixed(3) + ')';
+        ctx.lineWidth = 1.3 * dpr;
+        ctx.beginPath(); ctx.arc(cx, cy, r, 0, 6.2832); ctx.stroke();
+      }
+      ctx.fillStyle = 'rgba(255,207,107,0.9)';
+      ctx.beginPath(); ctx.arc(cx, cy, 2.1 * dpr, 0, 6.2832); ctx.fill();
+    }
+  }
+  function frame(now) {
+    if (!W || !H) { requestAnimationFrame(frame); return; }
+    ctx.clearRect(0, 0, W, H);
+    drawExpansion(now || 0);
+    for (var i = 0; i < N; i++) {
+      var p = pts[i];
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < -20) p.x = W + 20; else if (p.x > W + 20) p.x = -20;
+      if (p.y < -20) p.y = H + 20; else if (p.y > H + 20) p.y = -20;
+    }
+    for (var a = 0; a < N; a++) {
+      for (var b = a + 1; b < N; b++) {
+        var dx = pts[a].x - pts[b].x, dy = pts[a].y - pts[b].y;
+        var d2 = dx * dx + dy * dy;
+        if (d2 < LINK * LINK) {
+          var alpha = (1 - Math.sqrt(d2) / LINK) * 0.4;
+          ctx.strokeStyle = 'rgba(255,207,107,' + alpha.toFixed(3) + ')';
+          ctx.lineWidth = 0.8 * dpr;
+          ctx.beginPath(); ctx.moveTo(pts[a].x, pts[a].y); ctx.lineTo(pts[b].x, pts[b].y); ctx.stroke();
+        }
+      }
+      var mdx = pts[a].x - mouse.x, mdy = pts[a].y - mouse.y;
+      var md2 = mdx * mdx + mdy * mdy;
+      if (md2 < MLINK * MLINK) {
+        var malpha = (1 - Math.sqrt(md2) / MLINK) * 0.7;
+        ctx.strokeStyle = 'rgba(245,185,66,' + malpha.toFixed(3) + ')';
+        ctx.lineWidth = 1 * dpr;
+        ctx.beginPath(); ctx.moveTo(pts[a].x, pts[a].y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
+      }
+    }
+    for (var k = 0; k < N; k++) {
+      ctx.fillStyle = 'rgba(255,207,107,0.85)';
+      ctx.beginPath(); ctx.arc(pts[k].x, pts[k].y, pts[k].r, 0, 6.2832); ctx.fill();
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+
+</div><!-- /#site -->
+
+<!-- Password gate check — same hash/password as the official raw-ai.vercel.app page,
+     so the team only has one password to remember for this project. -->
+<script>
+(function(){
+  var HASH = "5f24e57b85565b92afb1ab59ba4b7632a559a83f53a098682c65b8c8e35f305a";
+  var gate = document.getElementById('gate'), site = document.getElementById('site');
+  function reveal(){ if (gate) gate.remove(); site.hidden = false; }
+  try { if (sessionStorage.getItem('seja_unlocked') === '1') { reveal(); return; } } catch(e){}
+  async function sha(s){
+    var b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+    return Array.from(new Uint8Array(b)).map(function(x){ return x.toString(16).padStart(2,'0'); }).join('');
+  }
+  var f = document.getElementById('gateForm');
+  f.addEventListener('submit', async function(e){
+    e.preventDefault();
+    var pw = document.getElementById('gatePw').value, err = document.getElementById('gateErr');
+    try {
+      var h = await sha(pw);
+      if (h === HASH) { try { sessionStorage.setItem('seja_unlocked','1'); } catch(e){} reveal(); }
+      else { err.hidden = false; document.getElementById('gatePw').value = ''; document.getElementById('gatePw').focus(); }
+    } catch(_) { err.hidden = false; }
+  });
+  document.getElementById('gatePw').focus();
+})();
+</script>
+
+</body>
+</html>

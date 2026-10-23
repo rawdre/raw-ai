@@ -16,6 +16,8 @@ export type Project = {
   url?: string; // public link, only when it's safe/ready to show
   gated?: boolean; // behind the password gate (a tool being prepared for sale)
   tags?: string[];
+  featured?: boolean; // shown as the wide spotlight card with a cover image
+  cover?: string;
 };
 
 export const statusMeta: Record<ProjectStatus, { pt: string; en: string; tone: "green" | "cyan" | "gold" | "muted" }> = {
@@ -66,9 +68,12 @@ export const projects: Project[] = [
     category: { pt: "Arena / Torcedor", en: "Arena / Fan platform" },
     status: "demo",
     url: "/seja-arena.html",
+    featured: true,
+    cover: "/seja-arena/images/82d57407-ccaf-491e-b18a-bbc3da50069f.webp",
+    tags: ["Wi-Fi", "Pedido no assento", "Publicidade", "LGPD"],
     blurb: {
-      pt: "Plataforma white-label de monetização do torcedor para arenas — Wi-Fi, pedidos no assento, publicidade e dados. Apresentação bilíngue com plano e orçamento dos primeiros 90 dias.",
-      en: "White-label fan-monetization platform for arenas — Wi-Fi, seat ordering, ads and data. Bilingual presentation with the first-90-days plan and budget.",
+      pt: "Plataforma white-label de monetização do torcedor para arenas — Wi-Fi, pedidos no assento, publicidade e dados. Apresentação com vídeo, protótipo interativo do app e o plano dos primeiros 90 dias.",
+      en: "White-label fan-monetization platform for arenas — Wi-Fi, seat ordering, ads and data. Presentation with video, an interactive app prototype and the first-90-days plan.",
     },
   },
   {

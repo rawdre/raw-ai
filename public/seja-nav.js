@@ -11,7 +11,7 @@
 
   // Every destination in the project, grouped. `ext:true` opens in a new tab.
   var LINKS = [
-    { href: 'https://apresentacoes.zystudio-contabo.duckdns.org/seja-arena/', ext: true,
+    { href: '/seja-arena.html',
       group: { pt: 'Cliente', en: 'Client-facing' },
       pt: 'Apresentação', en: 'Presentation',
       subPt: 'a apresentação em uso no projeto', subEn: 'the presentation we use in this project',
@@ -28,7 +28,7 @@
       group: { pt: 'Interno', en: 'Internal' },
       pt: 'Scan global de super apps', en: 'Global super-app scan',
       subPt: 'o que são e o tamanho do trabalho', subEn: 'what they are and the size of the work' },
-    { href: '/seja-arena.html',
+    { href: '/seja-arena-v1.html',
       group: { pt: 'Arquivo', en: 'Archive' },
       pt: 'Deck antigo (raw-ai)', en: 'Old deck (raw-ai)',
       subPt: 'a apresentação anterior — mantida', subEn: 'the earlier presentation — kept' }
