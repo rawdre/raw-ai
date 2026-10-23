@@ -70,7 +70,7 @@ export function Pillars() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-0)] via-[rgba(5,7,13,0.35)] to-transparent" />
                   <div className="scanlines absolute inset-0 opacity-60" />
                   <div className="absolute left-5 top-5 font-mono text-xs tracking-[0.2em] text-[var(--cyan-bright)]">{p.n}</div>
-                  <ArrowUpRight className="absolute right-5 top-5 text-white/60 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[var(--green)]" size={20} />
+                  <ArrowUpRight className="absolute right-5 top-5 text-white/60 transition-[color,background-color,border-color,box-shadow,transform] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[var(--green)]" size={20} />
                   <div className="absolute inset-x-5 bottom-5" style={{ transform: "translateZ(40px)" }}>
                     <div className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-[var(--green)]">{pick(lang, p).k}</div>
                     <h3 className="glitch mt-1 font-display text-3xl font-bold">{pick(lang, p).t}</h3>
