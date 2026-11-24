@@ -26,17 +26,19 @@ export function Nav() {
 
         <div className="hidden items-center gap-7 md:flex">
           {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-sm text-muted transition-colors hover:text-[var(--text)]"
-            >
-              {pick(lang, l)}
-            </a>
+            <span key={l.href} className="contents">
+              <a href={l.href} className="text-sm text-muted transition-colors hover:text-[var(--text)]">
+                {pick(lang, l)}
+              </a>
+              {/* Painel entry right after Marketing — deliberately quieter than the section links. */}
+              {l.href === "#marketing" && <EntrarLink className="text-xs text-muted/70" />}
+            </span>
           ))}
         </div>
 
         <div className="flex items-center gap-2">
+          {/* Phones have no section menu, so Entrar sits here, compact. */}
+          <EntrarLink className="px-1 text-xs text-muted md:hidden" />
           <button
             onClick={toggle}
             aria-label="Toggle language"
@@ -56,5 +58,20 @@ export function Nav() {
         </div>
       </nav>
     </header>
+  );
+}
+
+/** /painel redirects to the painel login (next.config.ts). nofollow: not a page for search engines. */
+function EntrarLink({ className }: { className: string }) {
+  const { lang } = useLang();
+  return (
+    <a
+      href="/painel"
+      rel="nofollow"
+      className={`inline-flex items-center gap-1 whitespace-nowrap transition-colors hover:text-[var(--text)] ${className}`}
+    >
+      <span aria-hidden="true">🔒</span>
+      {pick(lang, { pt: "Entrar", en: "Sign in" })}
+    </a>
   );
 }

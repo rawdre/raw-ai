@@ -77,27 +77,16 @@ export function Marketing() {
                 en: "I build the plan, create the ads and wire it all to the robot that answers the lead. What used to take an agency + a studio + an SDR is now one system.",
               })}
             </p>
-            <div className="mt-7 flex flex-wrap items-center gap-3">
-              <a
-                href={WHATSAPP_MARKETING}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-[#04121a] transition-transform hover:-translate-y-0.5"
-                style={{ backgroundImage: "var(--grad)" }}
-              >
-                {pick(lang, { pt: "Quero uma estratégia", en: "Get a strategy" })}
-                <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
-              </a>
-              {/* Existing clients go to the painel (approvals, queue). /painel redirects — see next.config.ts. */}
-              <a
-                href="/painel"
-                rel="nofollow"
-                className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-6 py-3 text-sm font-semibold text-[var(--text)] transition-[transform,border-color,background-color] hover:-translate-y-0.5 hover:border-[var(--cyan-bright)]/60 hover:bg-white/[0.06]"
-              >
-                {pick(lang, { pt: "Área do cliente", en: "Client area" })}
-                <ArrowRight size={16} className="text-[var(--cyan-bright)] transition-transform group-hover:translate-x-0.5" />
-              </a>
-            </div>
+            <a
+              href={WHATSAPP_MARKETING}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group mt-7 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-[#04121a] transition-transform hover:-translate-y-0.5"
+              style={{ backgroundImage: "var(--grad)" }}
+            >
+              {pick(lang, { pt: "Quero uma estratégia", en: "Get a strategy" })}
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
+            </a>
           </div>
 
           <div>
