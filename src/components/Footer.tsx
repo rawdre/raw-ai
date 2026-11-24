@@ -64,6 +64,9 @@ export function Footer() {
               <Mail size={13} /> rawandre@gmail.com
             </a>
             <span>© {new Date().getFullYear()} Raw AI</span>
+            <a href="/painel" rel="nofollow" className="transition-colors hover:text-[var(--text)]">
+              {pick(lang, { pt: "Entrar", en: "Sign in" })}
+            </a>
             <span title="Versão do site — âncora de rollback" className="opacity-70">v{SITE_VERSION}</span>
           </div>
         </div>
