@@ -42,3 +42,6 @@ next-env.d.ts
 
 .vercel
 .env*
+
+# private source data for /personal (plaintext — never commit)
+/private

@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { Lock } from "lucide-react";
 import { RawAILogo } from "./RawAILogo";
 import { useLang, pick } from "@/lib/lang";
 
@@ -39,6 +41,14 @@ export function Nav() {
         <div className="flex items-center gap-2">
           {/* Phones have no section menu, so Entrar sits here, compact. */}
           <EntrarLink className="px-1 text-xs text-muted md:hidden" />
+          <Link
+            href="/personal"
+            aria-label="Personal — área privada"
+            className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-2.5 py-1 text-xs font-semibold text-muted transition-colors hover:border-[color:rgba(255,45,149,0.5)] hover:text-[var(--text)]"
+          >
+            <Lock size={12} />
+            <span className="hidden sm:inline">Personal</span>
+          </Link>
           <button
             onClick={toggle}
             aria-label="Toggle language"
