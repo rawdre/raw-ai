@@ -4,8 +4,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Flame, Lock, Star, TriangleAlert } from "lucide-react";
-import type { HealthData } from "@/lib/personal/types";
-import { levelInfo, streak, totalXp, wantedStars, weekMinutes } from "./game";
+import type { HealthData, StravaFeed } from "@/lib/personal/types";
+import { levelInfo, streak, totalXp, wantedStars, weekMinutes, withSynced, type LogEntry } from "./game";
 import { useGameState } from "./useGameState";
 import { MissionsTab } from "./MissionsTab";
 import { BossesTab } from "./BossesTab";
@@ -23,9 +23,14 @@ type TabId = (typeof TABS)[number]["id"];
 const TOAST_MS = 2600;
 const MAX_STARS = 5;
 
-export function Dashboard({ data }: { data: HealthData }) {
+export function Dashboard({ data, strava }: { data: HealthData; strava: StravaFeed }) {
   const router = useRouter();
-  const { state, update, ready, saveFailed } = useGameState();
+  const { state: saved, update, ready, saveFailed } = useGameState();
+  // Strava entries are layered on top of what this browser saved; `update` still only touches the saved part.
+  const state = useMemo(() => {
+    const synced: LogEntry[] = strava.activities.map((a) => ({ ...a, source: "strava" }));
+    return withSynced(saved, synced);
+  }, [saved, strava]);
   const [tab, setTab] = useState<TabId>("missions");
   const [toast, setToast] = useState<{ title: string; detail: string } | null>(null);
 
@@ -135,12 +140,12 @@ export function Dashboard({ data }: { data: HealthData }) {
         ))}
       </nav>
 
-      {tab === "missions" && <MissionsTab data={data} state={state} update={update} celebrate={celebrate} />}
+      {tab === "missions" && <MissionsTab data={data} state={state} update={update} celebrate={celebrate} stravaStatus={strava.status} syncedCount={strava.activities.length} />}
       {tab === "bosses" && <BossesTab data={data} state={state} update={update} celebrate={celebrate} />}
       {tab === "food" && <FoodTab data={data} />}
       {tab === "dossier" && <DossierTab data={data} />}
 
-      <footer className="pz-foot">{meta.disclaimer} O progresso do jogo fica salvo só neste navegador.</footer>
+      <footer className="pz-foot">{meta.disclaimer} O progresso marcado à mão fica salvo só neste navegador.</footer>
 
       {toast && (
         <div className="pz-toast" role="status">

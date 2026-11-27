@@ -2,7 +2,15 @@
 // everything specific comes from the decrypted dossier passed in as arguments.
 import type { Boss, HealthData } from "@/lib/personal/types";
 
-export type LogEntry = { id: string; date: string; activity: string; minutes: number; km: number | null };
+export type LogEntry = {
+  id: string;
+  date: string;
+  activity: string;
+  minutes: number;
+  km: number | null;
+  label?: string; // the activity's own title, when it came from Strava
+  source?: "strava"; // synced entries are read-only here: delete them in Strava
+};
 export type Reading = { date: string; value: number };
 export type BpReading = { date: string; sys: number; dia: number };
 
@@ -42,6 +50,13 @@ export function dateKey(d: Date = new Date()): string {
 /** Date keys for the last `n` days, oldest first, ending today. */
 export function lastDays(n: number, today: Date = new Date()): string[] {
   return Array.from({ length: n }, (_, i) => dateKey(new Date(today.getTime() - (n - 1 - i) * DAY_MS)));
+}
+
+/** Adds synced (Strava) activities to the saved state for display and scoring. Never persisted. */
+export function withSynced(state: GameState, synced: LogEntry[]): GameState {
+  if (synced.length === 0) return state;
+  const log = [...state.log, ...synced].sort((a, b) => a.date.localeCompare(b.date));
+  return { ...state, log };
 }
 
 export function totalXp(state: GameState, game: HealthData["game"]): number {

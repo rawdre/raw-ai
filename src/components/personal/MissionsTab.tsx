@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Lock, Trash2 } from "lucide-react";
-import type { Activity, HealthData } from "@/lib/personal/types";
+import { Check, Lock, RefreshCw, Trash2 } from "lucide-react";
+import type { Activity, HealthData, StravaFeed } from "@/lib/personal/types";
 import { dateKey, lastDays, parseNumber, weekMinutes, type GameState, type LogEntry } from "./game";
 
 export type TabProps = {
@@ -12,11 +12,13 @@ export type TabProps = {
   celebrate: (title: string, detail: string) => void;
 };
 
+type MissionsProps = TabProps & { stravaStatus: StravaFeed["status"]; syncedCount: number };
+
 const MAX_MINUTES = 600;
-const RECENT_LOG_COUNT = 6;
+const RECENT_LOG_COUNT = 8;
 const WEEKDAY = ["D", "S", "T", "Q", "Q", "S", "S"];
 
-export function MissionsTab({ data, state, update, celebrate }: TabProps) {
+export function MissionsTab({ data, state, update, celebrate, stravaStatus, syncedCount }: MissionsProps) {
   const { game } = data;
   const today = dateKey();
   const doneToday = state.habits[today] ?? [];
@@ -96,16 +98,29 @@ export function MissionsTab({ data, state, update, celebrate }: TabProps) {
           <p className="pz-fine">{game.weeklyGoalNote}</p>
         </div>
 
+        {stravaStatus !== "off" && (
+          <p className={stravaStatus === "ok" ? "pz-sync" : "pz-sync bad"}>
+            <RefreshCw size={13} aria-hidden="true" />
+            {stravaStatus === "ok"
+              ? `Strava conectado · ${syncedCount} ${syncedCount === 1 ? "atividade sincronizada" : "atividades sincronizadas"} · entra sozinho, é só recarregar`
+              : "Strava não respondeu agora — as atividades sincronizadas voltam ao recarregar."}
+          </p>
+        )}
+
         {recent.length > 0 && (
           <ul className="pz-log">
             {recent.map((e) => (
               <li key={e.id}>
                 <span>
-                  {e.date.slice(8)}/{e.date.slice(5, 7)} · {activityName(e.activity)} · {e.minutes} min{e.km ? ` · ${e.km} km` : ""}
+                  {e.date.slice(8)}/{e.date.slice(5, 7)} · {e.label ?? activityName(e.activity)} · {e.minutes} min{e.km ? ` · ${e.km} km` : ""}
                 </span>
-                <button type="button" onClick={() => removeLog(e.id)} aria-label="Remover registro" className="pz-icon-btn">
-                  <Trash2 size={14} />
-                </button>
+                {e.source === "strava" ? (
+                  <span className="pz-src">Strava</span>
+                ) : (
+                  <button type="button" onClick={() => removeLog(e.id)} aria-label="Remover registro" className="pz-icon-btn">
+                    <Trash2 size={14} />
+                  </button>
+                )}
               </li>
             ))}
           </ul>

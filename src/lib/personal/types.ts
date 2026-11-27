@@ -19,6 +19,11 @@ export type Habit = { id: string; name: string; xp: number };
 export type StoryMission = { id: string; name: string; when: string; xp: number; text: string };
 export type LabRow = [name: string, july: string, november: string, note: string, level: Level];
 
+/** One activity pulled from Strava, already mapped onto a dashboard activity id. */
+export type SyncedActivity = { id: string; date: string; activity: string; minutes: number; km: number | null; label: string };
+/** "off" = not configured, "error" = Strava unreachable or the token was rejected. */
+export type StravaFeed = { status: "off" | "ok" | "error"; activities: SyncedActivity[] };
+
 export type HealthData = {
   meta: { name: string; alias: string; updated: string; period: string; age: string; disclaimer: string };
   emergency: string;

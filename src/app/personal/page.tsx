@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { Anton } from "next/font/google";
 import { SESSION_COOKIE, isConfigured, isValidSession, loadHealthData } from "@/lib/personal/server";
+import { loadStravaFeed } from "@/lib/personal/strava";
 import { Gate } from "@/components/personal/Gate";
 import { Dashboard } from "@/components/personal/Dashboard";
 import "./personal.css";
@@ -22,9 +23,12 @@ export default async function PersonalPage() {
   const store = await cookies();
   const unlocked = isValidSession(store.get(SESSION_COOKIE)?.value);
 
+  const data = unlocked ? loadHealthData() : null;
+  const strava = data ? await loadStravaFeed(data.game.activities) : null;
+
   return (
     <div className={`${poster.variable} personal`}>
-      {unlocked ? <Dashboard data={loadHealthData()} /> : <Gate configured={isConfigured()} />}
+      {data && strava ? <Dashboard data={data} strava={strava} /> : <Gate configured={isConfigured()} />}
     </div>
   );
 }
